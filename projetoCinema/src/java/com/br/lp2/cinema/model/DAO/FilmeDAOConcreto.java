@@ -53,7 +53,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Filme d = new Filme(rs.getInt("pk"), rs.getDiretor("diretor"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                Filme d = new Filme(rs.getInt("pk"), rs.getObject("diretor"), rs.getObject("genero"), rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
                 lista.add(d);
             }
         } catch (SQLException ex){
