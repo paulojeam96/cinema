@@ -6,7 +6,7 @@
 package com.br.lp2.cinema.model.DAO;
 
 import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
-import com.br.lp2.cinema.model.javabeans.Funcionario;
+import com.br.lp2.cinema.model.javabeans.Ingresso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,41 +19,41 @@ import java.util.logging.Logger;
  *
  * @author 31448471
  */
-public class FuncionarioDAOConcreto implements FuncionarioDAO{
+public class IngressoDAOConcreto implements IngressoDAO{
     
     private Connection connection;
     private PreparedStatement pst;
     private ResultSet rs;
     
-    public FuncionarioDAOConcreto(){
+    public IngressoDAOConcreto(){
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
 
     @Override
-    public boolean insertFuncionario(Funcionario funcionario) {
+    public boolean insertIngresso(Ingresso ingresso) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO funcionario(nome) VALUES (?)";
+            String sql = "INSERT INTO ingresso(pk) VALUES (?)";
             pst = connection.prepareStatement(sql);
-            pst.setString(1, funcionario.getNome());
+            pst.setInt(1, ingresso.getPk());
             resultado = pst.execute();
         } catch(SQLException ex){
-             Logger.getLogger(FuncionarioDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
                }
         return resultado;
     }
 
     @Override
-    public ArrayList<Funcionario> readFuncionarios() {
-        ArrayList<Funcionario> lista = new ArrayList<>();
+    public ArrayList<Ingresso> readIngresso() {
+        ArrayList<Ingresso> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  funcionario";
+            String sql = "SELECT * FROM  ingresso";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Funcionario d = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
+                Ingresso d = new Ingresso(rs.getInt("pk"), rs.getInt("id"), rs.getBoolean("inteira"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -63,16 +63,16 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO{
     }
 
     @Override
-    public Funcionario readFuncionarioById(int id) {
-        Funcionario a = null;
+    public Ingresso readIngressoById(int id) {
+        Ingresso a = null;
         
         try {
-            String sql = "SELECT * FROM funcionario WHERE id=?";
+            String sql = "SELECT * FROM ingresso WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Funcionario(rs.getInt("pk"),rs. getInt("id"), rs.getString("nome"));
+            a = new Ingresso(rs.getInt("pk"), rs.getInt("id"), rs.getBoolean("inteira"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -81,60 +81,43 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO{
     }
 
     @Override
-    public Funcionario readFuncionarioByNome(String nome) {
-        Funcionario a = null;
+    public boolean updateIngresso(int id, Ingresso ingresso) {
+         boolean res =false;
         
         try{
-            String sql = "SELECT * FROM funcionario WHERE nome=?";
-            pst = connection.prepareStatement(sql);
-            pst.setString(1, nome);
-            rs = pst.executeQuery();
-            while(rs.next()){
-            a = new Funcionario(rs.getInt("pk"),rs. getInt("id"), rs.getString("nome"));               }
-        } catch( SQLException ex){
-            ex.printStackTrace();
-        }
-        return a;
-    }
-
-    @Override
-    public boolean updateFuncionario(int id, Funcionario funcionario) {
-        boolean res =false;
-        
-        try{
-            String sql = "UPDATE funcionario SET nome=? WHERE id=?";
+            String sql = "UPDATE ingresso SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;
         } catch (SQLException ex){
-            Logger.getLogger(FuncionarioDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return res;
     }
 
     @Override
-    public boolean deleteFuncionario(Funcionario funcionario) {
-        boolean resultado=false;
+    public boolean deleteIngresso(Ingresso ingresso) {
+         boolean resultado=false;
         try {
-            String sql = "DELETE FROM funcionario WHERE id=?";
+            String sql = "DELETE FROM ingresso WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,funcionario.getPk());
+            pst.setInt(1,ingresso.getPk());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;
         } catch (SQLException ex) {
-            Logger.getLogger(FuncionarioDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return resultado;
     }
 
     @Override
-    public boolean deleteFuncionario(int id) {
+    public boolean deleteIngresso(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM funcionario WHERE id=?";
+            String sql = "DELETE FROM ingresso WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

@@ -6,11 +6,7 @@
 package com.br.lp2.cinema.model.DAO;
 
 import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
-import com.br.lp2.cinema.model.javabeans.Diretor;
-import com.br.lp2.cinema.model.javabeans.Distribuidora;
-import com.br.lp2.cinema.model.javabeans.Filme;
 import com.br.lp2.cinema.model.javabeans.Genero;
-import com.br.lp2.cinema.model.javabeans.ListaAtores;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,43 +17,43 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Paulo
+ * @author 31448471
  */
-public class FilmeDAOConcreto implements FilmeDAO{
+public class GeneroDAOConcreto implements GeneroDAO{
     
     private Connection connection;
     private PreparedStatement pst;
     private ResultSet rs;
     
-    public FilmeDAOConcreto(){
+    public GeneroDAOConcreto(){
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
 
     @Override
-    public boolean insertFilme(Filme filme) {
+    public boolean insertGenero(Genero genero) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO filme(nome) VALUES (?)";
+            String sql = "INSERT INTO genero(nome) VALUES (?)";
             pst = connection.prepareStatement(sql);
-            pst.setString(1, filme.getNome());
+            pst.setString(1, genero.getNome());
             resultado = pst.execute();
         } catch(SQLException ex){
-             Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(GeneroDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
                }
         return resultado;
     }
 
     @Override
-    public ArrayList<Filme> readFilmes() {
-        ArrayList<Filme> lista = new ArrayList<>();
+    public ArrayList<Genero> readGeneros() {
+        ArrayList<Genero> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  filme";
+            String sql = "SELECT * FROM  genero";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Filme d = new Filme(rs.getInt("pk"),(Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                Genero d = new Genero( rs.getInt("pk"), rs.getString("nome"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -67,16 +63,16 @@ public class FilmeDAOConcreto implements FilmeDAO{
     }
 
     @Override
-    public Filme readFilmeById(int id) {
-        Filme a = null;
+    public Genero readGeneroById(int id) {
+         Genero a = null;
         
         try {
-            String sql = "SELECT * FROM filme WHERE id=?";
+            String sql = "SELECT * FROM genero WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Filme(rs.getInt("pk"),(Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            a = new Genero( rs.getInt("pk"), rs.getString("nome"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -85,16 +81,16 @@ public class FilmeDAOConcreto implements FilmeDAO{
     }
 
     @Override
-    public Filme readFilmeByNome(String nome) {
-        Filme a = null;
+    public Genero readGeneroByNome(String nome) {
+        Genero a = null;
         
         try{
-            String sql = "SELECT * FROM filme WHERE nome=?";
+            String sql = "SELECT * FROM genero WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while(rs.next()){
-            a = new Filme(rs.getInt("pk"),(Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                a = new Genero( rs.getInt("pk"), rs.getString("nome"));
            }
         } catch( SQLException ex){
             ex.printStackTrace();
@@ -103,43 +99,43 @@ public class FilmeDAOConcreto implements FilmeDAO{
     }
 
     @Override
-    public boolean updateFilme(int id, Filme filme) {
-        boolean res =false;
+    public boolean updateGenero(int id, Genero genero) {
+       boolean res =false;
         
         try{
-            String sql = "UPDATE filme SET nome=? WHERE id=?";
+            String sql = "UPDATE genero SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;
         } catch (SQLException ex){
-            Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeneroDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
     }
 
     @Override
-    public boolean deleteFilme(Filme filme) {
+    public boolean deleteGenero(Genero genero) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM filme WHERE id=?";
+            String sql = "DELETE FROM genero WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,filme.getPk());
+            pst.setInt(1,genero.getPk());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;
         } catch (SQLException ex) {
-            Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GeneroDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultado;
     }
 
     @Override
-    public boolean deleteFilme(int id) {
+    public boolean deleteGenero(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM filme WHERE id=?";
+            String sql = "DELETE FROM genero WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
