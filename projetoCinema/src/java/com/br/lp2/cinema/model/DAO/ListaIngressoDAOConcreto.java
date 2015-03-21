@@ -5,28 +5,80 @@
  */
 package com.br.lp2.cinema.model.DAO;
 
+import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
 import com.br.lp2.cinema.model.javabeans.ListaIngresso;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Paulo
  */
 public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
+    
+    private Connection connection;
+    private PreparedStatement pst;
+    private ResultSet rs;
+    
+    public ListaIngressoDAOConcreto(){
+        ConnectionFactory cf = new ConnectionFactory();
+        connection = cf.getConnection("derby");
+    }
 
     @Override
     public boolean insertListaIngresso(ListaIngresso listaIngresso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean resultado = false;
+        try{
+            String sql = "INSERT INTO listaIngresso(nome) VALUES (?)";
+            pst = connection.prepareStatement(sql);
+            pst.setObject(1, listaIngresso.getLista());
+            resultado = pst.execute();
+        } catch(SQLException ex){
+            Logger.getLogger(ListaIngressoDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+           
+        }
+        return resultado;
     }
 
     @Override
     public ArrayList<ListaIngresso> readListaIngresso() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<ListaIngresso> lista = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM  listaIngresso";
+            pst = connection.prepareStatement(sql);
+            
+            rs = pst.executeQuery();
+            
+                ListaIngresso a = new ListaIngresso();
+                lista.add(a);
+            
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return lista;
     }
 
     @Override
-    public ListaIngresso readAtorById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ListaIngresso readListaIngressoById(int id) {
+        ListaIngresso a = null;
+        
+        try {
+            String sql = "SELECT * FROM listaIngresso WHERE pk=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs=pst.executeQuery();
+            while (rs.next()) {
+                a = new ListaIngresso();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return a;
     }
 
     @Override

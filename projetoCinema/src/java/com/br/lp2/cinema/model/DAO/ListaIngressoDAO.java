@@ -19,7 +19,7 @@ public interface ListaIngressoDAO {
     
     //R - READ
     public ArrayList<ListaIngresso> readListaIngresso();
-    public ListaIngresso readAtorById(int id);
+    public ListaIngresso readListaIngressoById(int id);
     
     
     //U - UPDATE
