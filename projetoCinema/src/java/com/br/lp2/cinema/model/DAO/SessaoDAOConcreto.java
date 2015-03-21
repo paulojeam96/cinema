@@ -6,12 +6,15 @@
 package com.br.lp2.cinema.model.DAO;
 
 import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
-import com.br.lp2.cinema.model.javabeans.ListaIngresso;
+import com.br.lp2.cinema.model.javabeans.Filme;
+import com.br.lp2.cinema.model.javabeans.Sala;
+import com.br.lp2.cinema.model.javabeans.Sessao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,44 +22,43 @@ import java.util.logging.Logger;
  *
  * @author Paulo
  */
-public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
+public class SessaoDAOConcreto implements SessaoDAO{
     
     private Connection connection;
     private PreparedStatement pst;
     private ResultSet rs;
     
-    public ListaIngressoDAOConcreto(){
+    public SessaoDAOConcreto(){
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
-
+    
     @Override
-    public boolean insertListaIngresso(ListaIngresso listaIngresso) {
+    public boolean insertSessao(Sessao sessao) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO listaIngresso(nome) VALUES (?)";
+            String sql = "INSERT INTO sessao VALUES (?)";
             pst = connection.prepareStatement(sql);
-            pst.setObject(1, listaIngresso.getLista());
+            pst.setInt(1, sessao.getPk());
             resultado = pst.execute();
         } catch(SQLException ex){
-            Logger.getLogger(ListaIngressoDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
-           
+            ex.printStackTrace();
         }
         return resultado;
     }
 
     @Override
-    public ArrayList<ListaIngresso> readListaIngresso() {
-        ArrayList<ListaIngresso> lista = new ArrayList<>();
+    public ArrayList<Sessao> readSessoes() {
+        ArrayList<Sessao> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  listaIngresso";
+            String sql = "SELECT * FROM  sessao";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
-            
-                ListaIngresso a = new ListaIngresso();
+            while(rs.next()){
+                Sessao a = new Sessao(rs.getInt("pk"), (Sala)rs.getObject("sala"), (Filme)rs.getObject("filme"), rs.getDate("diaHora"), rs.getBoolean("legendado"));
                 lista.add(a);
-            
+            }
         } catch (SQLException ex){
             ex.printStackTrace();
         }
@@ -64,61 +66,61 @@ public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
     }
 
     @Override
-    public ListaIngresso readListaIngressoById(int id) {
-        ListaIngresso a = null;
+    public Sessao readSessaoByHora(Date diaHora) {
+        Sessao a = null;
         
-        try {
-            String sql = "SELECT * FROM listaIngresso WHERE pk=?";
+        try{
+            String sql = "SELECT * FROM sessao WHERE diaHora=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, id);
-            rs=pst.executeQuery();
-            while (rs.next()) {
-                a = new ListaIngresso();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+            pst.setDate(1, (java.sql.Date)diaHora);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                a = new Sessao(rs.getInt("pk"), (Sala)rs.getObject("sala"), (Filme)rs.getObject("filme"), rs.getDate("diaHora"), rs.getBoolean("legendado"));
+           }
+        } catch( SQLException ex){
+        ex.printStackTrace();
         }
         return a;
     }
 
     @Override
-    public boolean updateListaIngresso(int id, ListaIngresso listaIngresso) {
+    public boolean updateSessao(int id, Sessao sessao) {
         boolean res =false;
         
         try{
-            String sql = "UPDATE listaIngresso SET nome=? WHERE id=?";
+            String sql = "UPDATE sessao SET sala=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;
         } catch (SQLException ex){
-            Logger.getLogger(ListaIngressoDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return res;
     }
 
     @Override
-    public boolean deleteListaIngresso(ListaIngresso listaIngresso) {
+    public boolean deleteSessao(Sessao sessao) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM listaIngresso WHERE id=?";
+            String sql = "DELETE FROM sessao WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,listaIngresso.getPk());
+            pst.setInt(1,sessao.getPk());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;
         } catch (SQLException ex) {
-            Logger.getLogger(AtorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return resultado;
     }
 
     @Override
-    public boolean deleteListaIngresso(int id) {
+    public boolean deleteSessao(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM listaIngresso WHERE id=?";
+            String sql = "DELETE FROM sessao WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

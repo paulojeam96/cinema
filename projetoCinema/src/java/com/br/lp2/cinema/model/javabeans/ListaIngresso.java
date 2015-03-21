@@ -35,6 +35,11 @@ public class ListaIngresso implements Serializable{
         return lista;
     }
 
+    public int getPk() {
+        return pk;
+    }
+
+    
     @Override
     public String toString() {
         return "ListaIngresso{" + "pk=" + pk + ", lista=" + lista + '}';
