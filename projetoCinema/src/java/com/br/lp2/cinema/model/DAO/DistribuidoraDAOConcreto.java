@@ -34,7 +34,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
     public boolean insertDistribuidora(Distribuidora distribuidora) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO distribuidora(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.distribuidora(nome) VALUES (?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, distribuidora.getNome());
             resultado = pst.execute();
@@ -48,7 +48,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
     public ArrayList<Distribuidora> readDistribuidoras() {
         ArrayList<Distribuidora> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  distribuidora";
+            String sql = "SELECT * FROM  cinema.distribuidora";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -67,7 +67,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
         Distribuidora a = null;
         
         try {
-            String sql = "SELECT * FROM distribuidora WHERE id=?";
+            String sql = "SELECT * FROM cinema.distribuidora WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -85,7 +85,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
         Distribuidora a = null;
         
         try{
-            String sql = "SELECT * FROM distribuidora WHERE nome=?";
+            String sql = "SELECT * FROM cinema.distribuidora WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -103,7 +103,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE distribuidora SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.distribuidora SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -119,7 +119,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
     public boolean deleteDistribuidora(Distribuidora distribuidora) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM distribuidora WHERE id=?";
+            String sql = "DELETE FROM cinema.distribuidora WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,distribuidora.getPk());
             int r = pst.executeUpdate();
@@ -135,7 +135,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
     public boolean deleteDistribuidora(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM distribuidora WHERE id=?";
+            String sql = "DELETE FROM cinema.distribuidora WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

@@ -34,7 +34,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
     public boolean insertGenero(Genero genero) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO genero(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.genero(nome) VALUES (?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, genero.getNome());
             resultado = pst.execute();
@@ -48,7 +48,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
     public ArrayList<Genero> readGeneros() {
         ArrayList<Genero> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  genero";
+            String sql = "SELECT * FROM  cinema.genero";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -67,7 +67,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
          Genero a = null;
         
         try {
-            String sql = "SELECT * FROM genero WHERE id=?";
+            String sql = "SELECT * FROM cinema.genero WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -85,7 +85,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
         Genero a = null;
         
         try{
-            String sql = "SELECT * FROM genero WHERE nome=?";
+            String sql = "SELECT * FROM cinema.genero WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -103,7 +103,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
        boolean res =false;
         
         try{
-            String sql = "UPDATE genero SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.genero SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -119,7 +119,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
     public boolean deleteGenero(Genero genero) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM genero WHERE id=?";
+            String sql = "DELETE FROM cinema.genero WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,genero.getPk());
             int r = pst.executeUpdate();
@@ -135,7 +135,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
     public boolean deleteGenero(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM genero WHERE id=?";
+            String sql = "DELETE FROM cinema.genero WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

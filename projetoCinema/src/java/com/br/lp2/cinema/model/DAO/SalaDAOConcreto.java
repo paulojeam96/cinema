@@ -34,7 +34,7 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean insertSala(Sala sala) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO sala(num) VALUES (?)";
+            String sql = "INSERT INTO cinema.sala(num) VALUES (?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, sala.getNum());
             resultado = pst.execute();
@@ -48,7 +48,7 @@ public class SalaDAOConcreto implements SalaDAO{
     public ArrayList<Sala> readSalas() {
         ArrayList<Sala> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  sala";
+            String sql = "SELECT * FROM  cinema.sala";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -67,7 +67,7 @@ public class SalaDAOConcreto implements SalaDAO{
         Sala a = null;
         
         try {
-            String sql = "SELECT * FROM sala WHERE id=?";
+            String sql = "SELECT * FROM cinema.sala WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -85,7 +85,7 @@ public class SalaDAOConcreto implements SalaDAO{
         Sala a = null;
         
         try{
-            String sql = "SELECT * FROM sala WHERE estados=?";
+            String sql = "SELECT * FROM cinema.sala WHERE estados=?";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, estado);
             rs = pst.executeQuery();
@@ -103,7 +103,7 @@ public class SalaDAOConcreto implements SalaDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE sala SET num=? WHERE id=?";
+            String sql = "UPDATE cinema.sala SET num=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -119,7 +119,7 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean deleteSala(Sala sala) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM sala WHERE id=?";
+            String sql = "DELETE FROM cinema.sala WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,sala.getPk());
             int r = pst.executeUpdate();
@@ -135,7 +135,7 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean deleteSala(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM sala WHERE id=?";
+            String sql = "DELETE FROM cinema.sala WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

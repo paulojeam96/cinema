@@ -28,7 +28,7 @@ public class ConnectionFactory {
 
     private final String driver = "org.apache.derby.jdbc.ClientDriver";
     private final String protocolo = "jdbc:derby:";
-    private final String dbname = "testeBD";
+    private final String dbname = "bancoCinema";
     private final String dominio = "//localhost:1527/";
     private Connection connection;
 
@@ -42,7 +42,7 @@ public class ConnectionFactory {
 
                 Class.forName(driver).newInstance();
                 try {
-                    connection = DriverManager.getConnection(protocolo + dominio + dbname, "mack", "mack");
+                    connection = DriverManager.getConnection(protocolo + dominio + dbname, "paulo", "paulo");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     

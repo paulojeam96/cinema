@@ -30,7 +30,7 @@ public class AtorDAOConcreto implements AtorDAO{
     public boolean insertAtor(Ator ator) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO ator(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.ator(nome) VALUES (?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, ator.getNome());
             resultado = pst.execute();
@@ -45,7 +45,7 @@ public class AtorDAOConcreto implements AtorDAO{
     public ArrayList<Ator> readAtores() {
         ArrayList<Ator> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  ator";
+            String sql = "SELECT * FROM  cinema.ator";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -64,7 +64,7 @@ public class AtorDAOConcreto implements AtorDAO{
         Ator a = null;
         
         try {
-            String sql = "SELECT * FROM ator WHERE id=?";
+            String sql = "SELECT * FROM cinema.ator WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -82,7 +82,7 @@ public class AtorDAOConcreto implements AtorDAO{
         Ator a = null;
         
         try{
-            String sql = "SELECT * FROM ator WHERE nome=?";
+            String sql = "SELECT * FROM cinema.ator WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -100,7 +100,7 @@ public class AtorDAOConcreto implements AtorDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE ator SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.ator SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -117,7 +117,7 @@ public class AtorDAOConcreto implements AtorDAO{
     public boolean deleteAtor(Ator ator) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM ator WHERE id=?";
+            String sql = "DELETE FROM cinema.ator WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,ator.getPk());
             int r = pst.executeUpdate();
@@ -134,7 +134,7 @@ public class AtorDAOConcreto implements AtorDAO{
     public boolean deleteAtor(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM ator WHERE id=?";
+            String sql = "DELETE FROM cinema.ator WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

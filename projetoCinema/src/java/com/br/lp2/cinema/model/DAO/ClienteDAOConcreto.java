@@ -35,7 +35,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
     public boolean insertCliente(Cliente cliente) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO ator(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.cliente(nome) VALUES (?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, cliente.getNome());
             resultado = pst.execute();
@@ -50,7 +50,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
     public ArrayList<Cliente> readClientes() {
         ArrayList<Cliente> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  cliente";
+            String sql = "SELECT * FROM  cinema.cliente";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -69,7 +69,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
         Cliente a = null;
         
         try {
-            String sql = "SELECT * FROM cliente WHERE id=?";
+            String sql = "SELECT * FROM cinema.cliente WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -87,7 +87,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
         Cliente a = null;
         
         try{
-            String sql = "SELECT * FROM cliente WHERE nome=?";
+            String sql = "SELECT * FROM cinema.cliente WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -105,7 +105,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE cliente SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.cliente SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -122,7 +122,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
     public boolean deleteCliente(Cliente cliente) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM cliente WHERE id=?";
+            String sql = "DELETE FROM cinema.cliente WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,cliente.getPk());
             int r = pst.executeUpdate();
@@ -139,7 +139,7 @@ public class ClienteDAOConcreto implements ClienteDAO{
     public boolean deleteCliente(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM cliente WHERE id=?";
+            String sql = "DELETE FROM cinema.cliente WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
