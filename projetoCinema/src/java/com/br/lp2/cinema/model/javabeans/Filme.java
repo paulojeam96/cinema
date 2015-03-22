@@ -36,6 +36,20 @@ public class Filme implements Serializable{
         this.idioma = idioma;
         
     }
+    public Filme(Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int classificacao, int ano, Distribuidora dist, String situacao, int duracao, String idioma) {
+        
+        this.diretor = diretor;
+        this.genero = genero;
+        this.listaAtores = listaAtores;
+        this.nome = nome;
+        this.classificacao = classificacao;
+        this.ano = ano;
+        this.dist = dist;
+        this.situacao = situacao;
+        this.duracao = duracao;
+        this.idioma = idioma;
+        
+    }
 
     public int getPk() {
         return pk;

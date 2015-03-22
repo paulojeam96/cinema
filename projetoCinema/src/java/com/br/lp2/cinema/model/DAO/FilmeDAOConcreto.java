@@ -57,7 +57,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Filme d = new Filme(rs.getInt("pk"),(Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                Filme d = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -76,7 +76,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Filme(rs.getInt("pk"),(Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -94,7 +94,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while(rs.next()){
-            a = new Filme(rs.getInt("pk"),(Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
            }
         } catch( SQLException ex){
             ex.printStackTrace();

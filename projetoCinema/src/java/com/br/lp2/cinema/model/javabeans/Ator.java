@@ -16,14 +16,19 @@ import java.util.Date;
 public class Ator implements Serializable{
 
     private String nome;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String nascionalidade;
     private int pk;
             
-            
+    public Ator(String nome, String dataNascimento, String nascionalidade) {
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.nascionalidade = nascionalidade;
+        
+    }        
     
    
-    public Ator(String nome, Date dataNascimento, String nascionalidade, int pk) {
+    public Ator(String nome, String dataNascimento, String nascionalidade, int pk) {
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.nascionalidade = nascionalidade;
@@ -34,7 +39,7 @@ public class Ator implements Serializable{
         this.nome = nome;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -50,7 +55,7 @@ public class Ator implements Serializable{
         return nome;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 

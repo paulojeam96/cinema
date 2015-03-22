@@ -21,12 +21,11 @@ public class testeCinema {
         AtorDAO atorDAO = new AtorDAOConcreto();
         ArrayList<Ator> listaAtor = atorDAO.readAtores();
         for (Ator ator : listaAtor) {
-            System.out.println(ator.getNome()+" - "+ator.getDataNascimento());
+            System.out.println(ator.getNome()+" - "+ator.getDataNascimento()+ " - "+ ator.getNascionalidade());
         }
-        Ator a = atorDAO.readAtorById(1); // ou ByNome
-        System.out.println(a.toString());
         
-        boolean resultado = atorDAO.updateAtor(1, new Ator("Paulo", new Date(),"Brasileiro",2));
-        System.out.println(resultado);
+        
+        
+        
     }
 }
