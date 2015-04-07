@@ -44,12 +44,18 @@ public class LoginController extends HttpServlet {
             String validUser = "admin";
             String validPwd = "admin";
 
+            response.setContentType("text/html; charset=UTF-8");
+            
             if (usuario.equals("admin") && senha.equals("admin")) {
-                out.println("<h1>Seja bem vindo " + usuario + "</h1>");
+                response.sendRedirect("home.html");
+            } else if(usuario.equals("atendente") && senha.equals("atendente")){
+                response.sendRedirect("atendente.html");
+            } else if(usuario.equals("comum") && senha.equals("comum")){
+                response.sendRedirect("comum.html");
             } else {
-                out.println("<h1>You shall not pass!</h1>");
-
+                out.println("Login não permitido");
             }
+            
 
             out.println("</body>");
             out.println("</html>");
