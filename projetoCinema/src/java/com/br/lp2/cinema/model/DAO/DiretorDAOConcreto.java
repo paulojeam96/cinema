@@ -35,9 +35,11 @@ public class DiretorDAOConcreto implements DiretorDAO{
     public boolean insertDiretor(Diretor diretor) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.diretor(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.diretor(nome, id, pk) VALUES (?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, diretor.getNome());
+            pst.setString(2, diretor.getId());
+            pst.setInt(3, diretor.getPk());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(DiretorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
@@ -106,7 +108,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         try{
             String sql = "UPDATE cinema.diretor SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(2, id);
+            pst.setInt(1, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;
@@ -122,7 +124,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         try {
             String sql = "DELETE FROM cinema.diretor WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,diretor.getPk());
+            pst.setString(1,diretor.getId());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;

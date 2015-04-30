@@ -34,9 +34,10 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
     public boolean insertDistribuidora(Distribuidora distribuidora) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.distribuidora(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.distribuidora(nome,pk) VALUES (?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, distribuidora.getNome());
+            pst.setInt(2, distribuidora.getPk());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(DistribuidoraDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);

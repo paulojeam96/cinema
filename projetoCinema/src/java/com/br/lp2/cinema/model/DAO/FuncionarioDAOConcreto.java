@@ -1,61 +1,62 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.br.lp2.cinema.model.DAO;
 
-import com.br.lp2.cinema.model.javabeans.Ator;
 import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
+import com.br.lp2.cinema.model.javabeans.Funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
- * @author Paulo
+ * @author 31448471
  */
-public class AtorDAOConcreto implements AtorDAO {
+public class FuncionarioDAOConcreto implements FuncionarioDAO {
 
     private Connection connection;
     private PreparedStatement pst;
     private ResultSet rs;
 
-    public AtorDAOConcreto() {
+    public FuncionarioDAOConcreto() {
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
 
     @Override
-    public boolean insertAtor(Ator ator) {
+    public boolean insertFuncionario(Funcionario funcionario) {
         boolean resultado = false;
         try {
-            String sql = "INSERT INTO cinema.ator(pk, nome, datanascimento, nascionalidade) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO cinema.funcionario(pk, id, nome) VALUES(?,?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, ator.getPk());
-            pst.setString(1, ator.getNome());
-            pst.setString(2, ator.getDataNascimento());
-            pst.setString(3, ator.getNascionalidade());
+            pst.setInt(1, funcionario.getPk());
+            pst.setInt(2, funcionario.getId());
+            pst.setString(3, funcionario.getNome());
             resultado = pst.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(AtorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
-
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return resultado;
     }
 
     @Override
-    public ArrayList<Ator> readAtores() {
-        ArrayList<Ator> lista = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM  cinema.ator";
-            pst = connection.prepareStatement(sql);
+    public ArrayList<Funcionario> readFuncionarios() {
+        ArrayList<Funcionario> lista = new ArrayList<>();
 
+        try {
+            String sql = "SELECT * FROM cinema.funcionario";
+            pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-
-                Ator a = new Ator(rs.getString("nome"), rs.getString("dataNascimento"), rs.getString("nascionalidade"));
-                lista.add(a);
+                Funcionario f = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
+                lista.add(f);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -64,47 +65,47 @@ public class AtorDAOConcreto implements AtorDAO {
     }
 
     @Override
-    public Ator readAtorById(int id) {
-        Ator a = null;
+    public Funcionario readFuncionarioById(int id) {
+        Funcionario f = null;
 
         try {
-            String sql = "SELECT * FROM cinema.ator WHERE id=?";
+            String sql = "SELECT * FROM cinema.funcionario WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                a = new Ator(rs.getString("nome"), rs.getString("dataNascimento"), rs.getString("nascionalidade"));
+                f = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return a;
+        return f;
     }
 
     @Override
-    public Ator readAtorByNome(String nome) {
-        Ator a = null;
+    public Funcionario readFuncionarioByNome(String nome) {
+        Funcionario f = null;
 
         try {
-            String sql = "SELECT * FROM cinema.ator WHERE nome=?";
+            String sql = "SELECT * FROM cinema.funcionario WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while (rs.next()) {
-                a = new Ator(rs.getString("nome"), rs.getString("dataNascimento"), rs.getString("nascionalidade"));
+                f = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return a;
+        return f;
     }
 
     @Override
-    public boolean updateAtor(int id, Ator ator) {
+    public boolean updateFuncionario(int id, Funcionario funcionario) {
         boolean res = false;
 
         try {
-            String sql = "UPDATE cinema.ator SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.funcionario SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
@@ -113,19 +114,20 @@ public class AtorDAOConcreto implements AtorDAO {
             } else {
                 res = false;
             }
+
         } catch (SQLException ex) {
-            Logger.getLogger(AtorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return res;
     }
 
     @Override
-    public boolean deleteAtor(Ator ator) {
+    public boolean deleteFuncionario(Funcionario funcionario) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM cinema.ator WHERE id=?";
+            String sql = "DELETE FROM cinema.funcionario WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, ator.getPk());
+            pst.setInt(1, funcionario.getPk());
             int r = pst.executeUpdate();
             if (r > 0) {
                 resultado = true;
@@ -133,16 +135,16 @@ public class AtorDAOConcreto implements AtorDAO {
                 resultado = false;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AtorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultado;
     }
 
     @Override
-    public boolean deleteAtor(int id) {
+    public boolean deleteFuncionario(int id) {
         boolean res = false;
         try {
-            String sql = "DELETE FROM cinema.ator WHERE id=?";
+            String sql = "DELETE FROM cinema.funcionario WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
@@ -155,7 +157,6 @@ public class AtorDAOConcreto implements AtorDAO {
             ex.printStackTrace();
         }
         return res;
-
     }
 
 }

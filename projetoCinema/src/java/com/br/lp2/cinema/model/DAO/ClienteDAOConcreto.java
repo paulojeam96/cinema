@@ -35,9 +35,12 @@ public class ClienteDAOConcreto implements ClienteDAO{
     public boolean insertCliente(Cliente cliente) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.cliente(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.cliente(pk,nome,anoNasc,especiais) VALUES (?,?,?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setString(1, cliente.getNome());
+            pst.setInt(1, cliente.getPk());
+            pst.setString(2, cliente.getNome());
+            pst.setInt(3, cliente.getAnoNasc());
+            pst.setObject(4, cliente.getTipo());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(ClienteDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
