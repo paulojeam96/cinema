@@ -38,9 +38,19 @@ public class FilmeDAOConcreto implements FilmeDAO{
     public boolean insertFilme(Filme filme) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.filme(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.filme(pk,diretor,genero,listaAtores,nome,classificacao,ano,dist,situacao,duracao,idioma) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setString(1, filme.getNome());
+            pst.setInt(1, filme.getPk());
+            pst.setObject(2, filme.getDiretor());
+            pst.setObject(3, filme.getGenero());
+            pst.setObject(4, filme.getListaAtores());
+            pst.setString(5, filme.getNome());
+            pst.setInt(6, filme.getClassificacao());
+            pst.setInt(7, filme.getAno());
+            pst.setObject(8, filme.getDist());
+            pst.setString(9, filme.getSituacao());
+            pst.setInt(10, filme.getDuracao());
+            pst.setString(11, filme.getIdioma());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
