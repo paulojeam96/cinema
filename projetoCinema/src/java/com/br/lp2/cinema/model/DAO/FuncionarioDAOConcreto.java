@@ -34,10 +34,10 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
     public boolean insertFuncionario(Funcionario funcionario) {
         boolean resultado = false;
         try {
-            String sql = "INSERT INTO cinema.funcionario(pk, id, nome) VALUES(?,?,?)";
+            String sql = "INSERT INTO cinema.funcionario(pk,nome,senha) VALUES(?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, funcionario.getPk());
-            pst.setInt(2, funcionario.getId());
+            pst.setString(2, funcionario.getSenha());
             pst.setString(3, funcionario.getNome());
             resultado = pst.execute();
         } catch (SQLException e) {
@@ -55,7 +55,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                Funcionario f = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
+                Funcionario f = new Funcionario(rs.getString("nome"), rs.getString("senha"));
                 lista.add(f);
             }
         } catch (SQLException ex) {
@@ -74,7 +74,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
             pst.setInt(1, id);
             rs = pst.executeQuery();
             while (rs.next()) {
-                f = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
+                f = new Funcionario(rs.getString("nome"), rs.getString("senha"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -92,7 +92,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while (rs.next()) {
-                f = new Funcionario(rs.getInt("pk"), rs.getInt("id"), rs.getString("nome"));
+                f = new Funcionario(rs.getString("nome"), rs.getString("senha"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

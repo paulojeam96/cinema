@@ -13,13 +13,16 @@ import java.io.Serializable;
  */
 public class Funcionario implements Serializable{
     private int pk;
-    private int id;
     private String nome;
+    private String senha;
 
-    public Funcionario(int pk, int id, String nome) {
-        this.pk = pk;
-        this.id = id;
+    public Funcionario(String nome, String senha) {
+        this.senha = senha;
         this.nome = nome;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public int getPk() {
@@ -28,14 +31,6 @@ public class Funcionario implements Serializable{
 
     public void setPk(int pk) {
         this.pk = pk;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNome() {

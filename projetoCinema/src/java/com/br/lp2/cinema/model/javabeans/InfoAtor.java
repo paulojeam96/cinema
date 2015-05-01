@@ -14,7 +14,8 @@ import java.io.Serializable;
  */
 public class InfoAtor implements Serializable{
     private Ator ator;
-    private String papel, part;
+    private String papel;
+    private String part;
 
     /**
      * 
