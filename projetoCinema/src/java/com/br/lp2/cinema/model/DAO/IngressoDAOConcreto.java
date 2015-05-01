@@ -34,9 +34,12 @@ public class IngressoDAOConcreto implements IngressoDAO{
     public boolean insertIngresso(Ingresso ingresso) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.ingresso(pk) VALUES (?)";
+            String sql = "INSERT INTO cinema.ingresso(pk, id, inteira, especiais) VALUES (?,?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, ingresso.getPk());
+            pst.setInt(2, ingresso.getId());
+            pst.setBoolean(3, ingresso.isInteira());
+            pst.setObject(4, ingresso.getTipo());
             resultado = pst.execute();
         } catch(SQLException ex){
             ex.printStackTrace();
@@ -85,9 +88,9 @@ public class IngressoDAOConcreto implements IngressoDAO{
          boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.ingresso SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.ingresso SET inteira=? WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(2, id);
+            pst.setInt(1, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;

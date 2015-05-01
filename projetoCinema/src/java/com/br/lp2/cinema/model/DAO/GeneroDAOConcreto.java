@@ -34,9 +34,10 @@ public class GeneroDAOConcreto implements GeneroDAO{
     public boolean insertGenero(Genero genero) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.genero(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.genero(pk,nome) VALUES (?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setString(1, genero.getNome());
+            pst.setInt(1, genero.getPk());
+            pst.setString(2, genero.getNome());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(GeneroDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,7 +106,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
         try{
             String sql = "UPDATE cinema.genero SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(2, id);
+            pst.setInt(1, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;

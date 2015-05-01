@@ -34,9 +34,13 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean insertSala(Sala sala) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.sala(num) VALUES (?)";
+            String sql = "INSERT INTO cinema.sala(pk,num,lotacao,poltEsp,estado) VALUES (?,?,?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, sala.getNum());
+            pst.setInt(1, sala.getPk());
+            pst.setInt(2, sala.getNum());
+            pst.setInt(3, sala.getLotacao());
+            pst.setInt(4, sala.getPoltEsp());
+            pst.setObject(5, sala.getEstadoSala());
             resultado = pst.execute();
         } catch(SQLException ex){
             ex.printStackTrace();
@@ -85,7 +89,7 @@ public class SalaDAOConcreto implements SalaDAO{
         Sala a = null;
         
         try{
-            String sql = "SELECT * FROM cinema.sala WHERE estados=?";
+            String sql = "SELECT * FROM cinema.sala WHERE estado=?";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, estado);
             rs = pst.executeQuery();

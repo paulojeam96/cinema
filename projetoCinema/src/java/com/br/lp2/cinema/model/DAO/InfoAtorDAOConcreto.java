@@ -35,9 +35,11 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     public boolean insertInfoAtor(InfoAtor infoAtor) {
          boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.infoAtor(nome) VALUES (?)";
+            String sql = "INSERT INTO cinema.infoAtor(ator, papel, participacao) VALUES (?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, infoAtor.getAtor());
+            pst.setObject(2, infoAtor.getPapel());
+            pst.setObject(3, infoAtor.getPart());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(InfoAtorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,13 +84,13 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     }
 
     @Override
-    public InfoAtor readInfoAtorByNome(String nome) {
+    public InfoAtor readInfoAtorByNome(String ator) {
         InfoAtor a = null;
         
         try{
-            String sql = "SELECT * FROM cinema.infoAtor WHERE nome=?";
+            String sql = "SELECT * FROM cinema.infoAtor WHERE ator=?";
             pst = connection.prepareStatement(sql);
-            pst.setString(1, nome);
+            pst.setString(1, ator);
             rs = pst.executeQuery();
             while(rs.next()){
                 a = new InfoAtor((Ator)rs.getObject("ator"), rs.getString("papel"), rs.getString("part"));
@@ -104,7 +106,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.infoAtor SET nome=? WHERE id=?";
+            String sql = "UPDATE cinema.infoAtor SET ator=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();

@@ -23,7 +23,7 @@
             FuncionarioDAO a = new FuncionarioDAOConcreto();
             
             a.insertFuncionario(f);
-            
+            a.readFuncionarioByNome("Paulo");
             
             %>
     </body>

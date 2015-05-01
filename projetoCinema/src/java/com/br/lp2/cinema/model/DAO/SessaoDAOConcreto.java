@@ -37,9 +37,14 @@ public class SessaoDAOConcreto implements SessaoDAO{
     public boolean insertSessao(Sessao sessao) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.sessao VALUES (?)";
+            String sql = "INSERT INTO cinema.sessao (pk,sala, filme, diaHora, legendado, ingressos)VALUES (?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, sessao.getPk());
+            pst.setObject(2, sessao.getSala());
+            pst.setObject(3, sessao.getFilme());
+            pst.setObject(4, sessao.getDiaHora());
+            pst.setBoolean(5, sessao.isLegendado());
+            pst.setObject(6, sessao.getIngressos());
             resultado = pst.execute();
         } catch(SQLException ex){
             ex.printStackTrace();
@@ -106,7 +111,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
         try {
             String sql = "DELETE FROM cinema.sessao WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,sessao.getPk());
+            pst.setObject(1, sessao);
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;
