@@ -19,19 +19,20 @@ and open the template in the editor.
     </head>
     <body>
         <header>
+            <%@include file = "Hsession.jsp" %>
             <h1>Manutenção de Filmes</h1>
         </header>
         <section>
 
             <p>Buscar:</p></br>
-            <form name="command" action="FrontController" method="POST">
+            <form action="FrontController" method="POST">
                 <input type="text" placeholder="Buscar" name="filme" required/></br>
-                <input type="hidden" name="command" value="Login"/>
-                <input type="submit" value="enviar"/>
+                <input type="hidden" name="command" value="BuscarFilme"/>
+                <input type="submit" name="command" value="Buscar"/>
             </form>
 
             <p>Criar:</p></br>
-            <form name="command" action="FrontController" method="POST">
+            <form action="FrontController" method="POST">
                 <input type="text" placeholder="Nome" name="nome" required/></br>
                 <input type="text" placeholder="Idioma" name="idioma" required/></br>
                 <input type="text" placeholder="Situação" name="situacao" required/></br>
@@ -42,13 +43,13 @@ and open the template in the editor.
                 <input type="number" placeholder="Genero" name="genero" required/></br>
                 <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
                 <input type="number" placeholder="Lista de Atores" name="listaaores" required/></br>
-                <input type="hidden" value="Login"/>
-                <input type="submit" value="enviar"/>
+                <input type="hidden" name="command" value="CriarFilme"/>
+                <input type="submit" name="command" value="Criar"/>
             </form>
 
             <p>Atualizar:</p></br>
 
-            <form>
+            <form action="FrontController" method="POST">
                 <input type="number" placeholder="Codigo do filme" name="codigo" required/></br></br>
                 <input type="text" placeholder="Nome" name="nome" required/></br>
                 <input type="text" placeholder="Idioma" name="idioma" required/></br>
@@ -60,15 +61,15 @@ and open the template in the editor.
                 <input type="number" placeholder="Genero" name="genero" required/></br>
                 <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
                 <input type="number" placeholder="Lista de Atores" name="listaaores" required/></br>
-                <input type="hidden" value="Login"/>
-                <input type="submit" value="enviar"/>
+                <input type="hidden" name="command" value="AtualizarFilme"/>
+                <input type="submit" name="command" value="Atualizar"/>
             </form>
 
             <p>Excluir:</p></br>
-            <form>
+            <form action="FrontController" method="POST">
                 <input type="number" placeholder="Codigo do filme" name="codigo" required/></br></br>
-                <input type="hidden" value="Login"/>
-                <input type="submit" value="Enviar"/>
+                <input type="hidden" name="command" value="ExcluirFilme"/>
+                <input type="submit" name="command" value="Excluir"/>
             </form>
 
         </section>

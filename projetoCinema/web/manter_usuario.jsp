@@ -18,7 +18,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Sistema em desenvolvimento</h1>
+        <header>
+            <%@include file = "Hsession.jsp" %>
+            <h1>Sistema em desenvolvimento</h1>
+        </header>
+        
     </body>
 </html>
 

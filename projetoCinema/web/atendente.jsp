@@ -14,7 +14,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Logado como atendente</h1>
+        <header>
+            <%@include file = "Hsession.jsp" %>
+        </header>
         <p>Vender Ingresso</p>
         <ul>
             <li><a href="vender_ingresso.html">Filme</a></li>

@@ -14,12 +14,13 @@
     </head>
     <body>
         <header>
-            <p> Olá! Acesso administrador </p>    
+            <%@ include file= "Hsession.jsp"%>
+    
         </header>
 
         <section>
             <nav>
-                <a href="manutencao.html">Manutenção</a>
+                <p>Manutenção</p>
                 <ul>
                     <li><a href="manter_sala.html">Manter Sala</a></li>
                     <li><a href="manter_filme.html">Manter Filme</a></li>

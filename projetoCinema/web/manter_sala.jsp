@@ -17,7 +17,11 @@ and open the template in the editor.
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Manutenção das Salas</h1>
+        <header>
+            <%@include file = "Hsession.jsp" %>
+            <h1>Manutenção das Salas</h1>
+        </header>
+        
 
         <h2>Situação da Sala:</h2>
         <form name="command" action="FrontController" method="POST">
@@ -27,16 +31,16 @@ and open the template in the editor.
                 <option>Em Exibição</option>
                 <option>Em Espera</option>
             </select><br>
-            <input type="hidden" name="command" value="Enviar"/>
-            <input type="button" value="Buscar"
+            <input type="hidden" name="command" value="SituacaoSala"/>
+            <input type="submit" value="Buscar"
         </form>
 
 
         <h2><p>Buscar:</p></h2><br>
         <form name="command" action="FrontController" method="POST">
             <input type="number" placeholder="Buscar" name="sala" required/></br>
-            <input type="hidden" name="command" value="Buscar"/>
-            <input type="button" value="Buscar"/>
+            <input type="hidden" name="command" value="BuscarSala"/>
+            <input type="submit" name="command" value="Buscar"/>
         </form>
         
         
@@ -50,8 +54,8 @@ and open the template in the editor.
                 <option>Em Espera</option>
                 <option>Em Exibição</option>
             </select>
-            <input type="hidden" name="command" value="criar"/>
-            <input type="button" value="Criar Sala"/>
+            <input type="hidden" name="command" value="CriarSala"/>
+            <input type="submit" name="command" value="Criar Sala"/>
         </form>
         
         
@@ -66,15 +70,15 @@ and open the template in the editor.
                 <option>Em Espera</option>
                 <option>Em Exibição</option>
             </select>
-            <input type="hidden" name="command" value="atualizar"/>
-            <input type="button" value="atualizar"/>
+            <input type="hidden" name="command" value="AtualizarSala"/>
+            <input type="submit" name="command" value="atualizar"/>
         </form>
         
         <h2><p>Deletar Sala:</p></h2><br>
                 <form name="command" action="FrontController" method="POST">
                     <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
-                    <input type="hidden" name="command" value="Deletar"/>
-                    <input type="button"  value="Deletar"/>
+                    <input type="hidden" name="command" value="DeletarSala"/>
+                    <input type="submit" name="command" value="Deletar"/>
                 </form>
     </body>
 </html>

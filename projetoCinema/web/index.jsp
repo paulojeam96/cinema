@@ -162,14 +162,23 @@
     </head>
 
     <body>
-
+        <header>
+            <% 
+                session.removeAttribute("nome");
+                %>
+        </header>
+                <%
+                if(session.getAttribute("lg")!=null && !session.getAttribute("lg").equals("")){
+                    out.print("Usuario e senha inválidos");
+                }
+                %>
         <div class="body"></div>
         <div class="grad"></div>
         <div class="header">
             <div>Home<span>Cinema</span></div>
         </div>
         <br>
-        <form class="login" action="LoginController" method="POST">
+        <form class="login" action="FrontController" method="POST">
             <input type="text" placeholder="usuario" name="usuario"><br>
             <input type="password" placeholder="password" name="password"><br>
             <input type="hidden" class="login" value="Login"/>

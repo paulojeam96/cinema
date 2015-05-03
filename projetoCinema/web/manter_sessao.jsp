@@ -17,14 +17,19 @@ and open the template in the editor.
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Sessões</h1>
+        
+        <header>
+            <%@include file = "Hsession.jsp" %>
+            <h1>Sessões</h1>
+        </header>
+        
         
         
         <h2><p>Buscar:</p></h2><br>
                 <form name="command" action="FrontController" method="POST">
                     <input type="text" name="sessao" placeholder="Sessão"  required/></br>
-                    <input type="hidden" name="command" value="Buscar"/>
-                    <input type="button" value="Buscar"/>
+                    <input type="hidden" name="command" value="BuscarSessao"/>
+                    <input type="button"  name="command" value="Buscar"/>
                 </form>
             
             
@@ -34,8 +39,8 @@ and open the template in the editor.
                     <input type="number" placeholder="Sala" name="sala" required/></br>
                     <input type="text" placeholder="Horário" name="horario" required/></br>
                     Legendado:<input type="radio" name="legendado" value="Legendado" checked="checked"/></br>
-                    <input type="hidden" name="command" value="Login"/>
-                    <input type="image" src="img/enviar.png" alt="Submit Form" name="command"/>
+                    <input type="hidden" name="command" value="CriarSessao"/>
+                    <input type="submit"  name="command" value="Criar"/>
                 </form>
             </div>
            
@@ -46,16 +51,16 @@ and open the template in the editor.
                     <input type="number" placeholder="Sala" name="sala" required/></br>
                     <input type="text" placeholder="Horário" name="horario" required/></br>
                     Legendado:<input type="radio" name="legendado" value="Legendado" checked="checked"/></br>
-                    <input type="hidden" name="command" value="Login"/>
-                    <input type="image" src="img/enviar.png" alt="Submit Form" name="command"/>
+                    <input type="hidden" name="command" value="MudarSessao"/>
+                    <input type="submit" name="command" value="Mudar"/>
                 </form>
            
             
                 <h2><p>Deletar:</p></h2><br>
                 <form name="command" action="FrontController" method="POST">
                     <input type="number" placeholder="Codigo da Sessao" name="codigo" required/></br></br>
-                    <input type="hidden" name="command" value="Login"/>
-                    <input type="image" src="img/enviar.png" alt="Submit Form" name="command"/>
+                    <input type="hidden" name="command" value="DeletarSessao"/>
+                    <input type="submit" name="command" value="Deletar"/>
                 </form>
             </div>
     </body>
