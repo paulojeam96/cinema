@@ -26,6 +26,10 @@ public class Diretor implements Serializable{
         this.pk = pk;
     }
 
+    public Diretor(int diretor) {
+        this.pk = diretor;
+    }
+
     public String getNome() {
         return nome;
     }

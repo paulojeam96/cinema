@@ -21,24 +21,10 @@ and open the template in the editor.
             <%@include file = "Hsession.jsp" %>
             <h1>Manutenção das Salas</h1>
         </header>
-        
-
-        <h2>Situação da Sala:</h2>
-        <form name="command" action="FrontController" method="POST">
-            <input type="number" placeholder="Número" name="numero" required/></br>
-            <select name="Situação">
-                <option>Em Manutenção</option>
-                <option>Em Exibição</option>
-                <option>Em Espera</option>
-            </select><br>
-            <input type="hidden" name="command" value="SituacaoSala"/>
-            <input type="submit" value="Buscar"
-        </form>
-
 
         <h2><p>Buscar:</p></h2><br>
         <form name="command" action="FrontController" method="POST">
-            <input type="number" placeholder="Buscar" name="sala" required/></br>
+            <input type="number" placeholder="Buscar" name="sala" /></br>
             <input type="hidden" name="command" value="BuscarSala"/>
             <input type="submit" name="command" value="Buscar"/>
         </form>
@@ -51,8 +37,8 @@ and open the template in the editor.
             <input type="number" name="especial" placeholder="Cadeiras especiais"/>
             <select name="Situação"/>
                 <option>Em Manutenção</option>
-                <option>Em Espera</option>
-                <option>Em Exibição</option>
+                <option>Ocupada</option>
+                <option>Livre</option>
             </select>
             <input type="hidden" name="command" value="CriarSala"/>
             <input type="submit" name="command" value="Criar Sala"/>
@@ -61,7 +47,7 @@ and open the template in the editor.
         
         <h2><p>Atualizar Sala</p></h2>
         <form action="FrontController" method="POST">
-            <input type="number" name="codigo" placeholder="Codigo da Sala"/>
+            <input type="number" name="codSala" placeholder="Codigo da Sala"/>
             <input type="number" name="numero" placeholder="Numero Da Sala"/>
             <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
             <input type="number" name="especial" placeholder="Numero de cadeiras especiais"/>

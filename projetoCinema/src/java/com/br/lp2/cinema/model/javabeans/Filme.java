@@ -16,13 +16,13 @@ public class Filme implements Serializable{
     private int classificacao;
     private int ano;
     private Distribuidora dist;
-    private String situacao;
+    private tipoSituacao situacao;
     public enum tipoSituacao{ CARTAZ, ESTREIA, LANCAMENTO;}
     private int duracao;
     private String idioma;
     
-
-    public Filme(int pk, Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int classificacao, int ano, Distribuidora dist, String situacao, int duracao, String idioma) {
+    
+     public Filme( int pk, Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int clas, int ano, Distribuidora distribuidora, tipoSituacao s, int duracao, String idioma) {
         this.pk = pk;
         this.diretor = diretor;
         this.genero = genero;
@@ -31,12 +31,13 @@ public class Filme implements Serializable{
         this.classificacao = classificacao;
         this.ano = ano;
         this.dist = dist;
-        this.situacao = situacao;
+        this.situacao = s;
         this.duracao = duracao;
         this.idioma = idioma;
-        
-    }
-    public Filme(Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int classificacao, int ano, Distribuidora dist, String situacao, int duracao, String idioma) {
+        }
+
+   
+    public Filme(Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int classificacao, int ano, Distribuidora dist, tipoSituacao situacao, int duracao, String idioma) {
         
         this.diretor = diretor;
         this.genero = genero;
@@ -115,11 +116,11 @@ public class Filme implements Serializable{
         this.dist = dist;
     }
 
-    public String getSituacao() {
+    public tipoSituacao getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(String situacao) {
+    public void setSituacao(tipoSituacao situacao) {
         this.situacao = situacao;
     }
 

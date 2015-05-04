@@ -36,16 +36,24 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet FrontController</title>");            
+            out.println("</head>");
+            out.println("<body>");
             Command c = null;
             
             try {
                 c = (Command) Class.forName("com.br.lp2.cinema.commands."+nome).newInstance();
+                
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            c.execute(request, response);
             
-            
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

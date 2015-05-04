@@ -24,6 +24,14 @@ public class Sala {
         this.poltEsp = poltEsp;
         this.estadoSala = estadoSala;
     }
+    
+    public Sala(int num, int lotacao, int poltEsp, Estados estadoSala) {
+        
+        this.num = num;
+        this.lotacao = lotacao;
+        this.poltEsp = poltEsp;
+        this.estadoSala = estadoSala;
+    }
 
     @Override
     public String toString() {

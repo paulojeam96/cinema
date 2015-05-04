@@ -9,6 +9,7 @@ import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
 import com.br.lp2.cinema.model.javabeans.Diretor;
 import com.br.lp2.cinema.model.javabeans.Distribuidora;
 import com.br.lp2.cinema.model.javabeans.Filme;
+import com.br.lp2.cinema.model.javabeans.Filme.tipoSituacao;
 import com.br.lp2.cinema.model.javabeans.Genero;
 import com.br.lp2.cinema.model.javabeans.ListaAtores;
 import java.sql.Connection;
@@ -48,7 +49,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             pst.setInt(6, filme.getClassificacao());
             pst.setInt(7, filme.getAno());
             pst.setObject(8, filme.getDist());
-            pst.setString(9, filme.getSituacao());
+            pst.setObject(9, filme.getSituacao());
             pst.setInt(10, filme.getDuracao());
             pst.setString(11, filme.getIdioma());
             resultado = pst.execute();
@@ -67,7 +68,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Filme d = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                Filme d = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), (tipoSituacao)rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -86,7 +87,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), (tipoSituacao)rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -104,7 +105,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while(rs.next()){
-            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), (tipoSituacao)rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
            }
         } catch( SQLException ex){
             ex.printStackTrace();

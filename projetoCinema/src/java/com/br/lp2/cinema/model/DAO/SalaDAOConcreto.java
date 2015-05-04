@@ -34,13 +34,13 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean insertSala(Sala sala) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.sala(pk,num,lotacao,poltEsp,estado) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO cinema.sala(num,lotacao,poltEsp,estado) VALUES (?,?,?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, sala.getPk());
-            pst.setInt(2, sala.getNum());
-            pst.setInt(3, sala.getLotacao());
-            pst.setInt(4, sala.getPoltEsp());
-            pst.setObject(5, sala.getEstadoSala());
+            
+            pst.setInt(1, sala.getNum());
+            pst.setInt(2, sala.getLotacao());
+            pst.setInt(3, sala.getPoltEsp());
+            pst.setObject(4, sala.getEstadoSala());
             resultado = pst.execute();
         } catch(SQLException ex){
             ex.printStackTrace();
@@ -109,7 +109,7 @@ public class SalaDAOConcreto implements SalaDAO{
         try{
             String sql = "UPDATE cinema.sala SET num=? WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(2, id);
+            pst.setInt(1, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;

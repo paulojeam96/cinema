@@ -25,6 +25,10 @@ public class Genero implements Serializable{
         this.nome = nome;
     }
 
+    public Genero(int genero) {
+        this.pk = genero;
+    }
+
     public int getPk() {
         return pk;
     }

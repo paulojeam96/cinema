@@ -42,7 +42,7 @@ and open the template in the editor.
                 <input type="number" placeholder="Diretor" name="diretor" required/></br>
                 <input type="number" placeholder="Genero" name="genero" required/></br>
                 <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
-                <input type="number" placeholder="Lista de Atores" name="listaaores" required/></br>
+                <input type="number" placeholder="Lista de Atores" name="listaatores" required/></br>
                 <input type="hidden" name="command" value="CriarFilme"/>
                 <input type="submit" name="command" value="Criar"/>
             </form>
@@ -50,7 +50,7 @@ and open the template in the editor.
             <p>Atualizar:</p></br>
 
             <form action="FrontController" method="POST">
-                <input type="number" placeholder="Codigo do filme" name="codigo" required/></br></br>
+                <input type="number" placeholder="Codigo do filme" name="codF" required/></br></br>
                 <input type="text" placeholder="Nome" name="nome" required/></br>
                 <input type="text" placeholder="Idioma" name="idioma" required/></br>
                 <input type="text" placeholder="Situação" name="situacao" required/></br>
@@ -60,7 +60,7 @@ and open the template in the editor.
                 <input type="number" placeholder="Diretor" name="diretor" required/></br>
                 <input type="number" placeholder="Genero" name="genero" required/></br>
                 <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
-                <input type="number" placeholder="Lista de Atores" name="listaaores" required/></br>
+                <input type="number" placeholder="Lista de Atores" name="listaatores" required/></br>
                 <input type="hidden" name="command" value="AtualizarFilme"/>
                 <input type="submit" name="command" value="Atualizar"/>
             </form>

@@ -10,9 +10,22 @@ import java.util.ArrayList;
  */
 public class ListaAtores implements Serializable{
     private ArrayList<InfoAtor> lista;
+    private int pk;
 
     public ListaAtores() {
         lista = new ArrayList<InfoAtor>();
+    }
+
+    public ListaAtores(int la) {
+        this.pk = la;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
     
     public void addAtor(Ator ator, String papel, String part){
