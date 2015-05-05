@@ -6,8 +6,9 @@
 
 <%
     if(session.getAttribute("usuario")!=null && !session.getAttribute("usuario").equals("")){
-        out.print("Olá! ");
-        out.print(session.getAttribute("usuario \n"));
+        out.print("Olá!");
+        out.print("\n");
+        out.print(session.getAttribute("usuario"));
         
         if(session.getAttribute("ocupacao").equals("gerente")){
             out.print("Acesso total permitido - Gerente");
