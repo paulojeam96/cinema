@@ -29,7 +29,7 @@ and open the template in the editor.
                 <form name="command" action="FrontController" method="POST">
                     <input type="text" name="sessao" placeholder="Sessão"  required/></br>
                     <input type="hidden" name="command" value="BuscarSessao"/>
-                    <input type="button"  name="command" value="Buscar"/>
+                    <input type="button" value="Buscar"/>
                 </form>
             
             
@@ -40,7 +40,7 @@ and open the template in the editor.
                     <input type="text" placeholder="Horário" name="horario" required/></br>
                     Legendado:<input type="radio" name="legendado" value="Legendado" checked="checked"/></br>
                     <input type="hidden" name="command" value="CriarSessao"/>
-                    <input type="submit"  name="command" value="Criar"/>
+                    <input type="submit" value="Criar"/>
                 </form>
             </div>
            
@@ -52,7 +52,7 @@ and open the template in the editor.
                     <input type="text" placeholder="Horário" name="horario" required/></br>
                     Legendado:<input type="radio" name="legendado" value="Legendado" checked="checked"/></br>
                     <input type="hidden" name="command" value="MudarSessao"/>
-                    <input type="submit" name="command" value="Mudar"/>
+                    <input type="submit" value="Mudar"/>
                 </form>
            
             
@@ -60,7 +60,7 @@ and open the template in the editor.
                 <form name="command" action="FrontController" method="POST">
                     <input type="number" placeholder="Codigo da Sessao" name="codigo" required/></br></br>
                     <input type="hidden" name="command" value="DeletarSessao"/>
-                    <input type="submit" name="command" value="Deletar"/>
+                    <input type="submit" value="Deletar"/>
                 </form>
             </div>
     </body>

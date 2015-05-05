@@ -26,7 +26,7 @@ and open the template in the editor.
         <form action="FrontController" method="POST">
             <input type="number" placeholder="Buscar" name="sala" /></br>
             <input type="hidden" name="command" value="BuscarSala"/>
-            <input type="submit" name="command" value="Buscar"/>
+            <input type="submit" value="Buscar"/>
         </form>
         
         
@@ -57,14 +57,14 @@ and open the template in the editor.
                 <option>Em Exibição</option>
             </select>
             <input type="hidden" name="command" value="AtualizarSala"/>
-            <input type="submit" name="command" value="atualizar"/>
+            <input type="submit" value="atualizar"/>
         </form>
         
         <h2><p>Deletar Sala:</p></h2><br>
                 <form action="FrontController" method="POST">
                     <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
                     <input type="hidden" name="command" value="DeletarSala"/>
-                    <input type="submit" name="command" value="Deletar"/>
+                    <input type="submit" value="Deletar"/>
                 </form>
     </body>
 </html>

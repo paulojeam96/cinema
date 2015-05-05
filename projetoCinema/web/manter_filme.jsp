@@ -28,7 +28,7 @@ and open the template in the editor.
             <form action="FrontController" method="POST">
                 <input type="text" placeholder="Buscar" name="filme" required/></br>
                 <input type="hidden" name="command" value="BuscarFilme"/>
-                <input type="submit" name="command" value="Buscar"/>
+                <input type="submit" value="Buscar"/>
             </form>
 
             <p>Criar:</p></br>
@@ -44,7 +44,7 @@ and open the template in the editor.
                 <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
                 <input type="number" placeholder="Lista de Atores" name="listaatores" required/></br>
                 <input type="hidden" name="command" value="CriarFilme"/>
-                <input type="submit" name="command" value="Criar"/>
+                <input type="submit" value="Criar"/>
             </form>
 
             <p>Atualizar:</p></br>
@@ -62,14 +62,14 @@ and open the template in the editor.
                 <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
                 <input type="number" placeholder="Lista de Atores" name="listaatores" required/></br>
                 <input type="hidden" name="command" value="AtualizarFilme"/>
-                <input type="submit" name="command" value="Atualizar"/>
+                <input type="submit" value="Atualizar"/>
             </form>
 
             <p>Excluir:</p></br>
             <form action="FrontController" method="POST">
                 <input type="number" placeholder="Codigo do filme" name="codigo" required/></br></br>
                 <input type="hidden" name="command" value="ExcluirFilme"/>
-                <input type="submit" name="command" value="Excluir"/>
+                <input type="submit" value="Excluir"/>
             </form>
             
             
