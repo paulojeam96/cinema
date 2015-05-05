@@ -41,7 +41,7 @@ and open the template in the editor.
                 <option>Livre</option>
             </select>
             <input type="hidden" name="command" value="CriarSala"/>
-            <input type="submit" name="command" value="Criar Sala"/>
+            <input type="submit" value="Criar Sala"/>
         </form>
         
         
