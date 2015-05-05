@@ -6,8 +6,8 @@
 
 <%
     if(session.getAttribute("usuario")!=null && !session.getAttribute("usuario").equals("")){
-        out.print("Olá!");
-        out.print(session.getAttribute("usuario"));
+        out.print("Olá! ");
+        out.print(session.getAttribute("usuario \n"));
         
         if(session.getAttribute("ocupacao").equals("gerente")){
             out.print("Acesso total permitido - Gerente");
@@ -18,6 +18,6 @@
         }
     }
     else{
-        response.sendRedirect("./index.jsp");
+        response.sendRedirect("index.jsp");
     }
 %>

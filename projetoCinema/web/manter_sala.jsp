@@ -23,7 +23,7 @@ and open the template in the editor.
         </header>
 
         <h2><p>Buscar:</p></h2><br>
-        <form name="command" action="FrontController" method="POST">
+        <form action="FrontController" method="POST">
             <input type="number" placeholder="Buscar" name="sala" /></br>
             <input type="hidden" name="command" value="BuscarSala"/>
             <input type="submit" name="command" value="Buscar"/>
@@ -31,7 +31,7 @@ and open the template in the editor.
         
         
         <h2><p>Criar: </p></h2><br>
-        <form name="command" action="FrontController" method="POST"/>
+        <form action="FrontController" method="POST"/>
             <input type="number" name="numero" placeholder="Número da Sala"/>
             <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
             <input type="number" name="especial" placeholder="Cadeiras especiais"/>
@@ -61,7 +61,7 @@ and open the template in the editor.
         </form>
         
         <h2><p>Deletar Sala:</p></h2><br>
-                <form name="command" action="FrontController" method="POST">
+                <form action="FrontController" method="POST">
                     <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
                     <input type="hidden" name="command" value="DeletarSala"/>
                     <input type="submit" name="command" value="Deletar"/>

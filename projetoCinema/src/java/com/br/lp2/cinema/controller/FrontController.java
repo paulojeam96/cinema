@@ -44,13 +44,13 @@ public class FrontController extends HttpServlet {
             out.println("<body>");
             Command c = null;
             
-            try {
+            
+                try {
                 c = (Command) Class.forName("com.br.lp2.cinema.commands."+nome).newInstance();
                 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+                c.execute(request, response);
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException classNotFoundException) {
             }
-            c.execute(request, response);
             
             out.println("</body>");
             out.println("</html>");
@@ -87,7 +87,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        nome = request.getParameter("nome");
+        nome = request.getParameter("command");
         try {
             processRequest(request, response);
         } catch (InstantiationException | IllegalAccessException ex) {

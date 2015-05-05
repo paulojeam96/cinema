@@ -7,8 +7,8 @@ Create table cinema.atendente(
 Create table cinema.ator(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     nome varchar(20),
-    datanascimento date
-    nacionalidade varchar(20),
+    datanascimento date,
+    nacionalidade varchar(20)
 );
 
 Create table cinema.cliente(

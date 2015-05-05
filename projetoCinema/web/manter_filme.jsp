@@ -71,6 +71,8 @@ and open the template in the editor.
                 <input type="hidden" name="command" value="ExcluirFilme"/>
                 <input type="submit" name="command" value="Excluir"/>
             </form>
+            
+            
 
         </section>
     </body>

@@ -22,7 +22,7 @@ public class Login implements Command{
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         usuario = request.getParameter("usuario");
-        senha = request.getParameter("senha");
+        senha = request.getParameter("password");
         //Manda usuario e senha para CriaLogin e faz a verificação da ocupação do usuario
         CriaLogin cl = new CriaLogin(usuario, senha);
         
@@ -34,13 +34,13 @@ public class Login implements Command{
         try {
             if (cl.isGerente()) {
                 session.setAttribute("ocupacao", "gerente");
-                response.sendRedirect("./home.jsp");
+                response.sendRedirect("home.jsp");
             } else if (cl.isAtendente()) {
                 session.setAttribute("ocupacao", "atendente");
-                response.sendRedirect("./atendente.jsp");
+                response.sendRedirect("atendente.jsp");
             } else {
                 session.setAttribute("lg", "inválido");
-                response.sendRedirect("./index.jsp");
+                response.sendRedirect("index.jsp");
             }
         } catch (IOException iOException) {
             iOException.getMessage();

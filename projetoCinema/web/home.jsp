@@ -22,16 +22,16 @@
             <nav>
                 <p>Manutenção</p>
                 <ul>
-                    <li><a href="manter_sala.html">Manter Sala</a></li>
-                    <li><a href="manter_filme.html">Manter Filme</a></li>
-                    <li><a href="manter_sessao.html">Manter Sessão</a></li>
-                    <li><a href="manter_usuario.html">Manter Usuário</a></li>
+                    <li><a href="manter_sala.jsp">Manter Sala</a></li>
+                    <li><a href="manter_filme.jsp">Manter Filme</a></li>
+                    <li><a href="manter_sessao.jsp">Manter Sessão</a></li>
+                    <li><a href="manter_usuario.jsp">Manter Usuário</a></li>
                 </ul>
 
                 <p>Vender Ingresso</p>
                 <ul>
-                    <li><a href="vender_ingresso.html">Filme</a></li>
-                    <li><a href="vender_ingresso.html">Sessão</a></li>
+                    <li><a href="vender_ingresso.jsp">Filme</a></li>
+                    <li><a href="vender_ingresso.jsp">Sessão</a></li>
                 </ul>
             </nav>
         </section>
