@@ -11,7 +11,7 @@
         out.print(session.getAttribute("usuario"));
         
         if(session.getAttribute("ocupacao").equals("gerente")){
-            out.print("Acesso total permitido - Gerente");
+            out.print(" Acesso total permitido - Gerente");
         }
             
         else{

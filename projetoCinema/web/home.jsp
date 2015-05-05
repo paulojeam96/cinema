@@ -28,11 +28,8 @@
                     <li><a href="manter_usuario.jsp">Manter Usuário</a></li>
                 </ul>
 
-                <p>Vender Ingresso</p>
-                <ul>
-                    <li><a href="vender_ingresso.jsp">Filme</a></li>
-                    <li><a href="vender_ingresso.jsp">Sessão</a></li>
-                </ul>
+                <p><a href="vender_ingresso.jsp">Vender Ingresso</a></p>
+                
             </nav>
         </section>
     </body>
