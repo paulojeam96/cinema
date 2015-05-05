@@ -17,10 +17,7 @@
         <header>
             <%@include file = "Hsession.jsp" %>
         </header>
-        <p>Vender Ingresso</p>
-        <ul>
-            <li><a href="vender_ingresso.html">Filme</a></li>
-            <li><a href="vender_ingresso.html">Sessão</a></li>
-        </ul>
+        <p><a href="vender_ingresso.jsp">Vender Ingresso</a></p>
+        
     </body>
 </html>
