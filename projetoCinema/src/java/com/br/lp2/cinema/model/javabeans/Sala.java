@@ -17,6 +17,12 @@ public class Sala {
     public enum Estados { MANUTENCAO, OCUPADO, LIVRE; }
     private Estados estadoSala;
 
+    public Sala(int num) {
+        this.num = num;
+    }
+    
+    
+
     public Sala(int pk, int num, int lotacao, int poltEsp, Estados estadoSala) {
         this.pk = pk;
         this.num = num;

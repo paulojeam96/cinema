@@ -20,7 +20,10 @@ public class Filme implements Serializable{
     public enum tipoSituacao{ CARTAZ, ESTREIA, LANCAMENTO;}
     private int duracao;
     private String idioma;
-    
+
+    public Filme(int pk) {
+        this.pk = pk;
+    }
     
      public Filme( int pk, Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int clas, int ano, Distribuidora distribuidora, tipoSituacao s, int duracao, String idioma) {
         this.pk = pk;

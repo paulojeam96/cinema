@@ -11,6 +11,16 @@ import java.util.ArrayList;
 public class ListaIngresso implements Serializable{
     private int pk;
     private ArrayList<Ingresso> lista;
+
+    public ListaIngresso(int pk) {
+        this.pk = pk;
+    }
+
+    public ListaIngresso(int pk, ArrayList<Ingresso> lista) {
+        this.pk = pk;
+        this.lista = lista;
+    }
+    
     
     public ListaIngresso(){
         lista = new ArrayList<Ingresso>();

@@ -21,6 +21,11 @@ public class Sessao implements Serializable{
     private boolean legendado;
     private ListaIngresso ingressos;
 
+    public Sessao(int pk) {
+        this.pk = pk;
+    }
+
+    
     public Sessao(int pk, Sala sala, Filme filme, Date diaHora, boolean legendado) {
         this.pk = pk;
         this.sala = sala;
@@ -30,6 +35,14 @@ public class Sessao implements Serializable{
         ingressos = new ListaIngresso();
     }
 
+    public Sessao(Filme filme, Sala sala, Date diaHora, boolean legendado, ListaIngresso lista) {
+        this.filme = filme;
+        this.sala = sala;
+        this.diaHora = diaHora;
+        this.legendado = legendado;
+        this.ingressos = lista;
+    }
+    
     public int getPk() {
         return pk;
     }
