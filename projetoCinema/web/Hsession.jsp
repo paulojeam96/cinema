@@ -5,6 +5,10 @@
 --%>
 
 <%
+    if(session.getAttribute("usuario") == null && session.getAttribute("usuario").equals("")){
+        response.sendRedirect("index.jsp");
+    }
+    
     if(session.getAttribute("usuario")!=null && !session.getAttribute("usuario").equals("")){
         out.print("Olá!");
         out.print("\n");

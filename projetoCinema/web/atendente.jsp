@@ -15,6 +15,12 @@
     </head>
     <body>
         <header>
+            <%
+                if(session.getAttribute("ocupacao").equals("Gerente")){
+                    out.print("Acesso para Atendentes, você será redirecionado para a Página gerencial!");
+                    response.sendRedirect("home.jsp");
+                }
+                %>
             <%@include file = "Hsession.jsp" %>
         </header>
         <p><a href="vender_ingresso.jsp">Vender Ingresso</a></p>

@@ -14,6 +14,11 @@
     </head>
     <body>
         <header>
+            <% if(session.getAttribute("ocupacao").equals("Atendente")){
+                out.print("Acesso Não permitido!");
+                response.sendRedirect("index.jsp");
+                }
+                %>
             <%@ include file= "Hsession.jsp"%>
     
         </header>
