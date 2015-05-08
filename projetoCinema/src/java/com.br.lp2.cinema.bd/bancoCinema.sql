@@ -21,7 +21,8 @@ Create table cinema.cliente(
 Create table cinema.diretor(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     id int,
-    nome varchar(30)
+    nome varchar(30),
+    senha varchar(30)
 );
 
 Create table cinema.distribuidora(

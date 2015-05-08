@@ -28,7 +28,7 @@ public class ConnectionFactory {
 
     private final String driver = "org.apache.derby.jdbc.ClientDriver";
     private final String protocolo = "jdbc:derby:";
-    private final String dbname = "mack";
+    private final String dbname = "bancoCinema";
     private final String dominio = "//localhost:1527/";
     private Connection connection;
 

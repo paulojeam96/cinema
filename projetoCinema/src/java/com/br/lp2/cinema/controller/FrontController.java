@@ -36,12 +36,7 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet FrontController</title>");            
-            out.println("</head>");
-            out.println("<body>");
+            
             Command c = null;
             
             
@@ -52,8 +47,6 @@ public class FrontController extends HttpServlet {
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException classNotFoundException) {
             }
             
-            out.println("</body>");
-            out.println("</html>");
         }
     }
 
