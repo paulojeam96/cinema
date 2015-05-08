@@ -17,4 +17,6 @@ public class Atendente extends Funcionario implements Serializable{
         super(nome, senha);
     }
     
+    
+    
 }

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Paulo
  */
 public class FrontController extends HttpServlet {
+
     private String nome;
 
     /**
@@ -36,18 +37,15 @@ public class FrontController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
             Command c = null;
-            
-            
-                try {
-                c = (Command) Class.forName("com.br.lp2.cinema.commands."+nome).newInstance();
-                
-                c.execute(request, response);
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException classNotFoundException) {
-            }
-            
+
+            c = (Command) Class.forName("com.br.lp2.cinema.commands." + nome).newInstance();
+
+            c.execute(request, response);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException classNotFoundException) {
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,11 +79,13 @@ public class FrontController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         nome = request.getParameter("command");
+
         try {
             processRequest(request, response);
         } catch (InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     /**

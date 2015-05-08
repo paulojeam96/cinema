@@ -182,7 +182,7 @@
             <input type="text" placeholder="usuario" name="usuario"><br>
             <input type="password" placeholder="password" name="password"><br>
             <input type="hidden" class="login" name="command" value="Login"/>
-            <input type="submit" name="command" value="Login">
+            <input type="submit" value="Login">
         </form>
 
         <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
