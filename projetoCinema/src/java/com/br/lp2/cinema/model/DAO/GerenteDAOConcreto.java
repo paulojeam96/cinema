@@ -32,7 +32,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public boolean insertGerente(Funcionario gerente) {
         boolean resultado = false;
         try {
-            String sql = "INSERT INTO cinema.gerente (nome,senha) VALUES(?,?)";
+            String sql = "INSERT INTO gerente (nome,senha) VALUES(?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, gerente.getNome());
             pst.setString(2, gerente.getSenha());
@@ -48,7 +48,8 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public ArrayList<Gerente> readGerente() {
         ArrayList<Gerente> lista = new ArrayList();
         try {
-            String sql = "SELECT * FROM cinema.gerente";
+            System.out.println("AQUI");
+            String sql = "SELECT * FROM GERENTE";
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {

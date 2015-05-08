@@ -42,7 +42,7 @@ public class ConnectionFactory {
 
                 Class.forName(driver).newInstance();
                 try {
-                    connection = DriverManager.getConnection(protocolo + dominio + dbname, "paulo", "paulo");
+                    connection = DriverManager.getConnection(protocolo + dominio + dbname, "Paulo", "paulo");
                 } catch (SQLException ex) {
                     ex.printStackTrace();
                     
