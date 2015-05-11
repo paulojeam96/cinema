@@ -41,7 +41,7 @@ public class FrontController extends HttpServlet {
             Command c = null;
 
             c = (Command) Class.forName("com.br.lp2.cinema.commands." + nome).newInstance();
-
+            
             c.execute(request, response);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException classNotFoundException) {
         }
