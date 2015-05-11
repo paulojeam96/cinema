@@ -37,7 +37,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
     public boolean insertSessao(Sessao sessao) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.sessao (filme,sala, diaHora, legendado, ingressos)VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO sessao (filme,sala, diaHora, legendado, ingressos)VALUES (?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
             
             pst.setObject(1, sessao.getSala());
@@ -56,7 +56,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
     public ArrayList<Sessao> readSessoes() {
         ArrayList<Sessao> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  cinema.sessao";
+            String sql = "SELECT * FROM  sessao";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -75,7 +75,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
         Sessao a = null;
         
         try{
-            String sql = "SELECT * FROM cinema.sessao WHERE diaHora=?";
+            String sql = "SELECT * FROM sessao WHERE diaHora=?";
             pst = connection.prepareStatement(sql);
             pst.setDate(1, (java.sql.Date)diaHora);
             rs = pst.executeQuery();
@@ -93,7 +93,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.sessao SET sala=? WHERE id=?";
+            String sql = "UPDATE sessao SET sala=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -109,7 +109,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
     public boolean deleteSessao(Sessao sessao) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM cinema.sessao WHERE id=?";
+            String sql = "DELETE FROM sessao WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, sessao);
             int r = pst.executeUpdate();
@@ -125,7 +125,7 @@ public class SessaoDAOConcreto implements SessaoDAO{
     public boolean deleteSessao(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM cinema.sessao WHERE id=?";
+            String sql = "DELETE FROM sessao WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

@@ -34,7 +34,7 @@ public class IngressoDAOConcreto implements IngressoDAO{
     public boolean insertIngresso(Ingresso ingresso) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.ingresso(pk, id, inteira, especiais) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO ingresso(pk, id, inteira, especiais) VALUES (?,?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, ingresso.getPk());
             pst.setInt(2, ingresso.getId());
@@ -51,7 +51,7 @@ public class IngressoDAOConcreto implements IngressoDAO{
     public ArrayList<Ingresso> readIngresso() {
         ArrayList<Ingresso> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  cinema.ingresso";
+            String sql = "SELECT * FROM  ingresso";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -70,7 +70,7 @@ public class IngressoDAOConcreto implements IngressoDAO{
         Ingresso a = null;
         
         try {
-            String sql = "SELECT * FROM cinema.ingresso WHERE id=?";
+            String sql = "SELECT * FROM ingresso WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -88,7 +88,7 @@ public class IngressoDAOConcreto implements IngressoDAO{
          boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.ingresso SET inteira=? WHERE id=?";
+            String sql = "UPDATE ingresso SET inteira=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
@@ -104,7 +104,7 @@ public class IngressoDAOConcreto implements IngressoDAO{
     public boolean deleteIngresso(Ingresso ingresso) {
          boolean resultado=false;
         try {
-            String sql = "DELETE FROM cinema.ingresso WHERE id=?";
+            String sql = "DELETE FROM ingresso WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,ingresso.getPk());
             int r = pst.executeUpdate();
@@ -120,7 +120,7 @@ public class IngressoDAOConcreto implements IngressoDAO{
     public boolean deleteIngresso(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM cinema.ingresso WHERE id=?";
+            String sql = "DELETE FROM ingresso WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

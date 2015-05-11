@@ -34,7 +34,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
         boolean resultado = false;
         
         try {
-            String sql = "INSERT INTO cinema.atendente (nome,senha) VALUES(?,?)";
+            String sql = "INSERT INTO atendente (nome,senha) VALUES(?,?)";
             statement = connection.prepareStatement(sql);
             statement.setString(1, atendente.getNome());
             statement.setString(2, atendente.getSenha());
@@ -51,7 +51,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
         ArrayList<Atendente> lista = new ArrayList();
         
         try {
-            String sql = "SELECT * FROM cinema.atendente";
+            String sql = "SELECT * FROM atendente";
             statement = connection.prepareStatement(sql);
             rs = statement.executeQuery();
             
@@ -69,7 +69,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
     public Atendente readAtendenteById(int id) {
         Atendente a = null;
         try {
-            String sql = "SELECT * FROM cinema.atendente WHERE pk =?";
+            String sql = "SELECT * FROM atendente WHERE pk =?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             rs = statement.executeQuery();
@@ -88,7 +88,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
         Atendente a = null;
         
             try {
-                String sql = "SELECT * FROM cinema.atendente WHERE nome =?";
+                String sql = "SELECT * FROM atendente WHERE nome =?";
                 statement = connection.prepareStatement(sql);
                 statement.setString(1, nome);
                 rs = statement.executeQuery();
@@ -106,7 +106,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
     public boolean updateAtendente(int id, Funcionario atendente) {
         boolean resultado = false;
         try {
-            String sql = "UPDATE cinema.atendente SET nome=?, senha=? WHERE pk=?";
+            String sql = "UPDATE atendente SET nome=?, senha=? WHERE pk=?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, atendente.getNome());
             statement.setString(2, atendente.getSenha());
@@ -124,7 +124,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
         boolean resultado = false;
         
         try {
-            String sql = "DELETE FROM cinema.atendente WHERE pk = ?";
+            String sql = "DELETE FROM atendente WHERE pk = ?";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, id); 
             int r = statement.executeUpdate();
@@ -141,7 +141,7 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
         boolean resultado = false;
         
         try {
-            String sql = "DELETE FROM cinema.atendente WHERE VALUES(?)";
+            String sql = "DELETE FROM atendente WHERE VALUES(?)";
             statement = connection.prepareStatement(sql);
             int r = statement.executeUpdate();
             resultado = r > 0;

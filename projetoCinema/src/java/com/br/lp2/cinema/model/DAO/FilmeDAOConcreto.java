@@ -39,7 +39,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
     public boolean insertFilme(Filme filme) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.filme(pk,diretor,genero,listaAtores,nome,classificacao,ano,dist,situacao,duracao,idioma) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO filme(pk,diretor,genero,listaAtores,nome,classificacao,ano,dist,situacao,duracao,idioma) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, filme.getPk());
             pst.setObject(2, filme.getDiretor());
@@ -63,7 +63,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
     public ArrayList<Filme> readFilmes() {
         ArrayList<Filme> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  cinema.filme";
+            String sql = "SELECT * FROM  filme";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -82,7 +82,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
         Filme a = null;
         
         try {
-            String sql = "SELECT * FROM cinema.filme WHERE id=?";
+            String sql = "SELECT * FROM filme WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -100,7 +100,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
         Filme a = null;
         
         try{
-            String sql = "SELECT * FROM cinema.filme WHERE nome=?";
+            String sql = "SELECT * FROM filme WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -118,7 +118,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.filme SET nome=? WHERE id=?";
+            String sql = "UPDATE filme SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -134,7 +134,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
     public boolean deleteFilme(Filme filme) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM cinema.filme WHERE id=?";
+            String sql = "DELETE FROM filme WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1,filme.getPk());
             int r = pst.executeUpdate();
@@ -150,7 +150,7 @@ public class FilmeDAOConcreto implements FilmeDAO{
     public boolean deleteFilme(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM cinema.filme WHERE id=?";
+            String sql = "DELETE FROM filme WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

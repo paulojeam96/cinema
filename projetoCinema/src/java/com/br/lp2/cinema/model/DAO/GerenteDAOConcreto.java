@@ -66,7 +66,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public Gerente readGerenteById(int id) {
         Gerente g = null;
         try {
-            String sql = "SELECT * FROM cinema.gerente WHERE pk =?";
+            String sql = "SELECT * FROM gerente WHERE pk =?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs = pst.executeQuery();
@@ -83,7 +83,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public Gerente readGerenteByNome(String nome) {
         Gerente g = null;
         try {
-            String sql = "SELECT * FROM cinema.gerente WHERE nome =?";
+            String sql = "SELECT * FROM gerente WHERE nome =?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -100,7 +100,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public boolean updateGerente(int id, Funcionario gerente) {
         boolean resultado = false;
         try {
-            String sql = "UPDATE cinema.gerente SET nome=?, senha=? WHERE pk=?";
+            String sql = "UPDATE gerente SET nome=?, senha=? WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, gerente.getNome());
             pst.setString(2, gerente.getSenha());
@@ -117,7 +117,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public boolean deleteGerente(int id) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM cinema.gerente WHERE pk = ?";
+            String sql = "DELETE FROM gerente WHERE pk = ?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id); 
             int r = pst.executeUpdate();
@@ -133,7 +133,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public boolean deleteGerente(Funcionario gerente) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM cinema.gerente WHERE VALUES(?)";
+            String sql = "DELETE FROM gerente WHERE VALUES(?)";
             pst = connection.prepareStatement(sql);
             int r = pst.executeUpdate();
             resultado = r>0;

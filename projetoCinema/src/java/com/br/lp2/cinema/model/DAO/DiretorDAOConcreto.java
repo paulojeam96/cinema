@@ -35,7 +35,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
     public boolean insertDiretor(Diretor diretor) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.diretor(nome, id, pk) VALUES (?,?,?)";
+            String sql = "INSERT INTO diretor(nome, id, pk) VALUES (?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, diretor.getNome());
             pst.setString(2, diretor.getId());
@@ -51,7 +51,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
     public ArrayList<Diretor> readDiretores() {
         ArrayList<Diretor> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  cinema.diretor";
+            String sql = "SELECT * FROM  diretor";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -70,7 +70,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         Diretor a = null;
         
         try {
-            String sql = "SELECT * FROM cinema.diretor WHERE id=?";
+            String sql = "SELECT * FROM diretor WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -88,7 +88,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         Diretor a = null;
         
         try{
-            String sql = "SELECT * FROM cinema.diretor WHERE nome=?";
+            String sql = "SELECT * FROM diretor WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -106,7 +106,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.diretor SET nome=? WHERE id=?";
+            String sql = "UPDATE diretor SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
@@ -122,7 +122,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
     public boolean deleteDiretor(Diretor diretor) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM cinema.diretor WHERE id=?";
+            String sql = "DELETE FROM diretor WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1,diretor.getId());
             int r = pst.executeUpdate();
@@ -138,7 +138,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
     public boolean deleteDiretor(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM cinema.diretor WHERE id=?";
+            String sql = "DELETE FROM diretor WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

@@ -35,7 +35,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     public boolean insertInfoAtor(InfoAtor infoAtor) {
          boolean resultado = false;
         try{
-            String sql = "INSERT INTO cinema.infoAtor(ator, papel, participacao) VALUES (?,?,?)";
+            String sql = "INSERT INTO infoAtor(ator, papel, participacao) VALUES (?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, infoAtor.getAtor());
             pst.setObject(2, infoAtor.getPapel());
@@ -51,7 +51,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     public ArrayList<InfoAtor> readInfoAtores() {
         ArrayList<InfoAtor> lista = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM  cinema.infoAtor";
+            String sql = "SELECT * FROM  infoAtor";
             pst = connection.prepareStatement(sql);
             
             rs = pst.executeQuery();
@@ -70,7 +70,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
          InfoAtor a = null;
         
         try {
-            String sql = "SELECT * FROM cinema.infoAtor WHERE id=?";
+            String sql = "SELECT * FROM infoAtor WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
@@ -88,7 +88,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
         InfoAtor a = null;
         
         try{
-            String sql = "SELECT * FROM cinema.infoAtor WHERE ator=?";
+            String sql = "SELECT * FROM infoAtor WHERE ator=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, ator);
             rs = pst.executeQuery();
@@ -106,7 +106,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE cinema.infoAtor SET ator=? WHERE id=?";
+            String sql = "UPDATE infoAtor SET ator=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
@@ -122,7 +122,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     public boolean deleteInfoAtor(InfoAtor infoAtor) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM cinema.infoAtor WHERE id=?";
+            String sql = "DELETE FROM infoAtor WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setObject(1,infoAtor.getAtor());
             int r = pst.executeUpdate();
@@ -138,7 +138,7 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     public boolean deleteInfoAtor(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM cinema.infoAtor WHERE id=?";
+            String sql = "DELETE FROM infoAtor WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

@@ -34,7 +34,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
     public boolean insertFuncionario(Funcionario funcionario) {
         boolean resultado = false;
         try {
-            String sql = "INSERT INTO cinema.funcionario(pk,nome,senha) VALUES(?,?,?)";
+            String sql = "INSERT INTO funcionario(pk,nome,senha) VALUES(?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, funcionario.getPk());
             pst.setString(2, funcionario.getSenha());
@@ -51,7 +51,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
         ArrayList<Funcionario> lista = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM cinema.funcionario";
+            String sql = "SELECT * FROM funcionario";
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -69,7 +69,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
         Funcionario f = null;
 
         try {
-            String sql = "SELECT * FROM cinema.funcionario WHERE id=?";
+            String sql = "SELECT * FROM funcionario WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs = pst.executeQuery();
@@ -87,7 +87,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
         Funcionario f = null;
 
         try {
-            String sql = "SELECT * FROM cinema.funcionario WHERE nome=?";
+            String sql = "SELECT * FROM funcionario WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
             rs = pst.executeQuery();
@@ -105,7 +105,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
         boolean res = false;
 
         try {
-            String sql = "UPDATE cinema.funcionario SET nome=? WHERE id=?";
+            String sql = "UPDATE funcionario SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
@@ -125,7 +125,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
     public boolean deleteFuncionario(Funcionario funcionario) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM cinema.funcionario WHERE id=?";
+            String sql = "DELETE FROM funcionario WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, funcionario.getPk());
             int r = pst.executeUpdate();
@@ -144,7 +144,7 @@ public class FuncionarioDAOConcreto implements FuncionarioDAO {
     public boolean deleteFuncionario(int id) {
         boolean res = false;
         try {
-            String sql = "DELETE FROM cinema.funcionario WHERE id=?";
+            String sql = "DELETE FROM funcionario WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
