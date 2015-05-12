@@ -3,7 +3,7 @@
     Created on : Apr 30, 2015, 9:15:54 PM
     Author     : Paulo
 --%>
-
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,31 +11,21 @@
         <title>Home</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="css/body.css"/>
     </head>
     <body>
         <header>
-            <% if(session.getAttribute("ocupacao").equals("Atendente")){
+            <%-- if(session.getAttribute("ocupacao").equals("Atendente")){
                 out.print("Acesso Não permitido!");
                 response.sendRedirect("index.jsp");
                 }
-                %>
-            <%@ include file= "Hsession.jsp"%>
-    
+                %> --%>
+            <%--@ include file= "Hsession.jsp"%> --%>
+            <c:import url="headerGerente.jsp"/>
+            
         </header>
-
-        <section>
-            <nav>
-                <p>Manutenção</p>
-                <ul>
-                    <li><a href="manter_sala.jsp">Manter Sala</a></li>
-                    <li><a href="manter_filme.jsp">Manter Filme</a></li>
-                    <li><a href="manter_sessao.jsp">Manter Sessão</a></li>
-                    <li><a href="manter_usuario.jsp">Manter Usuário</a></li>
-                </ul>
-
-                <p><a href="vender_ingresso.jsp">Vender Ingresso</a></p>
-                
-            </nav>
-        </section>
+        
+            
     </body>
 </html>
