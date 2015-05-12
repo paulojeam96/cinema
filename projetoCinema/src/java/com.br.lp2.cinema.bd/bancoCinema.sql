@@ -21,8 +21,7 @@ Create table cliente(
 Create table diretor(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     id int,
-    nome varchar(30),
-    senha varchar(30)
+    nome varchar(30)
 );
 
 Create table distribuidora(
@@ -106,3 +105,6 @@ alter table ListaIngressos add FOREIGN KEY(id_ingresso) references ingresso(pk);
 alter table sessao add FOREIGN KEY(id_filme) references filme(pk);
 alter table sessao add FOREIGN KEY(id_sala) references sala(pk);
 alter table sessao add FOREIGN KEY(id_listaIngressos) references listaingressos(pk);
+
+insert into gerente (nome, senha) values ('Paulo', 'paulo');
+insert into atendente (nome, senha) values ('Maria', '123');

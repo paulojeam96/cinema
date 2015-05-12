@@ -3,7 +3,7 @@
     Created on : Apr 30, 2015, 9:17:57 PM
     Author     : Paulo
 --%>
-
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -19,7 +19,19 @@ and open the template in the editor.
     </head>
     <body>
         <header>
-            <%@include file = "Hsession.jsp" %>
+            <c:import url = "Hsession.jsp"/>
+            
+            <c:choose>
+                <c:when test="${usuario}">
+                    <c:import url="headerGerente.jsp"/>
+                </c:when>
+                
+                <c:otherwise>
+                    <c:when test="${usuario}">
+                        <c:import url="headerAtendente.jsp"/>
+                    </c:when>
+                </c:otherwise>
+            </c:choose>
         </header>
         <section>
             <fieldset>
