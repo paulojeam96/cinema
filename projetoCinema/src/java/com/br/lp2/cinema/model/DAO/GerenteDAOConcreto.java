@@ -49,7 +49,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
         ArrayList<Gerente> lista = new ArrayList();
         try {
             System.out.println("AQUI");
-            String sql = "SELECT * FROM GERENTE";
+            String sql = "SELECT * FROM gerente";
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
