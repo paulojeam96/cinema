@@ -19,13 +19,7 @@
             @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
             body{
-                margin: 0;
-                padding: 0;
-                background: #fff;
-
-                color: #fff;
-                font-family: Arial;
-                font-size: 12px;
+                
             }
 
             .body{
@@ -147,6 +141,11 @@
             .login input[type=submit]:focus{
                 outline: none;
             }
+            
+            .cad{
+                text-decoration: none;
+                color:#D8C5BB;
+            }
 
             ::-webkit-input-placeholder{
                 color: rgba(255,255,255,0.6);
@@ -172,17 +171,25 @@
                     out.print("Usuario e senha inválidos");
                 }
                 %>
-        <div class="body"></div>
-        <div class="grad"></div>
+        <div class="body"> 
+            
+        </div>
+        <div class="grad">
+            
+        </div>
         <div class="header">
             <div>Home<span>Cinema</span></div>
+            <p><a class="cad" href="cadastro.jsp">Cadastre-se</a></p>
         </div>
         <br>
-        <form class="login" action="FrontController" method="POST">
+        
+        <form class="login"action="FrontController" method="POST">
             <input type="text" placeholder="usuario" name="usuario"><br>
             <input type="password" placeholder="password" name="password"><br>
             <input type="hidden" class="login" name="command" value="Login"/>
             <input type="submit" value="Login">
+            <br>
+            
         </form>
 
         <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
