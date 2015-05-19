@@ -107,4 +107,4 @@ alter table sessao add FOREIGN KEY(id_sala) references sala(pk);
 alter table sessao add FOREIGN KEY(id_listaIngressos) references listaingressos(pk);
 
 insert into gerente (nome, senha) values ('Paulo', 'paulo');
-insert into atendente (nome, senha) values ('Maria', '123');
+insert into atendente (nome, senha) values ('Ana Paula', '123');

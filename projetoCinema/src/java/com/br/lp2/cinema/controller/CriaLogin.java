@@ -54,6 +54,10 @@ public class CriaLogin {
         }
         return v;
     }
+
+    public String getUsuario() {
+        return nome;
+    }
     
     
 }

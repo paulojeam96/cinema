@@ -16,12 +16,13 @@
     </head>
     <body>
         <header>
-            <%-- if(session.getAttribute("ocupacao").equals("Atendente")){
-                out.print("Acesso Não permitido!");
+            <%
+                if(session.getAttribute("ocupacao").equals("Atendente") || session.getAttribute("ocupacao") != ("gerente")){
                 response.sendRedirect("index.jsp");
-                }
-                %> --%>
-            <%--@ include file= "Hsession.jsp"%> --%>
+               }
+            %>
+           
+            
             <c:import url="headerGerente.jsp"/>
             
         </header>

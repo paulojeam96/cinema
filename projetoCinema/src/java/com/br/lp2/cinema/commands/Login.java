@@ -30,13 +30,12 @@ public class Login implements Command{
         HttpSession session = request.getSession();
         session.setAttribute("usuario", usuario);
         session.setAttribute("lg", "");
-        
         try {
             if (cl.isGerente()) {
                 session.setAttribute("ocupacao", "gerente");
                 response.sendRedirect("home.jsp");
             } else if (cl.isAtendente()) {
-                session.setAttribute("ocupacao", "atendente");
+                session.setAttribute("ocupacao","atendente");
                 response.sendRedirect("atendente.jsp");
             } else {
                 session.setAttribute("lg", "inválido");

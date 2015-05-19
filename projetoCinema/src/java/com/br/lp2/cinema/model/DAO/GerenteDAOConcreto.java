@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Paulo
- */
+// */
 public class GerenteDAOConcreto implements GerenteDAO {
     private static Connection connection;
     private static PreparedStatement pst;

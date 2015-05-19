@@ -3,7 +3,7 @@
     Created on : Apr 30, 2015, 9:14:23 PM
     Author     : Paulo
 --%>
-
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -16,14 +16,11 @@
     <body>
         <header>
             <%
-                if(session.getAttribute("ocupacao").equals("Gerente")){
-                    out.print("Acesso para Atendentes, você será redirecionado para a Página gerencial!");
+                if(session.getAttribute("ocupacao").equals("gerente") || session.getAttribute("ocupacao")!= ("atendente")){
                     response.sendRedirect("home.jsp");
                 }
                 %>
-            <%@include file = "Hsession.jsp" %>
         </header>
-        <p><a href="vender_ingresso.jsp">Vender Ingresso</a></p>
-        
+            <c:import url="headerAtendente.jsp"/>
     </body>
 </html>
