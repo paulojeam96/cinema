@@ -15,24 +15,17 @@
         <h1>Cadastro</h1>
 
         <fieldset>
-            <h2>Cadastro de Gerentes</h2>
+            <h2>Cadastro de Funcionarios</h2>
             <form action="FrontController" method="POST">
-                <input type="text" name="nome" placeholder="Nome do Gerente"/>
+                <input type="text" name="ocupacao" placeholder="Ocupação"/>
+                <input type="text" name="nome" placeholder="Nome"/>
                 <input type="text" name="senha" placeholder="senha"/>
-                <input type="hidden" value="command" name="Cadastrar"/>
-                <input type="submit" value="CadastraGerente"/>
+                <input type="hidden" value="command" name="CadastraFuncionario"/>
+                <input type="submit" value="Cadastrar"/>
             </form>
         </fieldset>
         
-        <fieldset>
-            <h2>Cadastro de Atendente</h2>
-            <form action="FrontController" method="POST">
-                <input type="text" name="nome" placeholder="Nome do Atendente"/>
-                <input type="text" name="senha" placeholder="senha"/>
-                <input type="hidden" value="command" name="Cadastrar"/>
-                <input type="submit" value="CadastraAtendente"/>
-            </form>
-        </fieldset>
+        
 
 
     </body>
