@@ -2,6 +2,14 @@ body{
     margin:0px;
     background-image: url('../images/cinema.jpg');
     background-size: 100%; 
+    padding:50px;
 }
 
+section{
+    float:right;
+    background-color: #fff;
+    opacity:0.65;
+    -moz-opacity: 0.65;
+    filter: alpha(opacity=65);
+}
 

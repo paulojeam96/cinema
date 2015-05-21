@@ -16,22 +16,15 @@ and open the template in the editor.
         <title>Manter Usuario</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="css/body.css"/>
+
     </head>
     <body>
-        <header>
-            <c:import url = "Hsession.jsp"/>
-            
-            <c:choose>
-                <c:when test="${usuario}">
-                    <c:import url="headerGerente.jsp"/>
-                </c:when>
-                
-                <c:otherwise>
-                    <c:when test="${usuario}">
-                        <c:import url="headerAtendente.jsp"/>
-                    </c:when>
-                </c:otherwise>
-            </c:choose>
+        <header>            
+
+            <c:import url="headerGerente.jsp"/>
+
         </header>
         <section>
             <fieldset>
@@ -42,7 +35,7 @@ and open the template in the editor.
                     <input type="submit" value="Buscar Usuario"/><br>
                 </form>
             </fieldset>
-            
+
             <fieldset>
                 <h2>Criar Usuario:</h2>
                 <form action="FrontController" method="POST">
@@ -56,7 +49,7 @@ and open the template in the editor.
                     <input type="submit" value="Criar Usuario"/>
                 </form>
             </fieldset>
-            
+
             <fieldset>
                 <h2>Alterar Usuario:</h2>
                 <form name="command" action="FrontController" method="POST">
@@ -71,7 +64,7 @@ and open the template in the editor.
                     <input type="submit" value="Alterar Usuario"/>
                 </form>
             </fieldset>
-            
+
             <fieldset>
                 <h2>Deletar Usuario:</h2>
                 <form action="FrontController" method="POST">
@@ -81,7 +74,7 @@ and open the template in the editor.
                 </form>
             </fieldset>
         </section>
-        
+
     </body>
 </html>
 

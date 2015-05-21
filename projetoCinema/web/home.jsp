@@ -16,11 +16,11 @@
     </head>
     <body>
         <header>
-            <%
+            <%--
                 if(session.getAttribute("ocupacao").equals("Atendente") || session.getAttribute("ocupacao") != ("gerente")){
                 response.sendRedirect("index.jsp");
                }
-            %>
+            --%>
            
             
             <c:import url="headerGerente.jsp"/>
