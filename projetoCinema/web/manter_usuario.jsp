@@ -16,8 +16,10 @@ and open the template in the editor.
         <title>Manter Usuario</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="css/headerNormal.css"/>
         <link rel="stylesheet" type="text/css" href="css/body.css"/>
+        <link rel="stylesheet" type="text/css" href="css/section.css"/>
+
 
     </head>
     <body>
@@ -26,53 +28,65 @@ and open the template in the editor.
             <c:import url="headerGerente.jsp"/>
 
         </header>
+
+        <div class="body">
+
+        </div>
         <section>
-            <fieldset>
-                <h2>Buscar Usuario:</h2>
-                <form action="FrontController" method="POST">
-                    <input type="text" name="usuario" placeholder="Buscar Usuario" required/><br>
-                    <input type="hidden" name="command" value="BuscaUsuario"/><br>
-                    <input type="submit" value="Buscar Usuario"/><br>
-                </form>
-            </fieldset>
+            <div id="1">
+                <fieldset>
+                    <h2>Buscar Usuario:</h2>
+                    <form action="FrontController" method="POST">
+                        <input type="text" name="usuario" placeholder="Buscar Usuario" required/><br>
+                        <input type="hidden" name="command" value="BuscaUsuario"/><br>
+                        <input type="submit" value="Buscar Usuario"/><br>
+                    </form>
+                </fieldset>
+            </div>
 
-            <fieldset>
-                <h2>Criar Usuario:</h2>
-                <form action="FrontController" method="POST">
-                    <input type="text" name="nome" placeholder="Nome" required/><br>
-                    <input type="password" name="password" placeholder="senha" required/><br>
-                    <input type="password" name="password2" placeholder="confirma Senha" required/><br>
-                    Gerente <input type="radio" name="cargo" value="Gerente"/>
-                    Atendente <input type="radio" name="cargo" value="Atendente"/>
-                    <input type="number" name="cod" value="Codigo do Usuario"/>
-                    <input type="hidden" name="command" value="CriarUsuario"/>
-                    <input type="submit" value="Criar Usuario"/>
-                </form>
-            </fieldset>
+            <div id="2">
+                <fieldset>
+                    <h2>Criar Usuario:</h2>
+                    <form action="FrontController" method="POST">
+                        Nome:<input type="text" name="nome" placeholder="Nome" required/><br>
+                        Senha:<input type="password" name="password" placeholder="senha" required/><br>
+                        Repita a senha:<input type="password" name="password2" placeholder="confirma Senha" required/><br>
+                        Gerente <input type="radio" name="cargo" value="Gerente"/>
+                        Atendente <input type="radio" name="cargo" value="Atendente"/><br>
+                        Codigo Usuario<input type="number" name="cod" value="Codigo do Usuario"/>
+                        <input type="hidden" name="command" value="CriarUsuario"/>
+                        <input type="submit" value="Criar Usuario"/>
+                    </form>
+                </fieldset>
+            </div>
 
-            <fieldset>
-                <h2>Alterar Usuario:</h2>
-                <form name="command" action="FrontController" method="POST">
-                    <input type="number" placeholder="Código do Usuário" name="cod" required/></br>
-                    <p>Cargo Atual:</p><br>
-                    Gerente:<input type="radio" name="cargoAtual" value="Gerente"/>
-                    Atendente:<input type="radio" name="cargoAtual" value="Atendente"/></br>
-                    <input type="text" placeholder="Nome" name="nome" required/></br>
-                    <input type="password" placeholder="Senha" name="password" required/></br>
-                    <input type="password" placeholder="Confirma Senha" name="password2" required/></br>
-                    <input type="hidden" name="command" value="AlterarUsuario"/>
-                    <input type="submit" value="Alterar Usuario"/>
-                </form>
-            </fieldset>
+            <div id="3">
+                <fieldset>
+                    <h2>Alterar Usuario:</h2>
+                    <form name="command" action="FrontController" method="POST">
+                        <input type="number" placeholder="Código do Usuário" name="cod" required/></br>
+                        <p>Cargo Atual:</p>
+                        Gerente:<input type="radio" name="cargoAtual" value="Gerente"/>
+                        Atendente:<input type="radio" name="cargoAtual" value="Atendente"/></br>
+                        <input type="text" placeholder="Nome" name="nome" required/></br>
+                        <input type="password" placeholder="Senha" name="password" required/></br>
+                        <input type="password" placeholder="Confirma Senha" name="password2" required/></br>
+                        <input type="hidden" name="command" value="AlterarUsuario"/>
+                        <input type="submit" value="Alterar Usuario"/>
+                    </form>
+                </fieldset>
+            </div>
 
-            <fieldset>
-                <h2>Deletar Usuario:</h2>
-                <form action="FrontController" method="POST">
-                    <input type="number" name="cod" placeholder="Codigo do Usuario"/>
-                    <input type="hidden" name="command" value="DeletarUsuario"/>
-                    <input type="submit" value="Deletar Usuario"/>
-                </form>
-            </fieldset>
+            <div id="4">
+                <fieldset>
+                    <h2>Deletar Usuario:</h2>
+                    <form action="FrontController" method="POST">
+                        <input type="number" name="cod" placeholder="Codigo do Usuario"/>
+                        <input type="hidden" name="command" value="DeletarUsuario"/>
+                        <input type="submit" value="Deletar Usuario"/>
+                    </form>
+                </fieldset>
+            </div>
         </section>
 
     </body>

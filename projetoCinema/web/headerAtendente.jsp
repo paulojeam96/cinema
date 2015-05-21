@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/header.css"/>
     </head>
     <div id='cssmenu'>
         <ul>

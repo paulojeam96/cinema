@@ -10,8 +10,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Fail</title>
+        <style>
+            body{
+                margin:0px;
+                background-image: url('images/fail.jpg');
+                background-size:100%;
+            }
+            
+            h1{
+                color:#000;
+            }
+        </style>
     </head>
     <body>
-        <h1>A operação falhou!</h1>
+        <h1>A operação Falhou!</h1>
     </body>
 </html>

@@ -3,7 +3,7 @@
     Created on : Apr 30, 2015, 9:17:08 PM
     Author     : Paulo
 --%>
-
+<%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -15,27 +15,33 @@ and open the template in the editor.
     <head>
         <title>Manter Sala</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/headerNormal.css"/>
+        <link rel="stylesheet" type="text/css" href="css/body.css"/>
+        <link rel="stylesheet" type="text/css" href="css/section.css"/>
     </head>
     <body>
         <header>
-            <%@include file = "Hsession.jsp" %>
+            <c:import url= "headerGerente.jsp" />
             <h1>Manutenção das Salas</h1>
+            
         </header>
 
-        <h2><p>Buscar:</p></h2><br>
-        <form action="FrontController" method="POST">
-            <input type="number" placeholder="Buscar" name="sala" /></br>
-            <input type="hidden" name="command" value="BuscarSala"/>
-            <input type="submit" value="Buscar"/>
-        </form>
-        
-        
-        <h2><p>Criar: </p></h2><br>
-        <form action="FrontController" method="POST"/>
+        <fieldset class="bloco1">
+            <p>Buscar:</p><br>
+            <form action="FrontController" method="POST">
+                <input type="number" placeholder="Buscar" name="sala" /></br>
+                <input type="hidden" name="command" value="BuscarSala"/>
+                <input type="submit" value="Buscar"/>
+            </form>
+        </fieldset>
+
+        <fieldset>
+            <h2><p>Criar: </p></h2><br>
+            <form action="FrontController" method="POST"/>
             <input type="number" name="numero" placeholder="Número da Sala"/>
             <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
             <input type="number" name="especial" placeholder="Cadeiras especiais"/>
-            <select name="Situação"/>
+            <select name="Situação">
                 <option>Em Manutenção</option>
                 <option>Ocupada</option>
                 <option>Livre</option>
@@ -43,8 +49,9 @@ and open the template in the editor.
             <input type="hidden" name="command" value="CriarSala"/>
             <input type="submit" value="Criar Sala"/>
         </form>
-        
-        
+    </fieldset>
+
+    <fieldset>
         <h2><p>Atualizar Sala</p></h2>
         <form action="FrontController" method="POST">
             <input type="number" name="codSala" placeholder="Codigo da Sala"/>
@@ -59,13 +66,15 @@ and open the template in the editor.
             <input type="hidden" name="command" value="AtualizarSala"/>
             <input type="submit" value="atualizar"/>
         </form>
-        
+    </fieldset>
+    <fieldset>
         <h2><p>Deletar Sala:</p></h2><br>
-                <form action="FrontController" method="POST">
-                    <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
-                    <input type="hidden" name="command" value="DeletarSala"/>
-                    <input type="submit" value="Deletar"/>
-                </form>
-    </body>
+        <form action="FrontController" method="POST">
+            <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
+            <input type="hidden" name="command" value="DeletarSala"/>
+            <input type="submit" value="Deletar"/>
+        </form>
+    </fieldset>
+</body>
 </html>
 

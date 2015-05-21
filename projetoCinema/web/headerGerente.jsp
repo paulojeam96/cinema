@@ -9,7 +9,7 @@
 <html>
     <div id='cssmenu'>
         <ul>
-            <li><a href='#'><span>Home</span></a></li>
+            <li><a href='home.jsp'><span>Home</span></a></li>
             <li class='active has-sub'><a href='#'><span>Manutenção</span></a>
                 <ul>
                     <li class='has-sub'><a href='manter_usuario.jsp'><span>Manter Usuario</span></a>

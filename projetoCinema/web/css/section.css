@@ -1,0 +1,17 @@
+section{
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 10px;
+}
+
+fieldset{
+    background-color: #fff;
+    border-color: #a18d6c;
+    border-style: solid;
+    margin:0
+}
+
+.bloco1{
+    float:left;
+    padding-bottom:37%;
+}
