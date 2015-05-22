@@ -17,12 +17,14 @@
     </head>
     <body>
         <header>
-            <%
-                if(session.getAttribute("ocupacao").equals("gerente") || session.getAttribute("ocupacao")!= ("atendente")){
-                    response.sendRedirect("home.jsp");
-                }
-                %>
+            <c:choose>
+                <c:when test="${ocupacao == 'atendente'}">
+                    <c:import url="headerAtendente.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="index.jsp"/>
+                </c:otherwise>
+            </c:choose>
         </header>
-            <c:import url="headerAtendente.jsp"/>
     </body>
 </html>

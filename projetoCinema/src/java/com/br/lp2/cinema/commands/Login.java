@@ -29,16 +29,18 @@ public class Login implements Command{
         //Cria uma session
         HttpSession session = request.getSession();
         session.setAttribute("usuario", usuario);
-        session.setAttribute("lg", "");
         try {
             if (cl.isGerente()) {
-                session.setAttribute("ocupacao", "gerente");
+                String gerente = "gerente";
+                session.setAttribute("ocupacao", gerente);
                 response.sendRedirect("home.jsp");
             } else if (cl.isAtendente()) {
-                session.setAttribute("ocupacao","atendente");
+                String atendente = "atendente";
+                session.setAttribute("ocupacao", atendente);
                 response.sendRedirect("atendente.jsp");
-            } else {
-                session.setAttribute("lg", "inválido");
+            } else if(cl.isNormal()){
+                String normal = "normal";
+                session.setAttribute("ocupacao", normal);
                 response.sendRedirect("index.jsp");
             }
         } catch (IOException iOException) {
