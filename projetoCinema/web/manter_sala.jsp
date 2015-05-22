@@ -18,63 +18,74 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="css/headerNormal.css"/>
         <link rel="stylesheet" type="text/css" href="css/body.css"/>
         <link rel="stylesheet" type="text/css" href="css/section.css"/>
+        <style>
+            .bloco1{
+                float:none;
+                padding-bottom: 0px;
+            }
+        </style>
     </head>
     <body>
         <header>
             <c:import url= "headerGerente.jsp" />
-            <h1>Manutenção das Salas</h1>
-            
+
         </header>
 
-        <fieldset class="bloco1">
-            <p>Buscar:</p><br>
-            <form action="FrontController" method="POST">
-                <input type="number" placeholder="Buscar" name="sala" /></br>
-                <input type="hidden" name="command" value="BuscarSala"/>
-                <input type="submit" value="Buscar"/>
-            </form>
-        </fieldset>
+        <section>
 
-        <fieldset>
-            <h2><p>Criar: </p></h2><br>
-            <form action="FrontController" method="POST"/>
-            <input type="number" name="numero" placeholder="Número da Sala"/>
-            <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
-            <input type="number" name="especial" placeholder="Cadeiras especiais"/>
-            <select name="Situação">
-                <option>Em Manutenção</option>
-                <option>Ocupada</option>
-                <option>Livre</option>
-            </select>
-            <input type="hidden" name="command" value="CriarSala"/>
-            <input type="submit" value="Criar Sala"/>
-        </form>
-    </fieldset>
+            <fieldset class="bloco1">
+                <h2><p>Buscar Sala:</p></h2><br>
+                <form action="FrontController" method="POST">
+                    <input type="number" placeholder="Buscar" name="sala" /></br>
+                    <input type="hidden" name="command" value="BuscarSala"/>
+                    <input type="submit" value="Buscar"/>
+                </form>
+            </fieldset>
 
-    <fieldset>
-        <h2><p>Atualizar Sala</p></h2>
-        <form action="FrontController" method="POST">
-            <input type="number" name="codSala" placeholder="Codigo da Sala"/>
-            <input type="number" name="numero" placeholder="Numero Da Sala"/>
-            <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
-            <input type="number" name="especial" placeholder="Numero de cadeiras especiais"/>
-            <select name="Situacao">
-                <option>Em Manutenção</option>
-                <option>Em Espera</option>
-                <option>Em Exibição</option>
-            </select>
-            <input type="hidden" name="command" value="AtualizarSala"/>
-            <input type="submit" value="atualizar"/>
-        </form>
-    </fieldset>
-    <fieldset>
-        <h2><p>Deletar Sala:</p></h2><br>
-        <form action="FrontController" method="POST">
-            <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
-            <input type="hidden" name="command" value="DeletarSala"/>
-            <input type="submit" value="Deletar"/>
-        </form>
-    </fieldset>
-</body>
+            <fieldset>
+                <h2><p>Criar Sala: </p></h2><br>
+                <form action="FrontController" method="POST"/>
+                <input type="number" name="numero" placeholder="Número da Sala"/>
+                <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
+                <input type="number" name="especial" placeholder="Cadeiras especiais"/>
+                <select name="Situação">
+                    <option>Em Manutenção</option>
+                    <option>Ocupada</option>
+                    <option>Livre</option>
+                </select>
+                <input type="hidden" name="command" value="CriarSala"/>
+                <input type="submit" value="Criar Sala"/>
+                </form>
+            </fieldset>
+
+            <fieldset>
+                <h2><p>Atualizar Sala</p></h2>
+                <form action="FrontController" method="POST">
+                    <input type="number" name="codSala" placeholder="Codigo da Sala"/>
+                    <input type="number" name="numero" placeholder="Numero Da Sala"/>
+                    <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
+                    <input type="number" name="especial" placeholder="Numero de cadeiras especiais"/>
+                    <select name="Situacao">
+                        <option>Em Manutenção</option>
+                        <option>Em Espera</option>
+                        <option>Em Exibição</option>
+                    </select>
+                    <input type="hidden" name="command" value="AtualizarSala"/>
+                    <input type="submit" value="atualizar"/>
+                </form>
+            </fieldset>
+
+
+            <fieldset>
+                <h2><p>Deletar Sala:</p></h2><br>
+                <form action="FrontController" method="POST">
+                    <input type="number" placeholder="Codigo da Sala" name="codigo" required/></br></br>
+                    <input type="hidden" name="command" value="DeletarSala"/>
+                    <input type="submit" value="Deletar"/>
+                </form>
+            </fieldset>
+
+        </section>
+    </body>
 </html>
 

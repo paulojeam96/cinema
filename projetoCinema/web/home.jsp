@@ -24,7 +24,6 @@
            
             
             <c:import url="headerGerente.jsp"/>
-            
         </header>
         
             
