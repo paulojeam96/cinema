@@ -21,10 +21,14 @@
                 color:floralwhite;
                 padding: 30px;
             }
+            
+            a{
+                list-style: none;
+            }
         </style>
     </head>
     <body>
         <h1>Operação realizada com sucesso!</h1>
-        
+        <h1><a href="index.jsp">Início</a></h1>
     </body>
 </html>

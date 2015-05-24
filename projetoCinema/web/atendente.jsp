@@ -12,15 +12,19 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/header.css"/>
+        <link rel="stylesheet" type="text/css" href="css/body.css"/>
     </head>
     <body>
         <header>
-            <%
-                if(session.getAttribute("ocupacao").equals("gerente") || session.getAttribute("ocupacao")!= ("atendente")){
-                    response.sendRedirect("home.jsp");
-                }
-                %>
+            <c:choose>
+                <c:when test="${ocupacao == 'atendente'}">
+                    <c:import url="headerAtendente.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="index.jsp"/>
+                </c:otherwise>
+            </c:choose>
         </header>
-            <c:import url="headerAtendente.jsp"/>
     </body>
 </html>

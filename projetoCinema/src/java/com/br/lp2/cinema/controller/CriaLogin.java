@@ -58,6 +58,10 @@ public class CriaLogin {
     public String getUsuario() {
         return nome;
     }
+
+    public boolean isNormal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

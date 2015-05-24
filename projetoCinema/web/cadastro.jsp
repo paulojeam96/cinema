@@ -9,23 +9,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/body.css"/>
+        <link rel="stylesheet" type="text/css" href="css/section.css"/>
         <title>Cadastro</title>
     </head>
     <body>
-        <h1>Cadastro</h1>
+        <section>
+            <fieldset>
+                <h2>Criar Usuario:</h2>
+                <form action="FrontController" method="POST">
+                    Nome:<input type="text" name="nome" placeholder="Nome" required/><br>
+                    Senha:<input type="password" name="password" placeholder="senha" required/><br>
+                    Repita a senha:<input type="password" name="password2" placeholder="confirma Senha" required/><br>
+                    Gerente <input type="radio" name="cargo" value="Gerente"/>
+                    Atendente <input type="radio" name="cargo" value="Atendente"/><br>
+                    Codigo Usuario<input type="number" name="cod" value="Codigo do Usuario"/>
+                    <input type="hidden" name="command" value="CriarUsuario"/>
+                    <input type="submit" value="Criar Usuario"/>
+                </form>
+            </fieldset>
+        </section>
 
-        <fieldset>
-            <h2>Cadastro de Funcionarios</h2>
-            <form action="FrontController" method="POST">
-                <input type="text" name="ocupacao" placeholder="Ocupação"/>
-                <input type="text" name="nome" placeholder="Nome"/>
-                <input type="text" name="senha" placeholder="senha"/>
-                <input type="hidden" value="command" name="CadastraFuncionario"/>
-                <input type="submit" value="Cadastrar"/>
-            </form>
-        </fieldset>
-        
-        
 
 
     </body>

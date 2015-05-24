@@ -21,10 +21,16 @@
                 response.sendRedirect("index.jsp");
                }
             --%>
-           
+          
             
-            <c:import url="headerGerente.jsp"/>
-            
+            <c:choose>
+                <c:when test="${gerente == 'gerente'}">
+                    <c:import url="headerGerente.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="index.jsp"/>
+                </c:otherwise>
+            </c:choose>
         </header>
         
             
