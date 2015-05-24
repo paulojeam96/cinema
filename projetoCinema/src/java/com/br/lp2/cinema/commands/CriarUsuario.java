@@ -51,11 +51,11 @@ public class CriarUsuario implements Command {
         
         boolean operacao = false;
         
-        if (cargo.contentEquals("Atendente")) {
+        if (cargo.toLowerCase().contentEquals("atendente")) {
             AtendenteDAO aDao = new AtendenteDAOConcreto();
             Atendente a = new Atendente(nome, senha);
             operacao = aDao.insertAtendente(a);
-        } else if (cargo.contentEquals("Gerente")) {
+        } else if (cargo.toLowerCase().contentEquals("gerente")) {
             GerenteDAO gDao = new GerenteDAOConcreto();
             Gerente g = new Gerente(nome, senha);
             operacao = gDao.insertGerente(g);

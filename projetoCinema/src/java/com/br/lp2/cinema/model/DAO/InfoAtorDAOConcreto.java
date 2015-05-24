@@ -106,9 +106,11 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE infoAtor SET ator=? WHERE id=?";
+            String sql = "UPDATE infoAtor SET id_ator=? papel=? part=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(2, id);
+            pst.setObject(1, infoAtor.getAtor());
+            pst.setString(2, infoAtor.getPapel());
+            pst.setString(2, infoAtor.getPart());
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;
@@ -122,9 +124,9 @@ public class InfoAtorDAOConcreto implements InfoAtorDAO{
     public boolean deleteInfoAtor(InfoAtor infoAtor) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM infoAtor WHERE id=?";
+            String sql = "DELETE FROM infoAtor WHERE id_ator=?";
             pst = connection.prepareStatement(sql);
-            pst.setObject(1,infoAtor.getAtor());
+            pst.setInt(1,infoAtor.getAtor().getPk());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;

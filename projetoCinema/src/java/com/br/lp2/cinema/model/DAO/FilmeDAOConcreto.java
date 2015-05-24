@@ -24,13 +24,13 @@ import java.util.logging.Logger;
  *
  * @author Paulo
  */
-public class FilmeDAOConcreto implements FilmeDAO{
-    
+public class FilmeDAOConcreto implements FilmeDAO {
+
     private Connection connection;
     private PreparedStatement pst;
     private ResultSet rs;
-    
-    public FilmeDAOConcreto(){
+
+    public FilmeDAOConcreto() {
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
@@ -38,93 +38,199 @@ public class FilmeDAOConcreto implements FilmeDAO{
     @Override
     public boolean insertFilme(Filme filme) {
         boolean resultado = false;
-        try{
+        try {
             String sql = "INSERT INTO filme(pk,diretor,genero,listaAtores,nome,classificacao,ano,dist,situacao,duracao,idioma) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, filme.getPk());
-            pst.setObject(2, filme.getDiretor());
-            pst.setObject(3, filme.getGenero());
-            pst.setObject(4, filme.getListaAtores());
+            pst.setObject(2, filme.getDiretor().getId());
+            pst.setObject(3, filme.getGenero().getPk());
+            pst.setObject(4, filme.getListaAtores().getPk());
             pst.setString(5, filme.getNome());
             pst.setInt(6, filme.getClassificacao());
             pst.setInt(7, filme.getAno());
-            pst.setObject(8, filme.getDist());
-            pst.setObject(9, filme.getSituacao());
+            pst.setObject(8, filme.getDist().getPk());
+            pst.setObject(9, filme.getSituacao().toString());
             pst.setInt(10, filme.getDuracao());
             pst.setString(11, filme.getIdioma());
             resultado = pst.execute();
-        } catch(SQLException ex){
-             Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
-               }
+        } catch (SQLException ex) {
+            Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return resultado;
     }
 
     @Override
     public ArrayList<Filme> readFilmes() {
-        ArrayList<Filme> lista = new ArrayList<>();
-        try{
+        ArrayList<Filme> filmes = new ArrayList<>();
+        try {
             String sql = "SELECT * FROM  filme";
             pst = connection.prepareStatement(sql);
-            
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
             rs = pst.executeQuery();
-            while(rs.next()){
-                Filme d = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), (tipoSituacao)rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
-                lista.add(d);
-            }
-        } catch (SQLException ex){
-            ex.printStackTrace();
-        }
-        return lista;    
-    }
-
-    @Override
-    public Filme readFilmeById(int id) {
-        Filme a = null;
-        
-        try {
-            String sql = "SELECT * FROM filme WHERE id=?";
-            pst = connection.prepareStatement(sql);
-            pst.setInt(1, id);
-            rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), (tipoSituacao)rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                Filme f;
+                f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                filmes.add(f);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return a;
+        return filmes;
+    }
+
+    @Override
+    public Filme readFilmeById(int pk) {
+        Filme f = null;
+
+        try {
+            String sql = "SELECT * FROM filme WHERE pk=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, pk);
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return f;
+    }
+
+    public ArrayList<Filme> readFilmeByGeneroID(int id) {
+        ArrayList<Filme> filmes = new ArrayList();
+        try {
+            String sql = "SELECT * FROM filme INNER JOIN genero ON filme.id_genero = genero.pk WHERE genero.pk=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
+            while (rs.next()) {
+                Filme f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                filmes.add(f);
+            }
+        } catch (SQLException sQLException) {
+            System.out.println(sQLException.getMessage());
+        }
+        return filmes;
+    }
+
+    public ArrayList<Filme> readFilmeByAtorID(int id) {
+        ArrayList<Filme> atores = new ArrayList();
+        try {
+            String sql = "SELECT * FROM filmes INNER JOIN Infoator ON filme.pk = Infoator.id_filme JOIN ator ON Infoator.id_ator = ator.pk WHERE ator.pk=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
+            while (rs.next()) {
+                Filme f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                atores.add(f);
+            }
+        } catch (SQLException sQLException) {
+            System.out.println(sQLException.getMessage());
+        }
+        return atores;
+    }
+
+    public ArrayList<Filme> readFilmeByDiretorID(int id) {
+        ArrayList<Filme> lista = new ArrayList();
+        try {
+            String sql = "SELECT * FROM filme INNER JOIN diretor ON diretor.pk = filme.id_diretor WHERE diretor.pk=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
+            while (rs.next()) {
+                Filme f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                lista.add(f);
+            }
+        } catch (SQLException sQLException) {
+            System.out.println(sQLException.getMessage());
+        }
+        return lista;
+    }
+
+    public ArrayList<Filme> readFilmeByDistribuidoraID(int id) {
+        ArrayList<Filme> lista = new ArrayList();
+        try {
+            String sql = "SELECT * FROM filme INNER JOIN distribuidora ON distribuidora.pk = filme.id_distribuidora WHERE distribuidora.pk=?";
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1, id);
+            rs = pst.executeQuery();
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
+            while (rs.next()) {
+                Filme f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                lista.add(f);
+            }
+        } catch (SQLException sQLException) {
+            System.out.println(sQLException.getMessage());
+        }
+        return lista;
+
     }
 
     @Override
     public Filme readFilmeByNome(String nome) {
-        Filme a = null;
-        
-        try{
+        Filme f = null;
+
+        try {
             String sql = "SELECT * FROM filme WHERE nome=?";
             pst = connection.prepareStatement(sql);
             pst.setString(1, nome);
+            DiretorDAO diretor = new DiretorDAOConcreto();
+            GeneroDAO genero = new GeneroDAOConcreto();
+            InfoAtorDAO infoator = new InfoAtorDAOConcreto();
+            DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
             rs = pst.executeQuery();
-            while(rs.next()){
-            a = new Filme((Diretor) rs.getObject("diretor"), (Genero)rs.getObject("genero"),(ListaAtores) rs.getObject("listaAtores"), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora)rs.getObject("distribuidora"), (tipoSituacao)rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
-           }
-        } catch( SQLException ex){
-            ex.printStackTrace();
+            while (rs.next()) {
+                f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), new ListaAtores(infoator.readInfoAtores()), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), (Filme.tipoSituacao) rs.getObject("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        return a;
+        return f;
     }
 
     @Override
     public boolean updateFilme(int id, Filme filme) {
-        boolean res =false;
-        
-        try{
-            String sql = "UPDATE filme SET nome=? WHERE id=?";
+        boolean res = false;
+
+        try {
+            String sql = "UPDATE filme SET id_diretor=?, id_genero=?, id_listaAtores=?, id_distribuidora=?, nome=?, classificacao=?, ano=?, duracao=?, situacao=?, idioma=? WHERE pk=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(2, id);
+            pst.setObject(1, filme.getDiretor().getPk());
+            pst.setObject(2, filme.getGenero().getPk());
+            pst.setObject(3, filme.getListaAtores().getPk());
+            pst.setObject(4, filme.getDist().getPk());
+            pst.setString(5, filme.getNome());
+            pst.setInt(6, filme.getClassificacao());
+            pst.setInt(7, filme.getAno());
+            pst.setInt(8, filme.getDuracao());
+            pst.setObject(9, filme.getSituacao().toString());
+            pst.setString(10, filme.getIdioma());
+            pst.setInt(11, id);
             int r = pst.executeUpdate();
-            if(r > 0) res = true;
-            else res = false;
-        } catch (SQLException ex){
+            res = r > 0;
+        } catch (SQLException ex) {
             Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
@@ -132,14 +238,17 @@ public class FilmeDAOConcreto implements FilmeDAO{
 
     @Override
     public boolean deleteFilme(Filme filme) {
-        boolean resultado=false;
+        boolean resultado = false;
         try {
-            String sql = "DELETE FROM filme WHERE id=?";
+            String sql = "DELETE FROM filme WHERE nome=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,filme.getPk());
+            pst.setString(1, filme.getNome());
             int r = pst.executeUpdate();
-            if(r>0) resultado = true;
-            else resultado = false;
+            if (r > 0) {
+                resultado = true;
+            } else {
+                resultado = false;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -149,18 +258,21 @@ public class FilmeDAOConcreto implements FilmeDAO{
     @Override
     public boolean deleteFilme(int id) {
         boolean res = false;
-        try{
+        try {
             String sql = "DELETE FROM filme WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();
-            if (r > 0) res = true;
-            else res = false;
-        } catch (SQLException ex){
+            if (r > 0) {
+                res = true;
+            } else {
+                res = false;
+            }
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return res;
-    
+
     }
-    
+
 }

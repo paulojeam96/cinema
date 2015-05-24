@@ -24,8 +24,14 @@ and open the template in the editor.
     </head>
     <body>
         <header>            
-
-            <c:import url="headerGerente.jsp"/>
+            <c:choose>
+                <c:when test="${ocupacao == 'gerente'}">
+                    <c:import url="headerGerente.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="index.jsp"/>
+                </c:otherwise>
+            </c:choose>
 
         </header>
 
@@ -37,9 +43,12 @@ and open the template in the editor.
                 <fieldset>
                     <h2>Buscar Usuario:</h2>
                     <form action="FrontController" method="POST">
-                        <input type="text" name="usuario" placeholder="Buscar Usuario" required/><br>
-                        <input type="hidden" name="command" value="BuscaUsuario"/><br>
+                        Nome:<input type="text" name="usuario" placeholder="Buscar Usuario" required/><br>
+                        <input type="hidden" name="command" value="BuscarUsuario"/><br>
                         <input type="submit" value="Buscar Usuario"/><br>
+                        <c:forEach var="usuario" items="${funcionarios.size()}" >
+                            <p>${funcionarios.get(i)}</p>
+                        </c:forEach>
                     </form>
                 </fieldset>
             </div>

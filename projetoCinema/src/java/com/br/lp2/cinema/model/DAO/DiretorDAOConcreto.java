@@ -108,7 +108,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         try{
             String sql = "UPDATE diretor SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, id);
+            pst.setString(1, diretor.getNome());
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;

@@ -57,6 +57,7 @@ Create table gerente(
 Create table InfoAtor(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     id_ator int,
+    id_filme int,
     papel varchar(50),
     part varchar(50)
 );
@@ -100,6 +101,7 @@ alter table filme add FOREIGN KEY(id_genero) references genero(pk);
 alter table filme add FOREIGN KEY(id_listaAtores) references listaAtores(pk);
 alter table filme add FOREIGN KEY(id_distribuidora) references  distribuidora(pk);
 alter table infoator add FOREIGN KEY(id_ator) references ator(pk);
+alter table infoator add FOREIGN KEY(id_filme) references filme(pk);
 alter table ListaAtores add FOREIGN KEY(id_infoator) references infoator(pk);
 alter table ListaIngressos add FOREIGN KEY(id_ingresso) references ingresso(pk);
 alter table sessao add FOREIGN KEY(id_filme) references filme(pk);

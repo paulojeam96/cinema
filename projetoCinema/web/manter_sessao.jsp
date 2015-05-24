@@ -27,7 +27,14 @@ and open the template in the editor.
     <body>
 
         <header>
-            <c:import url= "headerGerente.jsp" />
+            <c:choose>
+                <c:when test="${ocupacao == 'gerente'}">
+                    <c:import url="headerGerente.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="index.jsp"/>
+                </c:otherwise>
+            </c:choose>
         </header>
 
         <section>
