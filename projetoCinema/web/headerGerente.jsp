@@ -4,9 +4,12 @@
     Author     : Paulo
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <c:set var="nome" value="${usuario}"/>
+    <c:set var="ocupacao" value="${ocupacao}"/>
     <div id='cssmenu'>
         <ul>
             <li><a href='home.jsp'><span>Home</span></a></li>
@@ -26,8 +29,9 @@
                     </li>
                 </ul>
             </li>
-            <li><a href='#'><span>Minha Conta</span></a></li>
+            <li><a href='#'><span>${ocupacao} - ${nome}</span></a></li>
             <li class='last'><a href='index.jsp'><span>Sair</span></a></li>
+            
         </ul>
     </div>
     

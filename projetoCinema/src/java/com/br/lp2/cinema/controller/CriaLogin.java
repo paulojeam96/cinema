@@ -18,6 +18,7 @@ import java.util.ArrayList;
  * @author Paulo
  */
 public class CriaLogin {
+
     private String nome;
     private String senha;
 
@@ -26,32 +27,32 @@ public class CriaLogin {
         this.senha = senha;
     }
 
-    public boolean isGerente(){
+    public boolean isGerente() {
         GerenteDAO g = new GerenteDAOConcreto();
         ArrayList<Gerente> lista = g.readGerente();
         boolean v = false;
+
         for (Gerente gr : lista) {
-            if(gr.getNome().equals(nome) && gr.getSenha().equals(senha)){    
+            if (gr.getNome().equals(nome) && gr.getSenha().equals(senha)) {
                 v = true;
-                break;
-            } 
+            }
         }
         return v;
     }
-    
-    public boolean isAtendente(){
+
+    public boolean isAtendente() {
         AtendenteDAO a = new AtendenteDAOConcreto();
         ArrayList<Atendente> lista = a.readAtendente();
-        
+
         boolean v = false;
-        if(!v){
-            for (Atendente at : lista) {
-                if(at.getNome().equals(nome) && at.getSenha().equals(senha)){    
-                    v = true;
-                    break;
-                } 
+
+        for (Atendente at : lista) {
+            if (at.getNome().equals(nome) && at.getSenha().equals(senha)) {
+                v = true;
+                break;
             }
         }
+
         return v;
     }
 
@@ -62,6 +63,5 @@ public class CriaLogin {
     public boolean isNormal() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

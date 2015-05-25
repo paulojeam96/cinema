@@ -110,3 +110,6 @@ alter table sessao add FOREIGN KEY(id_listaIngressos) references listaingressos(
 
 insert into gerente (nome, senha) values ('Paulo', 'paulo');
 insert into atendente (nome, senha) values ('Ana Paula', '123');
+
+
+SELECT * FROM gerente;

@@ -21,8 +21,7 @@
                     Nome:<input type="text" name="nome" placeholder="Nome" required/><br>
                     Senha:<input type="password" name="password" placeholder="senha" required/><br>
                     Repita a senha:<input type="password" name="password2" placeholder="confirma Senha" required/><br>
-                    Gerente <input type="radio" name="cargo" value="Gerente"/>
-                    Atendente <input type="radio" name="cargo" value="Atendente"/><br>
+                    Cargo:<input type="text" name="cargo" placeholder="Cargo" required/><br>
                     Codigo Usuario<input type="number" name="cod" value="Codigo do Usuario"/>
                     <input type="hidden" name="command" value="CriarUsuario"/>
                     <input type="submit" value="Criar Usuario"/>

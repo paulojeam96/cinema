@@ -13,6 +13,10 @@ import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
 import com.br.lp2.cinema.model.javabeans.Gerente;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -51,17 +55,15 @@ public class CriarUsuario implements Command {
         
         boolean operacao = false;
         
-        if (cargo.toLowerCase().contentEquals("atendente")) {
+        if (cargo.toLowerCase().equals("atendente")) {
             AtendenteDAO aDao = new AtendenteDAOConcreto();
-            Atendente a = new Atendente(nome, senha);
-            operacao = aDao.insertAtendente(a);
-        } else if (cargo.toLowerCase().contentEquals("gerente")) {
+            operacao = aDao.insertAtendente(new Atendente(nome, senha));
+        } else if (cargo.toLowerCase().equals("gerente")) {
             GerenteDAO gDao = new GerenteDAOConcreto();
-            Gerente g = new Gerente(nome, senha);
-            operacao = gDao.insertGerente(g);
+            System.out.println("aqui");
+            operacao = gDao.insertGerente(new Gerente(nome, senha));
         }
-        
-        
+       
         try {
             if (operacao) {
                 response.sendRedirect("sucesso.jsp");

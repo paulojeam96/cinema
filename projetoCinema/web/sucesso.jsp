@@ -23,12 +23,14 @@
             }
             
             a{
-                list-style: none;
+                text-decoration: none;
             }
         </style>
     </head>
     <body>
         <h1>Operação realizada com sucesso!</h1>
         <h1><a href="index.jsp">Início</a></h1>
+        <h1><a href="javascript:window.history.go(-1)">Voltar</a></h1>
+
     </body>
 </html>

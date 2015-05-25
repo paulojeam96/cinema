@@ -20,12 +20,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class DeletarUsuario implements Command{
     private int codigo;
+    private String cargo;
+    private String nome;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         codigo = Integer.parseInt(request.getParameter("cod"));
+        cargo = request.getParameter("cargo");
+        nome = request.getParameter("nome");
         
-        User u = new User(codigo);
+        User u = new User(nome, cargo, codigo);
         boolean cod = u.verificaCod();
         boolean operacao = false;
         

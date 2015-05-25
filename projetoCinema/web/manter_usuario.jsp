@@ -44,11 +44,12 @@ and open the template in the editor.
                     <h2>Buscar Usuario:</h2>
                     <form action="FrontController" method="POST">
                         Nome:<input type="text" name="usuario" placeholder="Buscar Usuario" required/><br>
+                        Cargo:<input type="text" name="cargo" placeholder="cargo" required /><br>
                         <input type="hidden" name="command" value="BuscarUsuario"/><br>
                         <input type="submit" value="Buscar Usuario"/><br>
-                        <c:forEach var="usuario" items="${funcionarios.size()}" >
-                            <p>${funcionarios.get(i)}</p>
-                        </c:forEach>
+                        <c:set var="usuario" value='${funcionarios}'/>
+                            <p>${usuario}</p>
+                        
                     </form>
                 </fieldset>
             </div>
@@ -90,6 +91,8 @@ and open the template in the editor.
                 <fieldset>
                     <h2>Deletar Usuario:</h2>
                     <form action="FrontController" method="POST">
+                        <input type="text" name="nome" placeholder="nome"/>
+                        <input type="text" name="cargo" placeholder="Cargo"/><br>
                         <input type="number" name="cod" placeholder="Codigo do Usuario"/>
                         <input type="hidden" name="command" value="DeletarUsuario"/>
                         <input type="submit" value="Deletar Usuario"/>

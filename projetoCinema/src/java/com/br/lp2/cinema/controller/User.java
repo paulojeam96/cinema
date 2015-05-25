@@ -43,27 +43,15 @@ public class User {
         this.cod = cod;
     }
 
+
     //Verifica o codigo do usuario
-    public boolean verificaCod() {
+    public boolean verificaCod(int codigo) {
         boolean v = false; //Cria variavel incial como false, caso encontre o codigo valor passa a ser = true
-        if (cargo.equals("Gerente")) {
-            GerenteDAO gDao = new GerenteDAOConcreto();
-            ArrayList<Gerente> listaG = gDao.readGerente();
-            for (Gerente gerente : listaG) {
-                if (gerente.getPk() == cod) {
-                    v = true;
-                    break;
-                }
-            }
-        } else {
-            AtendenteDAO aDao = new AtendenteDAOConcreto();
-            ArrayList<Atendente> listaA = aDao.readAtendente();
-            for (Atendente atendente : listaA) {
-                if (atendente.getPk() == cod) {
-                    v = true;
-                    break;
-                }
-            }
+        GerenteDAO gDao = new GerenteDAOConcreto();
+        ArrayList<Gerente> gerentes = gDao.readGerente();
+         for (Gerente user : gerentes) {
+            if(user.getPk() == codigo)
+                v = true;
         }
         return v;
 

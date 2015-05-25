@@ -24,7 +24,7 @@
           
             
             <c:choose>
-                <c:when test="${gerente == 'gerente'}">
+                <c:when test="${ocupacao == 'gerente'}">
                     <c:import url="headerGerente.jsp"/>
                 </c:when>
                 <c:otherwise>

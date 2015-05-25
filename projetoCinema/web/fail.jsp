@@ -20,9 +20,14 @@
             h1{
                 color:#000;
             }
+            
+            a{
+                text-decoration: none;
+            }
         </style>
     </head>
     <body>
         <h1>A operação Falhou!</h1>
+        <h2><a href="javascript:window.history.go(-1)">Voltar</a></h2>
     </body>
 </html>
