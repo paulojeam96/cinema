@@ -8,6 +8,14 @@
         <servlet-name>FrontController</servlet-name>
         <servlet-class>com.br.lp2.cinema.controller.FrontController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IngressoController</servlet-name>
+        <servlet-class>com.br.lp2.cinema.controller.IngressoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControladorIngressos</servlet-name>
+        <servlet-class>com.br.lp2.cinema.controller.ControladorIngressos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/FrontController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngressoController</servlet-name>
+        <url-pattern>/IngressoController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorIngressos</servlet-name>
+        <url-pattern>/ControladorIngressos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
