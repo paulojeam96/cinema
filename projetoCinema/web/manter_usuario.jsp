@@ -39,20 +39,6 @@ and open the template in the editor.
 
         </div>
         <section>
-            <div id="1">
-                <fieldset>
-                    <h2>Buscar Usuario:</h2>
-                    <form action="FrontController" method="POST">
-                        Nome:<input type="text" name="usuario" placeholder="Buscar Usuario" required/><br>
-                        Cargo:<input type="text" name="cargo" placeholder="cargo" required /><br>
-                        <input type="hidden" name="command" value="BuscarUsuario"/><br>
-                        <input type="submit" value="Buscar Usuario"/><br>
-                        <c:set var="usuario" value='${funcionarios}'/>
-                            <p>${usuario}</p>
-                        
-                    </form>
-                </fieldset>
-            </div>
 
             <div id="2">
                 <fieldset>

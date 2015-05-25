@@ -28,19 +28,16 @@ and open the template in the editor.
     <body>
         <header>
             <c:choose>
-                <c:when test="${ocupacao == 'gerente'}">
+                <c:when test="${ocupacao.equals('gerente')}">
                     <c:import url="headerGerente.jsp"/>
                 </c:when>
                 <c:otherwise>
                     <c:redirect url="index.jsp"/>
                 </c:otherwise>
-            </c:choose>
-            <h1>Manutenção das Salas</h1>
-            
+            </c:choose>            
         </header>
 
         <section>
-
             <fieldset class="bloco1">
                 <h2><p>Buscar Sala:</p></h2><br>
                 <form action="FrontController" method="POST">

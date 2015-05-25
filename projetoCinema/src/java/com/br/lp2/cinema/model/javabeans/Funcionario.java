@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author 31448471
  */
-public class Funcionario implements Serializable{
+public class Funcionario implements Serializable {
+
     private int pk;
     private String nome;
     private String senha;
@@ -19,6 +20,12 @@ public class Funcionario implements Serializable{
     public Funcionario(String nome, String senha) {
         this.senha = senha;
         this.nome = nome;
+    }
+
+    public Funcionario(int pk, String nome, String senha) {
+        this.pk = pk;
+        this.nome = nome;
+        this.senha = senha;
     }
 
     public String getSenha() {
@@ -40,7 +47,5 @@ public class Funcionario implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
-    
+
 }

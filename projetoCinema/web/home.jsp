@@ -16,13 +16,6 @@
     </head>
     <body>
         <header>
-            <%--
-                if(session.getAttribute("ocupacao").equals("Atendente") || session.getAttribute("ocupacao") != ("gerente")){
-                response.sendRedirect("index.jsp");
-               }
-            --%>
-          
-            
             <c:choose>
                 <c:when test="${ocupacao == 'gerente'}">
                     <c:import url="headerGerente.jsp"/>

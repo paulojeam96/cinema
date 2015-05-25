@@ -10,8 +10,12 @@ import com.br.lp2.cinema.model.DAO.AtendenteDAOConcreto;
 import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
+import com.br.lp2.cinema.model.javabeans.Funcionario;
 import com.br.lp2.cinema.model.javabeans.Gerente;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,41 +25,58 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BuscarUsuario implements Command {
 
-    private String nome;
-    private String cargo;
+    
+    private int pk;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        nome = request.getParameter("nome");
-        cargo = request.getParameter("cargo");
-        
-        ArrayList<Object> funcionarios = null;
+        pk = Integer.parseInt(request.getParameter("numero"));
 
-        if (cargo.toLowerCase().equals("atendente")) {
-            AtendenteDAO a = new AtendenteDAOConcreto();
-            ArrayList<Atendente> aux = a.readAtendente();
-            for (Atendente atendentes : aux) {
-                if (atendentes.getNome().equals(nome)) {
-                    funcionarios.add(atendentes);
+        ArrayList<Atendente> lista = new ArrayList<>();
+        ArrayList<Funcionario> lista1 = new ArrayList<>();
+        Funcionario funcionario = null;
+
+        GerenteDAO gDao = new GerenteDAOConcreto();
+        AtendenteDAO aDao = new AtendenteDAOConcreto();
+        
+        
+        lista = aDao.readAtendente();
+        for (Funcionario at : lista) {
+            if(this.pk == at.getPk()){
+                request.getSession().setAttribute("nome", at);
+                try {
+                    response.sendRedirect("buscarUsuario.jsp");
+                } catch (IOException ex) {
+                    Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         
+        /*
         if (cargo.toLowerCase().equals("gerente")) {
-            GerenteDAO a = new GerenteDAOConcreto();
-            ArrayList<Gerente> aux = a.readGerente();
-            for (Gerente gerente : aux) {
-                if (gerente.getNome().equals(nome)) {
-                    funcionarios.add(gerente);
+            lista.addAll(gDao.readGerente());
+            for (Funcionario lista1 : lista) {
+                if(lista1.getNome().equals(nome)){
+                    funcionario = lista1;
+                    request.getSession().setAttribute("funcinario", funcionario);
+                }
+            }
+        } else if (cargo.toLowerCase().equals("atendente")) {
+            lista.addAll(aDao.readAtendente());
+            for (Funcionario lista1 : lista) {
+                if(lista1.getNome().equals(nome)){
+                    funcionario = lista1;
+                    request.getSession().setAttribute("funcinario", funcionario);
                 }
             }
         }
-        
-        
-        
-        if (funcionarios != null) {
-            request.getSession().setAttribute("nome", funcionarios);
+
+        for (Funcionario lista1 : lista) {
+            if (lista1.getNome().equals("nome")) {
+                request.getSession().setAttribute("funcionario", lista.add(lista1));
+            }
         }
+        */
     }
 
 }

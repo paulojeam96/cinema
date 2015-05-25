@@ -18,21 +18,21 @@ import java.util.ArrayList;
  *
  * @author Paulo
  */
-public class AtendenteDAOConcreto implements AtendenteDAO{
+public class AtendenteDAOConcreto implements AtendenteDAO {
 
     private static Connection connection;
     private static PreparedStatement statement;
-    private static ResultSet rs;  
-    
-    public AtendenteDAOConcreto(){
+    private static ResultSet rs;
+
+    public AtendenteDAOConcreto() {
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
-    
+
     @Override
     public boolean insertAtendente(Funcionario atendente) {
         boolean resultado = false;
-        
+
         try {
             String sql = "INSERT INTO atendente (nome,senha) VALUES(?,?)";
             statement = connection.prepareStatement(sql);
@@ -47,16 +47,16 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
     }
 
     @Override
-    public ArrayList <Atendente> readAtendente() {
+    public ArrayList<Atendente> readAtendente() {
         ArrayList<Atendente> lista = new ArrayList();
-        
+
         try {
             String sql = "SELECT * FROM atendente";
             statement = connection.prepareStatement(sql);
             rs = statement.executeQuery();
-            
+
             while (rs.next()) {
-                Atendente a = new Atendente(rs.getString("nome"), rs.getString("senha"));
+                Atendente a = new Atendente(rs.getInt("pk"), rs.getString("nome"), rs.getString("senha"));
                 lista.add(a);
             }
         } catch (SQLException sQLException) {
@@ -73,33 +73,33 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
             statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             rs = statement.executeQuery();
-            
+
             while (rs.next()) {
-                a = new Atendente(rs.getString("nome"),rs.getString("senha"));
+                a = new Atendente(rs.getInt("pk"), rs.getString("nome"), rs.getString("senha"));
             }
         } catch (SQLException sQLException) {
             System.out.println(sQLException.getMessage());
         }
         return a;
     }
-    
+
     @Override
     public Atendente readAtendenteByNome(String nome) {
         Atendente a = null;
-        
-            try {
-                String sql = "SELECT * FROM atendente WHERE nome =?";
-                statement = connection.prepareStatement(sql);
-                statement.setString(1, nome);
-                rs = statement.executeQuery();
-                
-                while (rs.next()) {
-                a = new Atendente(rs.getString("nome"), rs.getString("senha"));
-                }
-            } catch (SQLException sQLException) {
-                System.out.println(sQLException.getMessage());
+
+        try {
+            String sql = "SELECT * FROM atendente WHERE nome =?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, nome);
+            rs = statement.executeQuery();
+
+            while (rs.next()) {
+                a = new Atendente(rs.getInt("pk"), rs.getString("nome"), rs.getString("senha"));
             }
-            return a;
+        } catch (SQLException sQLException) {
+            System.out.println(sQLException.getMessage());
+        }
+        return a;
     }
 
     @Override
@@ -112,24 +112,26 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
             statement.setString(2, atendente.getSenha());
             statement.setInt(3, id);
             int r = statement.executeUpdate();
-            if(r > 0) resultado = true;
+            if (r > 0) {
+                resultado = true;
+            }
         } catch (SQLException sQLException) {
             System.out.println(sQLException.getMessage());
         }
-        return resultado;    
+        return resultado;
     }
 
     @Override
     public boolean deleteAtendente(int id) {
         boolean resultado = false;
-        
+
         try {
             String sql = "DELETE FROM atendente WHERE pk = ?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, id); 
+            statement.setInt(1, id);
             int r = statement.executeUpdate();
-            resultado = r>0;
-            
+            resultado = r > 0;
+
         } catch (SQLException sQLException) {
             System.out.println(sQLException.getMessage());
         }
@@ -139,15 +141,15 @@ public class AtendenteDAOConcreto implements AtendenteDAO{
     @Override
     public boolean deleteAtendente(Funcionario atendente) {
         boolean resultado = false;
-        
+
         try {
             String sql = "DELETE FROM atendente WHERE VALUES(?)";
             statement = connection.prepareStatement(sql);
             int r = statement.executeUpdate();
             resultado = r > 0;
-            
+
         } catch (SQLException sQLException) {
-            
+
         }
         return resultado;
     }

@@ -50,31 +50,31 @@ public class User {
     }
 
     //Verifica o codigo do usuario
-    public String verificaCod() {
-        boolean v = false;//Cria variavel incial como false, caso encontre o codigo valor passa a ser = true
-        GerenteDAO gDao = new GerenteDAOConcreto();
-        AtendenteDAO aDao = new AtendenteDAOConcreto();
-        if (cargo.toLowerCase().equals("gerente")) {
-            ArrayList<Gerente> gerentes = gDao.readGerente();
-            for (Gerente user : gerentes) {
-                if (user.getPk() == codigo) {
+    public boolean verificaCod() {
+        boolean v =false;
+        if (cargo.equals("Gerente")) {
+            GerenteDAO gDao = new GerenteDAOConcreto();
+            ArrayList<Gerente> listaG = gDao.readGerente();
+            for (Gerente gerente : listaG) {
+                if (gerente.getPk() == cod) {
                     v = true;
+                    break;
+                }
+            }
+        } else {
+            AtendenteDAO aDao = new AtendenteDAOConcreto();
+            ArrayList<Atendente> listaA = aDao.readAtendente();
+            for (Atendente atendente : listaA) {
+                if (atendente.getPk() == cod) {
+                    v = true;
+                    break;
                 }
             }
         }
-        
-        if(cargo.toLowerCase().equals("atendente")){
-            ArrayList<Atendente> atendentes = aDao.readAtendente();
-            for (Atendente user : atendentes) {
-                if(user.getPk() == codigo){
-                    v = true;
-                }
-            }
-        }
-        
-        return cg;
+        return v;
 
     }
+
     public String verificaCargo(int codigo, String cargo) {
         String cg = ""; //Cria variavel incial como false, caso encontre o codigo valor passa a ser = true
         GerenteDAO gDao = new GerenteDAOConcreto();
@@ -87,16 +87,16 @@ public class User {
                 }
             }
         }
-        
-        if(cargo.toLowerCase().equals("atendente")){
+
+        if (cargo.toLowerCase().equals("atendente")) {
             ArrayList<Atendente> atendentes = aDao.readAtendente();
             for (Atendente user : atendentes) {
-                if(user.getPk() == codigo){
+                if (user.getPk() == codigo) {
                     cg = "atendente";
                 }
             }
         }
-        
+
         return cg;
 
     }

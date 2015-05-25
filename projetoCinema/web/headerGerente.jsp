@@ -18,6 +18,9 @@
                     <li class='has-sub'><a href='manter_usuario.jsp'><span>Manter Usuario</span></a>
 
                     </li>
+                    <li class='has-sub'><a href='buscarUsuario.jsp'><span>Buscar Usuarios</span></a>
+
+                    </li>
                     <li class='has-sub'><a href='manter_sala.jsp'><span>Manter Sala</span></a>
 
                     </li>
@@ -27,6 +30,7 @@
                     <li class='has-sub'><a href='manter_sessao.jsp'><span>Manter Sessão</span></a>
 
                     </li>
+                    
                 </ul>
             </li>
             <li><a href='#'><span>${ocupacao} - ${nome}</span></a></li>

@@ -13,9 +13,14 @@ import java.io.Serializable;
  */
 public class Atendente extends Funcionario implements Serializable{
 
+    public Atendente(int pk, String nome, String senha) {
+        super(pk, nome, senha);
+    }
+    
     public Atendente(String nome, String senha) {
         super(nome, senha);
     }
+    
     
     
     

@@ -113,3 +113,4 @@ insert into atendente (nome, senha) values ('Ana Paula', '123');
 
 
 SELECT * FROM gerente;
+SELECT * FROM atendente;
