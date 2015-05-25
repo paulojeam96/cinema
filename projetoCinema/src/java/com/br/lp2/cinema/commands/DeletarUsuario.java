@@ -30,13 +30,13 @@ public class DeletarUsuario implements Command{
         nome = request.getParameter("nome");
         
         User u = new User(nome, cargo, codigo);
-        boolean cod = u.verificaCod();
+        String verCargo = u.verificaCargo(codigo, cargo);
         boolean operacao = false;
         
-        if(u.verificaGerente(codigo) == true){
+        if(verCargo.equals("gerente")){
             GerenteDAO gDao = new GerenteDAOConcreto();
             operacao = gDao.deleteGerente(codigo);
-        } else if(u.verificaAtendente(codigo) == true){
+        } else if(verCargo.equals("atendente")){
             AtendenteDAO aDao = new AtendenteDAOConcreto();
             operacao = aDao.deleteAtendente(codigo);
         }

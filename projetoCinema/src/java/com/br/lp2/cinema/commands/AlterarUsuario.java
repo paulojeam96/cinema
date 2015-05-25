@@ -46,12 +46,12 @@ public class AlterarUsuario implements Command {
                 response.sendRedirect("fail.jsp");
             } 
             else {
-                if (cargoAtual.contentEquals("Gerente")) {
+                if (cargoAtual.toLowerCase().equals("gerente")) {
                     GerenteDAO gDao = new GerenteDAOConcreto();
                     Gerente g = new Gerente(nome, senha);
                     operacao = gDao.updateGerente(codigo, g);
                 }
-                else if (cargoAtual.contentEquals("Atendente")){
+                else if (cargoAtual.toLowerCase().equals("atendente")){
                     AtendenteDAO aDao = new AtendenteDAOConcreto();
                     Atendente a = new Atendente(nome, senha);
                     operacao = aDao.updateAtendente(codigo, a);
