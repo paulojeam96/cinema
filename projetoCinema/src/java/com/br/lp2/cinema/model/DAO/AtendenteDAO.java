@@ -28,5 +28,5 @@ public interface AtendenteDAO {
     
     //DELETE
     public boolean deleteAtendente(int id);
-    public boolean deleteAtendente(Funcionario atendente);    
+    public boolean deleteAtendente(String nome);    
 }

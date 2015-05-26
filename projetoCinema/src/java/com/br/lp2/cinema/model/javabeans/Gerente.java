@@ -16,5 +16,9 @@ public class Gerente extends Funcionario implements Serializable{
     public Gerente(String nome, String senha) {
         super(nome, senha);
     }
+
+    public Gerente(int id, String nome, String senha) {
+        super(id, nome, senha);
+    }
     
 }

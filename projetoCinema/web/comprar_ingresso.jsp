@@ -21,8 +21,8 @@
         </c:if>
         <header>
             <c:choose>
-                <c:when test="${ocupacao.equals('usuario')}">
-                    <c:import url="headerUsuario.jsp"/>
+                <c:when test="${ocupacao.equals('atendente')}">
+                    <c:import url="headerAtendente.jsp"/>
                 </c:when>
                 <c:otherwise>
                     <c:redirect url="FrontController?command=Logout" />

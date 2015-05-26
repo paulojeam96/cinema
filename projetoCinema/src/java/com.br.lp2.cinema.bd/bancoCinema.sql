@@ -115,7 +115,7 @@ insert into diretor (id, nome) values(1, 'Jubiraca');
 insert into genero(nome) values('Ação');
 insert into ListaAtores(id_infoAtor) values(1);
 insert into InfoAtor(id_ator, id_filme, papel, part) values(1, 1, 'principal', '');
-inserr into ator(nome, datanascimento, nacionalidade) values('Liam Neeson', '', 'americano')
+insert into ator(nome, datanascimento, nacionalidade) values('Liam Neeson', '', 'americano')
 insert into distribuidora(nome) values('paramount');
 
 SELECT * FROM gerente;

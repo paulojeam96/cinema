@@ -15,7 +15,7 @@
             
             <li><a href='vender_ingresso.jsp'><span>Vender Ingresso</span></a></li>
             <li><a href='#'><span>${ocupacao} - ${usuario}</span></a></li>
-            <li class='last'><a href='index.jsp'><span>Sair</span></a></li>
+            <li class='last'><a href='logout.jsp'><span>Sair</span></a></li>
         </ul>
     </div>
 </html>

@@ -51,6 +51,14 @@ and open the template in the editor.
                         Codigo Usuario<input type="number" name="cod" value="Codigo do Usuario"/>
                         <input type="hidden" name="command" value="CriarUsuario"/>
                         <input type="submit" value="Criar Usuario"/>
+                        <c:choose>
+                            <c:when test="${sucesso == true}">
+                                <p>AÊ JÃO</p>
+                            </c:when>
+                            <c:when test="${sucesso == false}">
+                                <p>num foi...</p>
+                            </c:when>
+                        </c:choose>
                     </form>
                 </fieldset>
             </div>
@@ -77,6 +85,17 @@ and open the template in the editor.
                         <input type="text" name="cargo" placeholder="Cargo"/><br>
                         <input type="number" name="cod" placeholder="Codigo do Usuario"/>
                         <input type="hidden" name="command" value="DeletarUsuario"/>
+                        <input type="submit" value="Deletar Usuario"/>
+                    </form>
+                </fieldset>
+            </div>
+            <div id="4">
+                <fieldset>
+                    <h2>Deletar Usuario Por Nome:</h2>
+                    <form action="FrontController" method="POST">
+                        <input type="text" name="cargo" placeholder="Cargo"/><br>                
+                        <input type="text" name="nome" placeholder="Nome"/><br>                
+                        <input type="hidden" name="command" value="DeletarUsuarioNome"/>
                         <input type="submit" value="Deletar Usuario"/>
                     </form>
                 </fieldset>

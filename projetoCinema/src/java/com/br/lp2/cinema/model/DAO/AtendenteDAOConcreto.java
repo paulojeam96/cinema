@@ -139,12 +139,13 @@ public class AtendenteDAOConcreto implements AtendenteDAO {
     }
 
     @Override
-    public boolean deleteAtendente(Funcionario atendente) {
+    public boolean deleteAtendente(String nome) {
         boolean resultado = false;
 
         try {
-            String sql = "DELETE FROM atendente WHERE VALUES(?)";
+            String sql = "DELETE FROM atendente WHERE nome=?";
             statement = connection.prepareStatement(sql);
+            statement.setString(1, nome);
             int r = statement.executeUpdate();
             resultado = r > 0;
 

@@ -23,25 +23,25 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BuscaGerente implements Command {
 
-    private int id;
+    private String nome;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        id = Integer.parseInt(request.getParameter("numero"));
+        nome = request.getParameter("nome");
 
         GerenteDAO gDao = new GerenteDAOConcreto();
-        ArrayList<Gerente> lista = new ArrayList<>();
-
-        lista = gDao.readGerente();
+        ArrayList<Gerente> gerentes = gDao.readGerente();
         Gerente g = null;
-        for (Gerente lista1 : lista) {
-            if (id == lista1.getPk()) {
-                g = lista1;
-
+        
+        for (Gerente g1 : gerentes) {
+            if(g1.getNome().equals(nome)){
+                g = g1;
             }
         }
-        request.getSession().setAttribute("funcionario", g);
-        RequestDispatcher rd = request.getRequestDispatcher("BuscaUsuario.jsp");
+
+        
+        request.getSession().setAttribute("func", g);
+        RequestDispatcher rd = request.getRequestDispatcher("buscarUsuario.jsp");
         try {
             rd.forward(request, response);
         } catch (ServletException | IOException ex) {

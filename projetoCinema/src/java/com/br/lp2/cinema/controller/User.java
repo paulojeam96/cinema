@@ -48,6 +48,12 @@ public class User {
         this.cargo = cargo;
         this.cod = cod;
     }
+    
+    public User(String nome, String cargo) {
+        this.nome = nome;
+        this.cargo = cargo;
+        
+    }
 
     //Verifica o codigo do usuario
     public boolean verificaCod() {

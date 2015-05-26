@@ -53,7 +53,7 @@ public class GerenteDAOConcreto implements GerenteDAO {
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
             while (rs.next()) {
-                Gerente a = new Gerente(rs.getString("nome"), rs.getString("senha"));
+                Gerente a = new Gerente(rs.getInt("pk"), rs.getString("nome"), rs.getString("senha"));
                 lista.add(a);
             }
         } catch (SQLException sQLException) {
@@ -130,11 +130,12 @@ public class GerenteDAOConcreto implements GerenteDAO {
     }
 
     @Override
-    public boolean deleteGerente(Funcionario gerente) {
+    public boolean deleteGerente(String nome) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM gerente WHERE (nome) VALUES(?)";
+            String sql = "DELETE FROM gerente WHERE nome=?";
             pst = connection.prepareStatement(sql);
+            pst.setString(1, nome);
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             

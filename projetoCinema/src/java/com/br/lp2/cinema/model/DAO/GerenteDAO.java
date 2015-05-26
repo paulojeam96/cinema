@@ -28,5 +28,5 @@ public interface GerenteDAO {
     
     //DELETE
     public boolean deleteGerente(int id);
-    public boolean deleteGerente(Funcionario gerente);    
+    public boolean deleteGerente(String nome);    
 }

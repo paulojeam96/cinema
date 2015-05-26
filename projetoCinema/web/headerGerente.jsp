@@ -30,15 +30,15 @@
                     <li class='has-sub'><a href='manter_sessao.jsp'><span>Manter Sessão</span></a>
 
                     </li>
-                    
+
                 </ul>
             </li>
             <li><a href='#'><span>${ocupacao} - ${nome}</span></a></li>
-            <li class='last'><a href='FrontController?command=Logout'><span>Sair</span></a></li>
-            
+            <li class='last'><a href='logout.jsp'><span>Sair</span></a></li>
+
         </ul>
     </div>
-    
+
     <div id='cssmenu'>
 
 

@@ -12,23 +12,28 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author 31448471
  */
-public class Logout implements Command{
+public class Logout implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        request.getSession().invalidate();
-        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-        
+
         try {
-            rd.forward(request, response);
-        } catch (ServletException | IOException ex) {
-            Logger.getLogger(Logout.class.getName()).log(Level.SEVERE, null, ex);
+            HttpSession session = request.getSession();
+            session.removeAttribute("sucesso");
+            session.invalidate();
+            response.sendRedirect("index.jsp");
+            
+            
+        }catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
+
+        }
+
     }
-    
-}

@@ -13,6 +13,8 @@ import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
 import com.br.lp2.cinema.model.javabeans.Gerente;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -66,7 +68,13 @@ public class CriarUsuario implements Command {
        
         try {
             if (operacao) {
-                response.sendRedirect("sucesso.jsp");
+                request.getSession().setAttribute("sucesso", operacao);
+                RequestDispatcher rd = request.getRequestDispatcher("manter_usuario.jsp");
+                try {
+                    rd.forward(request, response);
+                } catch (ServletException ex) {
+                    Logger.getLogger(CriarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 response.sendRedirect("fail.jsp");
             }
