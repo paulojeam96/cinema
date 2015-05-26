@@ -52,7 +52,7 @@ public class User {
     //Verifica o codigo do usuario
     public boolean verificaCod() {
         boolean v =false;
-        if (cargo.equals("Gerente")) {
+        if (cargo.toLowerCase().equals("gerente")) {
             GerenteDAO gDao = new GerenteDAOConcreto();
             ArrayList<Gerente> listaG = gDao.readGerente();
             for (Gerente gerente : listaG) {

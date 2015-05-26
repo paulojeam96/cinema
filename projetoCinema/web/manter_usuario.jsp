@@ -47,8 +47,7 @@ and open the template in the editor.
                         Nome:<input type="text" name="nome" placeholder="Nome" required/><br>
                         Senha:<input type="password" name="password" placeholder="senha" required/><br>
                         Repita a senha:<input type="password" name="password2" placeholder="confirma Senha" required/><br>
-                        Gerente <input type="radio" name="cargo" value="Gerente"/>
-                        Atendente <input type="radio" name="cargo" value="Atendente"/><br>
+                        Cargo <input type="text" name="cargo" plaqceholder="cargo"/><br>
                         Codigo Usuario<input type="number" name="cod" value="Codigo do Usuario"/>
                         <input type="hidden" name="command" value="CriarUsuario"/>
                         <input type="submit" value="Criar Usuario"/>
@@ -61,9 +60,7 @@ and open the template in the editor.
                     <h2>Alterar Usuario:</h2>
                     <form name="command" action="FrontController" method="POST">
                         <input type="number" placeholder="Código do Usuário" name="cod" required/></br>
-                        <p>Cargo Atual:</p>
-                        Gerente:<input type="radio" name="cargoAtual" value="Gerente"/>
-                        Atendente:<input type="radio" name="cargoAtual" value="Atendente"/></br>
+                        Cargo Atual:<input type="text" name="cargoAtual" placeholder="Cargo Atual"/></br>
                         <input type="text" placeholder="Nome" name="nome" required/></br>
                         <input type="password" placeholder="Senha" name="password" required/></br>
                         <input type="password" placeholder="Confirma Senha" name="password2" required/></br>
@@ -75,9 +72,8 @@ and open the template in the editor.
 
             <div id="4">
                 <fieldset>
-                    <h2>Deletar Usuario:</h2>
+                    <h2>Deletar Usuario Por Cargo e ID:</h2>
                     <form action="FrontController" method="POST">
-                        <input type="text" name="nome" placeholder="nome"/>
                         <input type="text" name="cargo" placeholder="Cargo"/><br>
                         <input type="number" name="cod" placeholder="Codigo do Usuario"/>
                         <input type="hidden" name="command" value="DeletarUsuario"/>
@@ -85,6 +81,7 @@ and open the template in the editor.
                     </form>
                 </fieldset>
             </div>
+            
         </section>
 
     </body>

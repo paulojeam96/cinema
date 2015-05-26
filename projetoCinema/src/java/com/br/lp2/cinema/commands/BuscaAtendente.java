@@ -11,7 +11,12 @@ import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
 import com.br.lp2.cinema.model.javabeans.Gerente;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,22 +25,31 @@ import javax.servlet.http.HttpServletResponse;
  * @author 31448471
  */
 public class BuscaAtendente implements Command{
-    private int id;
+    private String nome;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        id = Integer.parseInt(request.getParameter("numero"));
+        nome = request.getParameter("numero");
         
         AtendenteDAO aDao = new AtendenteDAOConcreto();
-        ArrayList<Atendente> lista = new ArrayList<>();
+        ArrayList<Atendente> lista = aDao.readAtendente();
+        Atendente a= null;
         
-        lista = aDao.readAtendente();
-        
-        for (Atendente lista1 : lista) {
-            if(id == lista1.getPk()){
-                request.getSession().setAttribute("funcionario", lista1);
+        for (Atendente at : lista) {
+            if(nome == at.getNome()){
+                a = at;
             }
         }
+        
+        request.getSession().setAttribute("funcionario", a);
+        RequestDispatcher rd = request.getRequestDispatcher("buscarUsuario.jsp");
+        
+        try {
+            rd.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(BuscaAtendente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
     
 }

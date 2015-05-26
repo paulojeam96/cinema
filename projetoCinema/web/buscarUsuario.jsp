@@ -39,7 +39,7 @@
                         <form action="FrontController" method="POST">
                             ID:<input type="number" name="numero" placeholder="ID do Usuario" required/><br>
                             <select>
-                                <c:set var="usuario" value="${lista1}" />
+                                <c:set var="usuario" value="${at}" />
                                 <option value="${usuario}"> ${usuario.getNome()}</option>
                                 <option value="${usuario}"> ${usuario.getSenha()}</option>
                                 <option value="${usuario}"> ${usuario.getCargo()}</option>
@@ -54,18 +54,12 @@
                     <fieldset>
                         <h2>Buscar Atendente:</h2>
                         <form action="FrontController" method="POST">
-                            ID:<input type="number" name="numero" placeholder="ID do Usuario" required/><br>
-                            <select>
-                                <c:set var="usuario" value="${lista1}" />
-                                <option value="${usuario}"> ${usuario.getNome()}</option>
-                                <option value="${usuario}"> ${usuario.getSenha()}</option>
-                                <option value="${usuario}"> ${usuario.getCargo()}</option>
-                                <option value="${usuario}"> ${usuario.getPk()}</option>
-                            </select>  
-
+                            ID:<input type="text" name="nome" placeholder="ID do Usuario" required/><br>
                             <input type="hidden" name="command" value="BuscaAtendente"/><br>
                             <input type="submit" value="Buscar Usuario"/><br>
-                            <c:set var='funcionario' value="${funcionario}"/>
+                                <p> Nome: ${funcionario.getNome()}</p>
+                                <p> Senha: ${funcionario.getSenha()}</p>
+                                <p> ID: ${funcionario.getPk()}</p>
                         </form>
                     </fieldset>
                 </div>

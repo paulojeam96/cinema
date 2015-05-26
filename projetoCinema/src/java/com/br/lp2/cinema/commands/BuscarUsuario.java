@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BuscarUsuario implements Command {
 
-    
     private int pk;
 
     @Override
@@ -38,45 +39,39 @@ public class BuscarUsuario implements Command {
 
         GerenteDAO gDao = new GerenteDAOConcreto();
         AtendenteDAO aDao = new AtendenteDAOConcreto();
-        
-        
+
         lista = aDao.readAtendente();
         for (Funcionario at : lista) {
-            if(this.pk == at.getPk()){
-                request.getSession().setAttribute("nome", at);
-                try {
-                    response.sendRedirect("buscarUsuario.jsp");
-                } catch (IOException ex) {
-                    Logger.getLogger(BuscarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        
-        /*
-        if (cargo.toLowerCase().equals("gerente")) {
-            lista.addAll(gDao.readGerente());
-            for (Funcionario lista1 : lista) {
-                if(lista1.getNome().equals(nome)){
-                    funcionario = lista1;
-                    request.getSession().setAttribute("funcinario", funcionario);
-                }
-            }
-        } else if (cargo.toLowerCase().equals("atendente")) {
-            lista.addAll(aDao.readAtendente());
-            for (Funcionario lista1 : lista) {
-                if(lista1.getNome().equals(nome)){
-                    funcionario = lista1;
-                    request.getSession().setAttribute("funcinario", funcionario);
-                }
+            if (this.pk == at.getPk()) {
+                lista.add((Atendente) at);
             }
         }
 
-        for (Funcionario lista1 : lista) {
-            if (lista1.getNome().equals("nome")) {
-                request.getSession().setAttribute("funcionario", lista.add(lista1));
-            }
-        }
-        */
+        /*
+         if (cargo.toLowerCase().equals("gerente")) {
+         lista.addAll(gDao.readGerente());
+         for (Funcionario lista1 : lista) {
+         if(lista1.getNome().equals(nome)){
+         funcionario = lista1;
+         request.getSession().setAttribute("funcinario", funcionario);
+         }
+         }
+         } else if (cargo.toLowerCase().equals("atendente")) {
+         lista.addAll(aDao.readAtendente());
+         for (Funcionario lista1 : lista) {
+         if(lista1.getNome().equals(nome)){
+         funcionario = lista1;
+         request.getSession().setAttribute("funcinario", funcionario);
+         }
+         }
+         }
+
+         for (Funcionario lista1 : lista) {
+         if (lista1.getNome().equals("nome")) {
+         request.getSession().setAttribute("funcionario", lista.add(lista1));
+         }
+         }
+         */
     }
 
 }

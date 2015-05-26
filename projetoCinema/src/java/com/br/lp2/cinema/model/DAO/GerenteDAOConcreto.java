@@ -117,11 +117,11 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public boolean deleteGerente(int id) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM gerente WHERE pk = ?";
+            String sql = "DELETE FROM gerente WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id); 
             int r = pst.executeUpdate();
-            resultado = r>0;
+            if(r>0) resultado = true;
             
         } catch (SQLException sQLException) {
             System.out.println(sQLException.getMessage());
@@ -133,10 +133,10 @@ public class GerenteDAOConcreto implements GerenteDAO {
     public boolean deleteGerente(Funcionario gerente) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM gerente WHERE VALUES(?)";
+            String sql = "DELETE FROM gerente WHERE (nome) VALUES(?)";
             pst = connection.prepareStatement(sql);
             int r = pst.executeUpdate();
-            resultado = r>0;
+            if(r>0) resultado = true;
             
         } catch (SQLException sQLException) {
             System.out.println(sQLException.getMessage());
