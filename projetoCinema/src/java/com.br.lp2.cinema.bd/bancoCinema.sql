@@ -110,7 +110,13 @@ alter table sessao add FOREIGN KEY(id_listaIngressos) references listaingressos(
 
 insert into gerente (nome, senha) values ('Paulo', 'paulo');
 insert into atendente (nome, senha) values ('Ana Paula', '123');
-
+insert into filme (id_diretor, id_genero, id_listaAtores, id_distribuidora, nome, classificacao, ano, duracao, situacao, idioma) values(1, 1, 1, 1, 'Busca Implacável', 14, 2012, 120, 'cartaz', 'ingles');
+insert into diretor (id, nome) values(1, 'Jubiraca');
+insert into genero(nome) values('Ação');
+insert into ListaAtores(id_infoAtor) values(1);
+insert into InfoAtor(id_ator, id_filme, papel, part) values(1, 1, 'principal', '');
+inserr into ator(nome, datanascimento, nacionalidade) values('Liam Neeson', '', 'americano')
+insert into distribuidora(nome) values('paramount');
 
 SELECT * FROM gerente;
 SELECT * FROM atendente;

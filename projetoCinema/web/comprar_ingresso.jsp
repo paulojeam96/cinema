@@ -19,10 +19,18 @@
         <c:if test="${cadeiras==null}">
             <c:redirect url="ControladorIngressos?command=init"/>
         </c:if>
-
+        <header>
+            <c:choose>
+                <c:when test="${ocupacao.equals('usuario')}">
+                    <c:import url="headerUsuario.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="FrontController?command=Logout" />
+                </c:otherwise>
+            </c:choose>
+        </header>
         <section>
-            <h1>Cinema </h1>
-            <h3>Venda de ingressos</h3>
+            
             <hr>
             <fieldset>
                 Sala: <select onchange="window.location = 'ControladorIngressos?command=trocasala.' + this.value">

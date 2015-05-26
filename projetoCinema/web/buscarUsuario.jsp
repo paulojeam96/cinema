@@ -54,7 +54,7 @@
                     <fieldset>
                         <h2>Buscar Atendente:</h2>
                         <form action="FrontController" method="POST">
-                            ID:<input type="text" name="nome" placeholder="ID do Usuario" required/><br>
+                            Nome:<input type="text" name="nome" placeholder="Nome do Usuario" required/><br>
                             <input type="hidden" name="command" value="BuscaAtendente"/><br>
                             <input type="submit" value="Buscar Usuario"/><br>
                                 <p> Nome: ${funcionario.getNome()}</p>

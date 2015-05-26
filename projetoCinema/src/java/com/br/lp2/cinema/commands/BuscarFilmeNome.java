@@ -5,9 +5,9 @@
  */
 package com.br.lp2.cinema.commands;
 
-import com.br.lp2.cinema.model.DAO.AtendenteDAO;
-import com.br.lp2.cinema.model.DAO.AtendenteDAOConcreto;
-import com.br.lp2.cinema.model.javabeans.Atendente;
+import com.br.lp2.cinema.model.DAO.FilmeDAO;
+import com.br.lp2.cinema.model.DAO.FilmeDAOConcreto;
+import com.br.lp2.cinema.model.javabeans.Filme;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -21,32 +21,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 31448471
  */
-public class BuscaAtendente implements Command{
+public class BuscarFilmeNome implements Command{
     private String nome;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         nome = request.getParameter("nome");
         
-        AtendenteDAO aDao = new AtendenteDAOConcreto();
-        ArrayList<Atendente> lista = aDao.readAtendente();
-        Atendente a= null;
-        
-        for (Atendente at : lista) {
-            if(at.getNome().equals(nome)){
-                a = at;
-            }
-        }
-        
-        request.getSession().setAttribute("funcionario", a);
-        RequestDispatcher rd = request.getRequestDispatcher("buscarUsuario.jsp");
-        
+        FilmeDAO fDao = new FilmeDAOConcreto();
+        Filme f = fDao.readFilmeByNome(nome);
+ 
+        request.getSession().setAttribute("nomeFilme", f);
+        RequestDispatcher rd = request.getRequestDispatcher("BuscarFilme.jsp");
         try {
             rd.forward(request, response);
         } catch (ServletException | IOException ex) {
-            Logger.getLogger(BuscaAtendente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BuscarFilmeNome.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
 }

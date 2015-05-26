@@ -34,7 +34,7 @@
                 </ul>
             </li>
             <li><a href='#'><span>${ocupacao} - ${nome}</span></a></li>
-            <li class='last'><a href='index.jsp'><span>Sair</span></a></li>
+            <li class='last'><a href='FrontController?command=Logout'><span>Sair</span></a></li>
             
         </ul>
     </div>

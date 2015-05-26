@@ -4,6 +4,7 @@
     Author     : Paulo
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,8 @@
     </head>
     <body>
         <header>
-            <%@include file = "Hsession.jsp" %>
+
+            <c:redirect url="comprar_ingresso.jsp"/>
         </header>
         <h1>Página ainda não disponível!</h1>
     </body>
