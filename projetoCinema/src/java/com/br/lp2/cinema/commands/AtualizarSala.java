@@ -23,7 +23,6 @@ public class AtualizarSala implements Command{
     private int lotacao;
     private int especial;
     private String situacao;
-    private Sala.Estados s;
     private int codSala;
 
     @Override
@@ -36,20 +35,10 @@ public class AtualizarSala implements Command{
 
         boolean operacao = false;
 
-        switch (situacao) {
-            case "Em Manutencao":
-                s = Sala.Estados.MANUTENCAO;
-                break;
-            case "Ocupada":
-                s = Sala.Estados.OCUPADO;
-                break;
-            case"Livre": 
-                s = Sala.Estados.LIVRE;
-                break;
-                   
-        }
         
-        Sala sala = new Sala(numero, lotacao, especial, s);
+        
+        
+        Sala sala = new Sala(numero, lotacao, especial, situacao);
         SalaDAO dao = new SalaDAOConcreto();
         operacao = dao.updateSala(codSala, sala);
         

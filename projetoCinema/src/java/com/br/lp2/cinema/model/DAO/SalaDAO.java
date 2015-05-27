@@ -6,7 +6,6 @@
 package com.br.lp2.cinema.model.DAO;
 
 import com.br.lp2.cinema.model.javabeans.Sala;
-import com.br.lp2.cinema.model.javabeans.Sala.Estados;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +20,7 @@ public interface SalaDAO {
     //R - READ
     public ArrayList<Sala> readSalas();
     public Sala readSalaById(int id);
-    public Sala readSalaByEstados(Estados estado);
+    public Sala readSalaByEstados(String estado);
     
     //U - UPDATE
     public boolean updateSala(int id, Sala sala);

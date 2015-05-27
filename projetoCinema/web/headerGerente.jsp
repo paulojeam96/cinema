@@ -27,6 +27,9 @@
                     <li class='has-sub'><a href='manter_filme.jsp'><span>Manter Filme</span></a>
 
                     </li>
+                    <li class='has-sub'><a href='BuscarFilme.jsp'><span>Buscar Filmes</span></a>
+
+                    </li>
                     <li class='has-sub'><a href='manter_sessao.jsp'><span>Manter Sessão</span></a>
 
                     </li>

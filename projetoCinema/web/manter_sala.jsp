@@ -44,6 +44,18 @@ and open the template in the editor.
                     <input type="number" placeholder="Buscar" name="sala" /></br>
                     <input type="hidden" name="command" value="BuscarSala"/>
                     <input type="submit" value="Buscar"/>
+                    <c:choose>
+                        <c:when test="${sala != null}">
+                            <p>ID: ${sala.getPk()}</p>
+                            <p>Numero: ${sala.getNum()}</p>
+                            <p>Lotação: ${sala.getLotacao()}</p>
+                            <p>Poltrona Especial: ${sala.getPoltEsp()}</p>
+                            <p>Estado: ${sala.getEstadoSala()}</p>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Sala não existe...</p>
+                        </c:otherwise>
+                    </c:choose>
                 </form>
             </fieldset>
 
@@ -53,11 +65,7 @@ and open the template in the editor.
                 <input type="number" name="numero" placeholder="Número da Sala"/>
                 <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
                 <input type="number" name="especial" placeholder="Cadeiras especiais"/>
-                <select name="Situação">
-                    <option>Em Manutenção</option>
-                    <option>Ocupada</option>
-                    <option>Livre</option>
-                </select>
+                <input type="text" name="situacao" placeholder="Manutencao, Livre, Ocupada"/>
                 <input type="hidden" name="command" value="CriarSala"/>
                 <input type="submit" value="Criar Sala"/>
                 </form>

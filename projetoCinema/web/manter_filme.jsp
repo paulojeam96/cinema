@@ -34,15 +34,6 @@ and open the template in the editor.
         </header>
         <section>
 
-            <fieldset class="bloco1">
-                <p>Buscar Filme:</p></br>
-                <form action="FrontController" method="POST">
-                    <input type="text" placeholder="Buscar" name="filme" required/></br>
-                    <input type="hidden" name="command" value="BuscarFilme"/>
-                    <input type="submit" value="Buscar"/>
-                </form>
-            </fieldset>
-
             <fieldset>
                 <p>Criar Filme:</p></br>
                 <form action="FrontController" method="POST">
@@ -55,7 +46,6 @@ and open the template in the editor.
                     <input type="number" placeholder="Diretor" name="diretor" required/></br>
                     <input type="number" placeholder="Genero" name="genero" required/></br>
                     <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
-                    <input type="number" placeholder="Lista de Atores" name="listaatores" required/></br>
                     <input type="hidden" name="command" value="CriarFilme"/>
                     <input type="submit" value="Criar"/>
                 </form>
@@ -75,7 +65,6 @@ and open the template in the editor.
                     <input type="number" placeholder="Diretor" name="diretor" required/></br>
                     <input type="number" placeholder="Genero" name="genero" required/></br>
                     <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
-                    <input type="number" placeholder="Lista de Atores" name="listaatores" required/></br>
                     <input type="hidden" name="command" value="AtualizarFilme"/>
                     <input type="submit" value="Atualizar"/>
                 </form>

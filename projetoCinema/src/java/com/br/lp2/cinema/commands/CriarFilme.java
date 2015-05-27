@@ -30,8 +30,7 @@ public class CriarFilme implements Command{
     private int diretor;
     private int genero;
     private int dist;
-    private int la;
-    private Filme.tipoSituacao s;
+    private String s;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -44,22 +43,9 @@ public class CriarFilme implements Command{
         diretor = Integer.parseInt(request.getParameter("diretor"));
         genero = Integer.parseInt(request.getParameter("genero"));
         dist = Integer.parseInt(request.getParameter("distribuidora"));
-        la = Integer.parseInt(request.getParameter("listaatores"));
-        
-        switch(situacao){
-            case "Cartaz":
-                s = Filme.tipoSituacao.CARTAZ;
-                break;
-            case "Estreia":
-                s = Filme.tipoSituacao.ESTREIA;
-                break;
-            case "Lançamento":
-                s = Filme.tipoSituacao.LANCAMENTO;
-                break;
-        }
         
         FilmeDAO dao = new FilmeDAOConcreto();
-        Filme f = new Filme(new Diretor(diretor), new Genero(genero), new ListaAtores(la), nome, clas, ano, new Distribuidora(dist), s, duracao, idioma );
+        Filme f = new Filme(new Diretor(diretor), new Genero(genero), nome, clas, ano, new Distribuidora(dist), situacao, duracao, idioma );
         boolean operacao = false;
         operacao  = dao.insertFilme(f);
         

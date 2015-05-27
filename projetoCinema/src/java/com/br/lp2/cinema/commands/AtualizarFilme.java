@@ -32,7 +32,6 @@ public class AtualizarFilme implements Command{
     private int dist;
     private int la;
     private int codF;
-    private Filme.tipoSituacao s;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -47,21 +46,10 @@ public class AtualizarFilme implements Command{
         dist = Integer.parseInt(request.getParameter("distribuidora"));
         la = Integer.parseInt(request.getParameter("listaatores"));
         codF = Integer.parseInt(request.getParameter("codF"));
-        
-        switch(situacao){
-            case "Cartaz":
-                s = Filme.tipoSituacao.CARTAZ;
-                break;
-            case "Estreia":
-                s = Filme.tipoSituacao.ESTREIA;
-                break;
-            case "Lançamento":
-                s = Filme.tipoSituacao.LANCAMENTO;
-                break;
-        }
+       
         
         FilmeDAO dao = new FilmeDAOConcreto();
-        Filme f = new Filme(new Diretor(diretor), new Genero(genero), new ListaAtores(la), nome, clas, ano, new Distribuidora(dist), s, duracao, idioma );
+        Filme f = new Filme(new Diretor(diretor), new Genero(genero), nome, clas, ano, new Distribuidora(dist), situacao, duracao, idioma );
         boolean operacao = false;
         operacao  = dao.updateFilme(codF, f);
         

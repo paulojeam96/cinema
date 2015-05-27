@@ -34,13 +34,12 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean insertSala(Sala sala) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO sala(num,lotacao,poltEsp,estado) VALUES (?,?,?,?)";
-            pst = connection.prepareStatement(sql);
-            
+            String sql = "INSERT INTO sala(num,lotacao,poltEsp,estados) VALUES (?,?,?,?)";
+            pst = connection.prepareStatement(sql);            
             pst.setInt(1, sala.getNum());
             pst.setInt(2, sala.getLotacao());
             pst.setInt(3, sala.getPoltEsp());
-            pst.setObject(4, sala.getEstadoSala());
+            pst.setString(4, sala.getEstadoSala());
             resultado = pst.execute();
         } catch(SQLException ex){
             ex.printStackTrace();
@@ -57,7 +56,7 @@ public class SalaDAOConcreto implements SalaDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Sala a = new Sala(rs.getInt("pk"), rs.getInt("num"), rs.getInt("lotacao"), rs.getInt("poltEsp"), (Sala.Estados)rs.getObject("estadoSala"));
+                Sala a = new Sala(rs.getInt("pk"), rs.getInt("num"), rs.getInt("lotacao"), rs.getInt("poltEsp"), rs.getString("estados"));
                 lista.add(a);
             }
         } catch (SQLException ex){
@@ -71,12 +70,12 @@ public class SalaDAOConcreto implements SalaDAO{
         Sala a = null;
         
         try {
-            String sql = "SELECT * FROM sala WHERE id=?";
+            String sql = "SELECT * FROM sala WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-                a = new Sala(rs.getInt("pk"), rs.getInt("num"), rs.getInt("lotacao"), rs.getInt("poltEsp"), (Sala.Estados)rs.getObject("estadoSala"));
+                a = new Sala(rs.getInt("pk"), rs.getInt("num"), rs.getInt("lotacao"), rs.getInt("poltEsp"), rs.getString("estados"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -85,7 +84,7 @@ public class SalaDAOConcreto implements SalaDAO{
     }
 
     @Override
-    public Sala readSalaByEstados(Sala.Estados estado) {
+    public Sala readSalaByEstados(String estado) {
         Sala a = null;
         
         try{
@@ -94,7 +93,7 @@ public class SalaDAOConcreto implements SalaDAO{
             pst.setObject(1, estado);
             rs = pst.executeQuery();
             while(rs.next()){
-                a = new Sala(rs.getInt("pk"), rs.getInt("num"), rs.getInt("lotacao"), rs.getInt("poltEsp"), (Sala.Estados)rs.getObject("estadoSala"));
+                a = new Sala(rs.getInt("pk"), rs.getInt("num"), rs.getInt("lotacao"), rs.getInt("poltEsp"), rs.getString("estados"));
            }
         } catch( SQLException ex){
         ex.printStackTrace();

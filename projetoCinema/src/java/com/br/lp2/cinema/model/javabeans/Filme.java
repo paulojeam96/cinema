@@ -11,13 +11,11 @@ public class Filme implements Serializable{
     private int pk;
     private Diretor diretor;
     private Genero genero;
-    private ListaAtores listaAtores;
     private String nome;
     private int classificacao;
     private int ano;
     private Distribuidora dist;
-    private tipoSituacao situacao;
-    public enum tipoSituacao{ CARTAZ, ESTREIA, LANCAMENTO;}
+    private String situacao;
     private int duracao;
     private String idioma;
 
@@ -25,11 +23,10 @@ public class Filme implements Serializable{
         this.pk = pk;
     }
     
-     public Filme( int pk, Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int clas, int ano, Distribuidora distribuidora, tipoSituacao s, int duracao, String idioma) {
+     public Filme( int pk, Diretor diretor, Genero genero , String nome, int clas, int ano, Distribuidora distribuidora, String s, int duracao, String idioma) {
         this.pk = pk;
         this.diretor = diretor;
         this.genero = genero;
-        this.listaAtores = listaAtores;
         this.nome = nome;
         this.classificacao = classificacao;
         this.ano = ano;
@@ -40,11 +37,10 @@ public class Filme implements Serializable{
         }
 
    
-    public Filme(Diretor diretor, Genero genero, ListaAtores listaAtores, String nome, int classificacao, int ano, Distribuidora dist, tipoSituacao situacao, int duracao, String idioma) {
+    public Filme(Diretor diretor, Genero genero, String nome, int classificacao, int ano, Distribuidora dist, String situacao, int duracao, String idioma) {
         
         this.diretor = diretor;
         this.genero = genero;
-        this.listaAtores = listaAtores;
         this.nome = nome;
         this.classificacao = classificacao;
         this.ano = ano;
@@ -79,14 +75,6 @@ public class Filme implements Serializable{
         this.genero = genero;
     }
 
-    public ListaAtores getListaAtores() {
-        return listaAtores;
-    }
-
-    public void setListaAtores(ListaAtores listaAtores) {
-        this.listaAtores = listaAtores;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -119,11 +107,11 @@ public class Filme implements Serializable{
         this.dist = dist;
     }
 
-    public tipoSituacao getSituacao() {
+    public String getSituacao() {
         return situacao;
     }
 
-    public void setSituacao(tipoSituacao situacao) {
+    public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
 
@@ -145,7 +133,7 @@ public class Filme implements Serializable{
 
     @Override
     public String toString() {
-        return "Filme{" + "pk=" + pk + ", diretor=" + diretor + ", genero=" + genero + ", listaAtores=" + listaAtores + ", nome=" + nome + ", classificacao=" + classificacao + ", ano=" + ano + ", dist=" + dist + ", situacao=" + situacao + ", duracao=" + duracao + ", idioma=" + idioma + '}';
+        return "Filme{" + "pk=" + pk + ", diretor=" + diretor + ", genero=" + genero + ", nome=" + nome + ", classificacao=" + classificacao + ", ano=" + ano + ", dist=" + dist + ", situacao=" + situacao + ", duracao=" + duracao + ", idioma=" + idioma + '}';
     }
 
     

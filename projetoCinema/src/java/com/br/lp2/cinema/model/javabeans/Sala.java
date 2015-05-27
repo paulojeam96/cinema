@@ -14,8 +14,7 @@ public class Sala {
     private int num;
     private int lotacao;
     private int poltEsp;
-    public enum Estados { MANUTENCAO, OCUPADO, LIVRE; }
-    private Estados estadoSala;
+    private String estadoSala;
 
     public Sala(int num) {
         this.num = num;
@@ -23,7 +22,7 @@ public class Sala {
     
     
 
-    public Sala(int pk, int num, int lotacao, int poltEsp, Estados estadoSala) {
+    public Sala(int pk, int num, int lotacao, int poltEsp, String estadoSala) {
         this.pk = pk;
         this.num = num;
         this.lotacao = lotacao;
@@ -31,7 +30,7 @@ public class Sala {
         this.estadoSala = estadoSala;
     }
     
-    public Sala(int num, int lotacao, int poltEsp, Estados estadoSala) {
+    public Sala(int num, int lotacao, int poltEsp, String estadoSala) {
         
         this.num = num;
         this.lotacao = lotacao;
@@ -78,11 +77,11 @@ public class Sala {
         this.poltEsp = poltEsp;
     }
 
-    public Estados getEstadoSala() {
+    public String getEstadoSala() {
         return estadoSala;
     }
 
-    public void setEstadoSala(Estados estadoSala) {
+    public void setEstadoSala(String estadoSala) {
         this.estadoSala = estadoSala;
     }
     
