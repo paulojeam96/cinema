@@ -38,7 +38,7 @@ public class AtualizarSala implements Command{
         
         
         
-        Sala sala = new Sala(numero, lotacao, especial, situacao);
+        Sala sala = new Sala(codSala, numero, lotacao, especial, situacao);
         SalaDAO dao = new SalaDAOConcreto();
         operacao = dao.updateSala(codSala, sala);
         

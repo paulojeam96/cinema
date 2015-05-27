@@ -43,9 +43,9 @@ and open the template in the editor.
                     <input type="number" placeholder="duração" name="duracao" required/></br>
                     <input type="number" placeholder="Ano" name="ano" required/></br>
                     <input type="number" placeholder="Classificação" name="classificacao" required/></br>
-                    <input type="number" placeholder="Diretor" name="diretor" required/></br>
-                    <input type="number" placeholder="Genero" name="genero" required/></br>
-                    <input type="number" placeholder="Distribuidora" name="distribuidora" required/></br>
+                    <input type="text" placeholder="Diretor" name="diretor" required/></br>
+                    <input type="text" placeholder="Genero" name="genero" required/></br>
+                    <input type="text" placeholder="Distribuidora" name="distribuidora" required/></br>
                     <input type="hidden" name="command" value="CriarFilme"/>
                     <input type="submit" value="Criar"/>
                 </form>

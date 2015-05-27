@@ -106,9 +106,13 @@ public class SalaDAOConcreto implements SalaDAO{
         boolean res =false;
         
         try{
-            String sql = "UPDATE sala SET num=? WHERE id=?";
+            String sql = "UPDATE sala SET num=?, lotacao=?, poltEsp=?, estados=? WHERE pk=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, id);
+            pst.setInt(1, sala.getNum());
+            pst.setInt(2, sala.getLotacao());
+            pst.setInt(3, sala.getPoltEsp());
+            pst.setString(4, sala.getEstadoSala());
+            pst.setInt(5, id);
             int r = pst.executeUpdate();
             if(r > 0) res = true;
             else res = false;
@@ -122,9 +126,9 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean deleteSala(Sala sala) {
         boolean resultado=false;
         try {
-            String sql = "DELETE FROM sala WHERE id=?";
+            String sql = "DELETE FROM sala WHERE estados=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,sala.getPk());
+            pst.setString(1,sala.getEstadoSala());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;
@@ -138,7 +142,7 @@ public class SalaDAOConcreto implements SalaDAO{
     public boolean deleteSala(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM sala WHERE id=?";
+            String sql = "DELETE FROM sala WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

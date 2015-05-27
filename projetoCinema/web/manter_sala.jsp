@@ -74,11 +74,7 @@ and open the template in the editor.
                     <input type="number" name="numero" placeholder="Numero Da Sala"/>
                     <input type="number" name="lotacao" placeholder="Lotação Máxima da Sala"/>
                     <input type="number" name="especial" placeholder="Numero de cadeiras especiais"/>
-                    <select name="Situacao">
-                        <option>Em Manutenção</option>
-                        <option>Em Espera</option>
-                        <option>Em Exibição</option>
-                    </select>
+                    <input type="text" name="situacao" placeholder="Manutencao, Livre, Ocupada"/>
                     <input type="hidden" name="command" value="AtualizarSala"/>
                     <input type="submit" value="atualizar"/>
                 </form>

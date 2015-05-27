@@ -23,7 +23,7 @@ public class DeletarSala implements Command{
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        codSala = Integer.parseInt(request.getParameter("codSala"));
+        codSala = Integer.parseInt(request.getParameter("codigo"));
         
         
         SalaDAO dao = new SalaDAOConcreto();

@@ -27,9 +27,9 @@ public class CriarFilme implements Command{
     private int duracao;
     private int ano;
     private int clas;
-    private int diretor;
-    private int genero;
-    private int dist;
+    private String diretor;
+    private String genero;
+    private String dist;
     private String s;
 
     @Override
@@ -40,9 +40,9 @@ public class CriarFilme implements Command{
         duracao = Integer.parseInt(request.getParameter("duracao"));
         ano = Integer.parseInt(request.getParameter("ano"));
         clas = Integer.parseInt(request.getParameter("classificacao"));
-        diretor = Integer.parseInt(request.getParameter("diretor"));
-        genero = Integer.parseInt(request.getParameter("genero"));
-        dist = Integer.parseInt(request.getParameter("distribuidora"));
+        diretor = request.getParameter("diretor");
+        genero = request.getParameter("genero");
+        dist = request.getParameter("distribuidora");
         
         FilmeDAO dao = new FilmeDAOConcreto();
         Filme f = new Filme(new Diretor(diretor), new Genero(genero), nome, clas, ano, new Distribuidora(dist), situacao, duracao, idioma );
