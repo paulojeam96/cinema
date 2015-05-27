@@ -5,8 +5,11 @@
  */
 package com.br.lp2.cinema.commands;
 
-import com.br.lp2.cinema.model.DAO.FilmeDAO;
+
+import com.br.lp2.cinema.model.DAO.DiretorDAO;
+import com.br.lp2.cinema.model.DAO.DiretorDAOConcreto;
 import com.br.lp2.cinema.model.DAO.FilmeDAOConcreto;
+import com.br.lp2.cinema.model.javabeans.Diretor;
 import com.br.lp2.cinema.model.javabeans.Filme;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,23 +24,30 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author 31448471
  */
-public class BuscarFilmeNome implements Command{
-    private String nome;
+public class BuscarFilmeDiretor implements Command{
+    private String diretor;
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        nome = request.getParameter("nome");
+        diretor = request.getParameter("nome");
+        int id = 1;
         
-        FilmeDAO fDao = new FilmeDAOConcreto();
-        Filme f = fDao.readFilmeByNome(nome);
- 
-        request.getSession().setAttribute("nomeFilme", f);
+        DiretorDAO dDao = new DiretorDAOConcreto();
+        Diretor a = dDao.readDiretorByNome(diretor);
+        id = a.getPk();
+        
+        FilmeDAOConcreto fDao = new FilmeDAOConcreto();
+        ArrayList<Filme> filmes = fDao.readFilmeByDiretorID(id);
+        
+        request.getSession().setAttribute("fDiretor", filmes);
         RequestDispatcher rd = request.getRequestDispatcher("BuscarFilme.jsp");
         
         try {
             rd.forward(request, response);
-        } catch (ServletException | IOException ex) {
-            Logger.getLogger(BuscarFilmeNome.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ServletException ex) {
+            Logger.getLogger(BuscarFilmeDiretor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BuscarFilmeDiretor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

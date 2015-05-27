@@ -41,11 +41,11 @@ public class FilmeDAOConcreto implements FilmeDAO {
             String sql = "INSERT INTO filme(id_diretor, id_genero, nome, classificacao, ano, id_distribuidora, situacao, duracao, idioma) VALUES (?,?,?,?,?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, filme.getDiretor().getId());
-            pst.setObject(2, filme.getGenero().getPk());
+            pst.setObject(2, filme.getGenero().getId());
             pst.setString(3, filme.getNome());
             pst.setInt(4, filme.getClassificacao());
             pst.setInt(5, filme.getAno());
-            pst.setObject(6, filme.getDist().getPk());
+            pst.setObject(6, filme.getDist().getId());
             pst.setObject(7, filme.getSituacao().toString());
             pst.setInt(8, filme.getDuracao());
             pst.setString(9, filme.getIdioma());
@@ -215,8 +215,8 @@ public class FilmeDAOConcreto implements FilmeDAO {
             String sql = "UPDATE filme SET id_diretor=?, id_genero=?, id_distribuidora=?, nome=?, classificacao=?, ano=?, duracao=?, situacao=?, idioma=? WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setObject(1, filme.getDiretor().getPk());
-            pst.setObject(2, filme.getGenero().getPk());
-            pst.setObject(3, filme.getDist().getPk());
+            pst.setObject(2, filme.getGenero().getId());
+            pst.setObject(3, filme.getDist().getId());
             pst.setString(4, filme.getNome());
             pst.setInt(5, filme.getClassificacao());
             pst.setInt(6, filme.getAno());

@@ -28,9 +28,9 @@ public class Filme implements Serializable{
         this.diretor = diretor;
         this.genero = genero;
         this.nome = nome;
-        this.classificacao = classificacao;
+        this.classificacao = clas;
         this.ano = ano;
-        this.dist = dist;
+        this.dist = distribuidora;
         this.situacao = s;
         this.duracao = duracao;
         this.idioma = idioma;
@@ -133,7 +133,7 @@ public class Filme implements Serializable{
 
     @Override
     public String toString() {
-        return "Filme{" + "pk=" + pk + ", diretor=" + diretor + ", genero=" + genero + ", nome=" + nome + ", classificacao=" + classificacao + ", ano=" + ano + ", dist=" + dist + ", situacao=" + situacao + ", duracao=" + duracao + ", idioma=" + idioma + '}';
+        return "pk=" + pk + "\n diretor=" + diretor + ",\n  genero=" + genero + "\n  nome=" + nome + ",\n  classificacao=" + classificacao + ",\n  ano=" + ano + ",\n  dist=" + dist + ",\n  situacao=" + situacao + ",\n  duracao=" + duracao + ",\n  idioma=" + idioma + '}';
     }
 
     

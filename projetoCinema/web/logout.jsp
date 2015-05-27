@@ -9,7 +9,8 @@
 <!DOCTYPE html>
 <c:choose>
     <c:when test="${ocupacao.equals('gerente') || ocupacao.equals('atendente')}">
-        <c:redirect url="FrontController?command=Logout" />
+        
+        <c:redirect url="FrontController?command=Logout"/>
     </c:when>
     <c:otherwise>
         <c:redirect url="FrontController?command=Logout" />

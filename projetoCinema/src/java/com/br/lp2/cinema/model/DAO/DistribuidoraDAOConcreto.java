@@ -34,10 +34,10 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
     public boolean insertDistribuidora(Distribuidora distribuidora) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO distribuidora(nome,pk) VALUES (?,?)";
+            String sql = "INSERT INTO distribuidora(nome,id) VALUES (?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, distribuidora.getNome());
-            pst.setInt(2, distribuidora.getPk());
+            pst.setInt(2, distribuidora.getId());
             resultado = pst.execute();
         } catch(SQLException ex){
              Logger.getLogger(DistribuidoraDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,7 +54,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Distribuidora d = new Distribuidora( rs.getString("nome"),rs.getInt("pk"));
+                Distribuidora d = new Distribuidora( rs.getString("nome"),rs.getInt("id"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -68,12 +68,12 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
         Distribuidora a = null;
         
         try {
-            String sql = "SELECT * FROM distribuidora WHERE id=?";
+            String sql = "SELECT * FROM distribuidora WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Distribuidora(rs.getString("nome"), rs.getInt("pk") );
+            a = new Distribuidora(rs.getString("nome"), rs.getInt("id") );
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -91,7 +91,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while(rs.next()){
-                a = new Distribuidora(rs.getString("nome"), rs.getInt("pk"));
+                a = new Distribuidora(rs.getString("nome"), rs.getInt("id"));
            }
         } catch( SQLException ex){
             ex.printStackTrace();
@@ -122,7 +122,7 @@ public class DistribuidoraDAOConcreto implements DistribuidoraDAO{
         try {
             String sql = "DELETE FROM distribuidora WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,distribuidora.getPk());
+            pst.setInt(1,distribuidora.getId());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;

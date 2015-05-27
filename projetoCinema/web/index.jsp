@@ -4,6 +4,7 @@
     Author     : Paulo
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -162,15 +163,11 @@
 
     <body>
         <header>
-            <% 
-                session.removeAttribute("usuario");
-                %>
+            <c:if test="${usuario != null}" >
+                ${session.invalidate()}
+            </c:if>
         </header>
-                <%
-                if(session.getAttribute("lg")!=null && !session.getAttribute("lg").equals("")){
-                    out.print("Usuario e senha inválidos");
-                }
-                %>
+                
         <div class="body"> 
             
         </div>

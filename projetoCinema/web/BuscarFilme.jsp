@@ -16,7 +16,7 @@
         <title>Buscar Filmes</title>
     </head>
     <body>
-        
+
         <header>
             <c:choose>
                 <c:when test="${ocupacao.equals('gerente')}">
@@ -28,7 +28,7 @@
                     </c:when>
                 </c:otherwise>
             </c:choose>
-           
+
         </header>
         <section>
             <fieldset>
@@ -37,42 +37,49 @@
                     <p>Nome: <input type="text" name="nome" placeholder="Nome do Filme"/></p>
                     <input type="hidden" name="command" value="BuscarFilmeNome"/>
                     <input type="submit"  value="Buscar Filme"/>
-                    <fieldset>
-                        <p>${nomeFilme}</p>
-                    </fieldset>
-                        
+
+                    <p>${nomeFilme}</p>
+                    
+
                 </form>
             </fieldset>
             <fieldset>
                 <form action="FrontController" method="POST">
                     <h2>Buscar Filme por Gênero</h2>
                     <p>Gênero: <input type="text" name="nome" placeholder="Gênero"/></p>
-                    <input type="hidden" name="command" value="BuscarFilmeGen"/>
+                    <input type="hidden" name="command" value="BuscaFilmeGen"/>
                     <input type="submit"  value="Buscar Filme"/>
+                    
+                    <c:forEach var="i" items="${filmesGen}">
+                        <p>${i.getNome()}</p>
+                    </c:forEach>
+                        
+                    
                 </form>
-            </fieldset>
-            <fieldset>
-                <form action="FrontController" method="POST">
-                    <h2>Buscar Filme por Ator</h2>
-                    <p>Ator: <input type="text" name="nome" placeholder="Nome do Ator"/></p>
-                    <input type="hidden" name="command" value="BuscarFilmeAtor"/>
-                    <input type="submit"  value="Buscar Filme"/>
-                </form>
-            </fieldset>
+            </fieldset>            
             <fieldset>
                 <form action="FrontController" method="POST">
                     <h2>Buscar Filme por Distribuidora</h2>
                     <p>Distribuidora: <input type="text" name="nome" placeholder="Distribuidora"/></p>
                     <input type="hidden" name="command" value="BuscarFilmeDist"/>
                     <input type="submit"  value="Buscar Filme"/>
+                    <c:forEach var="filmes" items="${fDist}">
+                        <p>${filmes.getNome()}</p>
+                    </c:forEach>
+                    
                 </form>
             </fieldset>
             <fieldset>
                 <form action="FrontController" method="POST">
                     <h2>Buscar Filme por Diretor</h2>
                     <p>Diretor: <input type="text" name="nome" placeholder="Nome do Diretor"/></p>
-                    <input type="hidden" name="command" value="BuscarFilmeDir"/>
+                    <input type="hidden" name="command" value="BuscarFilmeDiretor"/>
                     <input type="submit"  value="Buscar Filme"/>
+                    <c:forEach var="diretor" items="${fDiretor}">
+                        <p>${diretor.getNome()}</p>
+                        <p>${diretor}</p>
+                    </c:forEach>
+                    
                 </form>
             </fieldset>
             <fieldset>
@@ -81,6 +88,8 @@
                     <p>ID: <input type="number" name="numero" placeholder="Id do Filme"/></p>
                     <input type="hidden" name="command" value="BuscarFilmeID"/>
                     <input type="submit"  value="Buscar Filme"/>
+                    
+                    <p>${idFilme}</p>
                 </form>
             </fieldset>
         </section>

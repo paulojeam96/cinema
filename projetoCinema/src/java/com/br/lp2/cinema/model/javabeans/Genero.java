@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @version 2.0
  */
 public class Genero implements Serializable{
-    private int pk; //Primary Key
+    private int id; //Primary Key
     private String nome;
 
     public Genero(String nome) {
@@ -21,16 +21,16 @@ public class Genero implements Serializable{
     }
 
     public Genero(int pk, String nome) {
-        this.pk = pk;
+        this.id = pk;
         this.nome = nome;
     }
 
     public Genero(int genero) {
-        this.pk = genero;
+        this.id = genero;
     }
 
-    public int getPk() {
-        return pk;
+    public int getId() {
+        return id;
     }
 
     public String getNome() {
@@ -39,7 +39,7 @@ public class Genero implements Serializable{
 
     @Override
     public String toString() {
-        return "[pk: "+this.pk+","+"Nome: "+this.nome+"]";
+        return "[pk: "+this.id+","+"Nome: "+this.nome+"]";
     }
     
     

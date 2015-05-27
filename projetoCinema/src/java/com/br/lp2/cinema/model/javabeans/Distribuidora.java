@@ -9,15 +9,15 @@ import java.io.Serializable;
  */
 public class Distribuidora implements Serializable{
     private String nome;
-    private int pk;
+    private int id;
 
-    public Distribuidora(String nome, int pk) {
+    public Distribuidora(String nome, int id) {
         this.nome = nome;
-        this.pk = pk;
+        this.id = id;
     }
 
-    public Distribuidora(int dist) {
-        this.pk=pk;
+    public Distribuidora(int id) {
+        this.id=id;
     }
 
     public String getNome() {
@@ -28,17 +28,17 @@ public class Distribuidora implements Serializable{
         this.nome = nome;
     }
 
-    public int getPk() {
-        return pk;
+    public int getId() {
+        return id;
     }
 
-    public void setPk(int pk) {
-        this.pk = pk;
+    public void setId(int pk) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "Distribuidora{" + "nome=" + nome + ", pk=" + pk + '}';
+        return "Distribuidora{" + "nome=" + nome + ", pk=" + id + '}';
     }
     
     

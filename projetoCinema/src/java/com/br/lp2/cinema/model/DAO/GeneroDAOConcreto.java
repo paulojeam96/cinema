@@ -34,9 +34,9 @@ public class GeneroDAOConcreto implements GeneroDAO{
     public boolean insertGenero(Genero genero) {
         boolean resultado = false;
         try{
-            String sql = "INSERT INTO genero(pk,nome) VALUES (?,?)";
+            String sql = "INSERT INTO genero(id,nome) VALUES (?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, genero.getPk());
+            pst.setInt(1, genero.getId());
             pst.setString(2, genero.getNome());
             resultado = pst.execute();
         } catch(SQLException ex){
@@ -54,7 +54,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Genero d = new Genero( rs.getInt("pk"), rs.getString("nome"));
+                Genero d = new Genero( rs.getInt("id"), rs.getString("nome"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -73,7 +73,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Genero( rs.getInt("pk"), rs.getString("nome"));
+            a = new Genero( rs.getInt("id"), rs.getString("nome"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -91,7 +91,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while(rs.next()){
-                a = new Genero( rs.getInt("pk"), rs.getString("nome"));
+                a = new Genero( rs.getInt("id"), rs.getString("nome"));
            }
         } catch( SQLException ex){
             ex.printStackTrace();
@@ -122,7 +122,7 @@ public class GeneroDAOConcreto implements GeneroDAO{
         try {
             String sql = "DELETE FROM genero WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,genero.getPk());
+            pst.setInt(1,genero.getId());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;

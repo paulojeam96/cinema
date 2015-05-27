@@ -44,18 +44,14 @@ and open the template in the editor.
                     <input type="number" placeholder="Buscar" name="sala" /></br>
                     <input type="hidden" name="command" value="BuscarSala"/>
                     <input type="submit" value="Buscar"/>
-                    <c:choose>
-                        <c:when test="${sala != null}">
-                            <p>ID: ${sala.getPk()}</p>
-                            <p>Numero: ${sala.getNum()}</p>
-                            <p>Lotação: ${sala.getLotacao()}</p>
-                            <p>Poltrona Especial: ${sala.getPoltEsp()}</p>
-                            <p>Estado: ${sala.getEstadoSala()}</p>
-                        </c:when>
-                        <c:otherwise>
-                            <p>Sala não existe...</p>
-                        </c:otherwise>
-                    </c:choose>
+
+                    <p>ID: ${sala.getPk()}</p>
+                    <p>Numero: ${sala.getNum()}</p>
+                    <p>Lotação: ${sala.getLotacao()}</p>
+                    <p>Poltrona Especial: ${sala.getPoltEsp()}</p>
+                    <p>Estado: ${sala.getEstadoSala()}</p>
+
+
                 </form>
             </fieldset>
 
