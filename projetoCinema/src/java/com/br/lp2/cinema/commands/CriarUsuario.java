@@ -70,13 +70,7 @@ public class CriarUsuario implements Command {
        
         try {
             if (operacao) {
-                request.getSession().setAttribute("sucesso", operacao);
-                RequestDispatcher rd = request.getRequestDispatcher("manter_usuario.jsp");
-                try {
-                    rd.forward(request, response);
-                } catch (ServletException ex) {
-                    Logger.getLogger(CriarUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                response.sendRedirect("sucesso,jsp");
             } else {
                 response.sendRedirect("fail.jsp");
             }

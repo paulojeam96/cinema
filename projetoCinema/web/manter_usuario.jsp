@@ -51,16 +51,6 @@ and open the template in the editor.
                         Codigo Usuario:<input type="number" name="cod" value="Codigo do Usuario"/>
                         <input type="hidden" name="command" value="CriarUsuario"/>
                         <input type="submit" value="Criar Usuario"/>
-                        
-                        <c:choose>
-                            <c:when test="${sucesso == true}">
-                                <c:redirect url="sucesso.jsp"/>
-                            </c:when>
-                            <c:when test="${sucesso == false}">
-                                <c:redirect url="fail.jsp"/>
-                            </c:when>
-                        </c:choose>
-                        
                     </form>
                 </fieldset>
                 <fieldset>

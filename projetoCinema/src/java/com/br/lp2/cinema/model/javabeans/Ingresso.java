@@ -9,38 +9,14 @@ import java.io.Serializable;
  * @version 1.0
  */
 public class Ingresso implements Serializable{
-    private int pk;
     private int id;
+    private Filme id_filme;
     private boolean inteira;
-    private Cliente.Especiais tipo;
 
-    public Ingresso(int pk, int id, boolean inteira, Especiais tipo) {
-        this.pk = pk;
+    public Ingresso(int id, Filme id_filme, boolean inteira) {
         this.id = id;
+        this.id_filme = id_filme;
         this.inteira = inteira;
-        this.tipo = tipo;
-    }
-
-    public Ingresso(int pk, int id, boolean inteira) {
-        this.pk = pk;
-        this.id = id;
-        this.inteira = inteira;
-        this.tipo = Cliente.Especiais.GERAL;
-    }
-
-    public Ingresso(int pk, int id) {
-        this.pk = pk;
-        this.id = id;
-        this.inteira = true;
-        this.tipo = Cliente.Especiais.GERAL;
-    }
-
-    public int getPk() {
-        return pk;
-    }
-
-    public void setPk(int pk) {
-        this.pk = pk;
     }
 
     public int getId() {
@@ -51,6 +27,14 @@ public class Ingresso implements Serializable{
         this.id = id;
     }
 
+    public Filme getId_filme() {
+        return id_filme;
+    }
+
+    public void setId_filme(Filme id_filme) {
+        this.id_filme = id_filme;
+    }
+
     public boolean isInteira() {
         return inteira;
     }
@@ -59,21 +43,10 @@ public class Ingresso implements Serializable{
         this.inteira = inteira;
     }
 
-    public Especiais getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Especiais tipo) {
-        this.tipo = tipo;
-    }
-
     @Override
     public String toString() {
-        return "Ingresso{" + "pk=" + pk + ", id=" + id + ", inteira=" + inteira + ", tipo=" + tipo + '}';
+        return "id=" + id + ", filme=" + id_filme + ", inteira=" + inteira;
     }
     
-    public boolean compara(Ingresso i){
-        return (this.pk == i.getPk() && this.id == i.getId() && this.inteira == i.isInteira() && this.tipo == i.getTipo());
-    }
-    
+   
 }

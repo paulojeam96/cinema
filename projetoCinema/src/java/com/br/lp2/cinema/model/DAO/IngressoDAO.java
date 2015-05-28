@@ -26,6 +26,5 @@ public interface IngressoDAO {
     public boolean updateIngresso(int id, Ingresso ingresso);
     
     //D - DELETE
-    public boolean deleteIngresso(Ingresso ingresso);
     public boolean deleteIngresso(int id);
 }

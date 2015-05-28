@@ -1,3 +1,4 @@
+
 Create table atendente(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     nome varchar(40),
@@ -74,7 +75,7 @@ Create table ingresso(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     id int,
     inteira boolean,
-    tipo varchar(20)
+    id_filme int
 );
 
 Create table ListaAtores(
@@ -114,6 +115,8 @@ alter table ListaIngressos add FOREIGN KEY(id_ingresso) references ingresso(pk);
 alter table sessao add FOREIGN KEY(id_filme) references filme(pk);
 alter table sessao add FOREIGN KEY(id_sala) references sala(pk);
 alter table sessao add FOREIGN KEY(id_listaIngressos) references listaingressos(pk);
+alter table ingresso add FOREIGN KEY(id_filme) references filme(pk);
+
 
 
 insert into ator(nome, datanascimento, nacionalidade) values('Liam Neeson', '23/09/1966', 'americano'), ('Will Smith', '23/08/1977', 'philly'), ('Chris Hemsworth', '21/09/1966', 'asgardiano'), ('Oliver Queen', '23/09/1966', 'something else'), ('Tony Stark', '23/09/1980', 'marte');
@@ -124,7 +127,7 @@ insert into diretor (id, nome) values(1, 'Jubiraca'), (2, 'Tom Hanks'), (3, 'Rob
 insert into genero(id, nome) values(1, 'acao'), (2, 'comedia'), (3, 'aventura'), (4, 'terror'), (5, 'adulto'), (6, 'suspense'), (7, 'musical'), (8, 'comedia-romantica'), (9, 'documentario');
 insert into distribuidora(id, nome) values(1, 'paramount'), (2, 'disney'), (3, 'marvel'), (4, 'brasileirinhas'), (5, 'paramuitos');
 insert into sala(num, lotacao, poltEsp, estados) values (3, 40, 4, 'EXIBICAO'), (1, 40, 4, 'EXIBICAO'), (2, 40, 4, 'MANUTENCAO'), (4, 40, 4, 'ESPERA');
-insert into ingresso(id, inteira, tipo) values (1, true, 'GERAL'), (2, false, 'OBESO'), (3, false, 'CADEIRANTE'), (4, true, 'GERAL');
+insert into ingresso(id, inteira, id_filme) values (1, true,1), (2, false, 2), (3, false, 3), (4, true, 4);
 insert into ListaIngressos(id_ingresso) values(1), (2), (2);
 insert into cliente(nome, anoNasc, tipo) values ('Jose', 1956, 'GERAL'), ('jOAO', 1946, 'OBESO'), ('Maria', 1856, 'CADEIRANTE'), ('Pereto', 1990, 'GERAL'); 
 insert into filme (id_diretor, id_genero, id_distribuidora, nome, classificacao, ano, duracao, situacao, idioma) values(2, 2, 3, 'Busca Implacavel', 14, 2012, 120, 'cartaz', 'ingles'), (3, 2, 3, 'Homem de Ferro', 16, 2010, 120, 'estreia', 'portugues'), (4, 3, 1, 'A Lenda Do Aluno Solitario', 10, 2015, 200, 'estreia', 'portugues'), (1, 4, 3, 'jogos mortais', 14, 2012, 120, 'cartaz', 'ingles');

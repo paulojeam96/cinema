@@ -29,17 +29,6 @@ public class ListaIngresso implements Serializable{
     public void addIngresso(Ingresso ingresso){
         lista.add(ingresso);
     }
-    
-    public void removeIngresso(Ingresso ingresso){
-        for (Ingresso i : lista) {
-            if(i.compara(ingresso)) lista.remove(ingresso);
-        }
-    }
-    
-    public void trocaIngresso(Ingresso i1, Ingresso i2){
-        removeIngresso(i1);
-        addIngresso(i2);
-    }
 
     public ArrayList<Ingresso> getLista() {
         return lista;

@@ -38,42 +38,30 @@ public class AlterarUsuario implements Command {
         nome = request.getParameter("nome");
         senha = request.getParameter("password");
         senha2 = request.getParameter("password2");
-
-        User u = new User(nome, senha, senha2, cargoAtual, codigo);
-        boolean usuario = u.verificaUsuario();
-        boolean codUser = u.verificaCod();
-        boolean senhaUser = u.verificaSenha();
         boolean operacao = false;
-        try {
-            if (usuario == false || codUser == false || senhaUser == false) {
-                response.sendRedirect("fail.jsp");
-            } else {
-                if (cargoAtual.toLowerCase().equals("gerente")) {
-                    GerenteDAO gDao = new GerenteDAOConcreto();
-                    Gerente g = new Gerente(nome, senha);
-                    operacao = gDao.updateGerente(codigo, g);
-                } else if (cargoAtual.toLowerCase().equals("atendente")) {
-                    AtendenteDAO aDao = new AtendenteDAOConcreto();
-                    Atendente a = new Atendente(nome, senha);
-                    operacao = aDao.updateAtendente(codigo, a);
-                }
-            }
-            
-            
-            if(cargoAtual.toLowerCase().equals("normal")){
-                GenericDAO cDao = new ComumDAOConcreto();
-                Comum c = new Comum(nome, senha);
-                operacao = cDao.update(codigo, c);
-            }
 
+        if (cargoAtual.toLowerCase().equals("gerente")) {
+            GerenteDAO gDao = new GerenteDAOConcreto();
+            Gerente g = new Gerente(nome, senha);
+            operacao = gDao.updateGerente(codigo, g);
+        } else if (cargoAtual.toLowerCase().equals("atendente")) {
+            AtendenteDAO aDao = new AtendenteDAOConcreto();
+            Atendente a = new Atendente(nome, senha);
+            operacao = aDao.updateAtendente(codigo, a);
+        }
+
+        if (cargoAtual.toLowerCase().equals("normal")) {
+            GenericDAO cDao = new ComumDAOConcreto();
+            Comum c = new Comum(nome, senha);
+            operacao = cDao.update(codigo, c);
+        }
+
+        try {
             if (operacao) {
                 response.sendRedirect("sucesso.jsp");
             } else {
                 response.sendRedirect("fail.jsp");
             }
-            
-            
-            
         } catch (IOException iOException) {
             iOException.getMessage();
         }

@@ -19,17 +19,13 @@
         <header>
 
             <c:choose>
-                <c:when test="${ocupacao != 'normal'}">
+                <c:when test="${ocupacao == 'normal'}">
                     <c:import url="headerComum.jsp"/>
                 </c:when>
                 <c:otherwise>
                     <c:redirect url="index.jsp"/>
                 </c:otherwise>
-            </c:choose> 
-                
-            </c:if>    
-
-            
+            </c:choose>             
         </header>
 
 

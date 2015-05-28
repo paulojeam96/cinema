@@ -35,6 +35,12 @@
             <section>
                 <div id="1">
                     <fieldset>
+                        <form action="FrontController" method="POST">
+                            <h2>Listar Todos:</h2>
+                            Listar:<input type="text" name="funcionario" placeholder="Nome Funcionario"/>
+                            <input type="hidden" name="command" value="Listar"/>
+                            <input type="submit" value="Listar"/>
+                        </form>
                         <h2>Buscar Gerente:</h2>
                         <form action="FrontController" method="POST">
                             Nome:<input type="text" name="nome" placeholder="Nome do Usuario" required/><br>
@@ -43,6 +49,13 @@
                             <p> Nome: ${func.getNome()}</p>
                             <p> Senha: ${func.getSenha()}</p>
                             <p> ID: ${func.getPk()}</p>  
+
+
+                        
+                        
+                            <c:forEach var="gerentes" items="${listarGerentes}">
+                                <p>Nome: ${gerentes.getNome()}</p>
+                            </c:forEach>
                         </form>
                     </fieldset>
                     <fieldset>
@@ -54,6 +67,11 @@
                             <p> Nome: ${funcionario.getNome()}</p>
                             <p> Senha: ${funcionario.getSenha()}</p>
                             <p> ID: ${funcionario.getPk()}</p>
+                        
+                        
+                            <c:forEach var="atendentes" items="${listarAtendentes}">
+                                <p>Nome: ${atendentes.getNome()}</p>
+                            </c:forEach>
                         </form>
                     </fieldset>
                     <fieldset>
@@ -65,6 +83,10 @@
                             <p> Nome: ${comum.getNome()}</p>
                             <p> Senha: ${comum.getSenha1()}</p>
                             <p> ID: ${comum.getCodigo()}</p>
+                            
+                             <c:forEach var="usuarios" items="${listarUsuarios}">
+                                <p>Nome: ${usuarios.getNome()}</p>
+                            </c:forEach>
                         </form>
                     </fieldset>
                 </div>
