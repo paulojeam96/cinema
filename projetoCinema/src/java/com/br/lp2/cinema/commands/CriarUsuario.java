@@ -8,9 +8,12 @@ package com.br.lp2.cinema.commands;
 import com.br.lp2.cinema.controller.User;
 import com.br.lp2.cinema.model.DAO.AtendenteDAO;
 import com.br.lp2.cinema.model.DAO.AtendenteDAOConcreto;
+import com.br.lp2.cinema.model.DAO.ComumDAOConcreto;
+import com.br.lp2.cinema.model.DAO.GenericDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
+import com.br.lp2.cinema.model.javabeans.Comum;
 import com.br.lp2.cinema.model.javabeans.Gerente;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -62,8 +65,10 @@ public class CriarUsuario implements Command {
             operacao = aDao.insertAtendente(new Atendente(nome, senha));
         } else if (cargo.toLowerCase().equals("gerente")) {
             GerenteDAO gDao = new GerenteDAOConcreto();
-            System.out.println("aqui");
             operacao = gDao.insertGerente(new Gerente(nome, senha));
+        } else if(cargo.toLowerCase().equals("normal")){
+            GenericDAO cDao = new ComumDAOConcreto();
+            operacao = cDao.insert(new Comum(nome, senha));
         }
        
         try {

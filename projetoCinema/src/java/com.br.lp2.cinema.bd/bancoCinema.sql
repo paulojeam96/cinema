@@ -4,6 +4,13 @@ Create table atendente(
     senha varchar(15)
 );
 
+Create table comum(
+    pk int not null primary key generated always as identity(start with 1, increment by 1),
+    nome varchar(40),
+    senha varchar(40),
+    codigo int
+);
+
 Create table ator(
     pk int not null primary key generated always as identity(start with 1, increment by 1),
     nome varchar(20),
@@ -112,6 +119,7 @@ alter table sessao add FOREIGN KEY(id_listaIngressos) references listaingressos(
 insert into ator(nome, datanascimento, nacionalidade) values('Liam Neeson', '23/09/1966', 'americano'), ('Will Smith', '23/08/1977', 'philly'), ('Chris Hemsworth', '21/09/1966', 'asgardiano'), ('Oliver Queen', '23/09/1966', 'something else'), ('Tony Stark', '23/09/1980', 'marte');
 insert into gerente (nome, senha) values ('Paulo', 'paulo'), ('Gerson', 'gerson'), ('Cacique', 'cacique');
 insert into atendente (nome, senha) values ('Ana Paula', '123'), ('Ana Luiza', '123'), ('Jackson', '123');
+insert into comum(nome, senha, codigo) values ('Gabriel', 'comum', 1);
 insert into diretor (id, nome) values(1, 'Jubiraca'), (2, 'Tom Hanks'), (3, 'Roberto Brasileiro'), (4, 'Aurelio');
 insert into genero(id, nome) values(1, 'acao'), (2, 'comedia'), (3, 'aventura'), (4, 'terror'), (5, 'adulto'), (6, 'suspense'), (7, 'musical'), (8, 'comedia-romantica'), (9, 'documentario');
 insert into distribuidora(id, nome) values(1, 'paramount'), (2, 'disney'), (3, 'marvel'), (4, 'brasileirinhas'), (5, 'paramuitos');
@@ -123,5 +131,3 @@ insert into filme (id_diretor, id_genero, id_distribuidora, nome, classificacao,
 insert into InfoAtor(id_ator, id_filme, papel, part) values(1, 1, 'Brian Mills', 'protagonista'), (2, 3, 'Paulo Jeam', 'protagonista'), (3, 4, 'Fala Mansa', 'coadjuvante'), (4, 2, 'Tom Sawyer', 'protagonista');
 insert into ListaAtores(id_infoAtor) values(1), (2), (3), (4);
 insert into sessao (id_filme, id_sala, diaHora, legendado, id_ListaIngressos) values(3, 1, '23/07 14:00', true, 1), (1, 2, '23/07 15:00', false, 2), (2, 3, '23/07 16:00', true, 2);
-
-select * from distribuidora;

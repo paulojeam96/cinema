@@ -40,7 +40,8 @@ public class SalaDAOConcreto implements SalaDAO{
             pst.setInt(2, sala.getLotacao());
             pst.setInt(3, sala.getPoltEsp());
             pst.setString(4, sala.getEstadoSala());
-            resultado = pst.execute();
+            int r = pst.executeUpdate();
+            if(r>0) resultado = true;
         } catch(SQLException ex){
             ex.printStackTrace();
         }

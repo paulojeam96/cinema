@@ -5,8 +5,14 @@
  */
 package com.br.lp2.cinema.commands;
 
+import com.br.lp2.cinema.model.DAO.DiretorDAO;
+import com.br.lp2.cinema.model.DAO.DiretorDAOConcreto;
+import com.br.lp2.cinema.model.DAO.DistribuidoraDAO;
+import com.br.lp2.cinema.model.DAO.DistribuidoraDAOConcreto;
 import com.br.lp2.cinema.model.DAO.FilmeDAO;
 import com.br.lp2.cinema.model.DAO.FilmeDAOConcreto;
+import com.br.lp2.cinema.model.DAO.GeneroDAO;
+import com.br.lp2.cinema.model.DAO.GeneroDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Diretor;
 import com.br.lp2.cinema.model.javabeans.Distribuidora;
 import com.br.lp2.cinema.model.javabeans.Filme;
@@ -45,7 +51,15 @@ public class CriarFilme implements Command{
         dist = request.getParameter("distribuidora");
         
         FilmeDAO dao = new FilmeDAOConcreto();
-        Filme f = new Filme(new Diretor(diretor), new Genero(genero), nome, clas, ano, new Distribuidora(dist), situacao, duracao, idioma );
+        DiretorDAO dDao = new DiretorDAOConcreto();
+        GeneroDAO gDao = new GeneroDAOConcreto();
+        DistribuidoraDAO dsDao = new DistribuidoraDAOConcreto();
+        
+        Diretor dir = dDao.readDiretorByNome(this.diretor);
+        Genero gen = gDao.readGeneroByNome(this.genero);
+        Distribuidora ds = dsDao.readDistribuidoraByNome(dist);
+        
+        Filme f = new Filme(dir, gen, nome, clas, ano, ds, situacao, duracao, idioma );
         boolean operacao = false;
         operacao  = dao.insertFilme(f);
         

@@ -38,7 +38,11 @@ public class Login implements Command{
                 session.setAttribute("usuario", usuario);
                 session.setAttribute("ocupacao", "atendente");
                 response.sendRedirect("atendente.jsp");
-            } else {
+            } else if(cl.isNormal()){
+                session.setAttribute("usuario", usuario);
+                session.setAttribute("ocupacao", "normal");                
+                response.sendRedirect("comum.jsp");              
+            } else{
                 response.sendRedirect("index.jsp");
             }
         } catch (IOException iOException) {

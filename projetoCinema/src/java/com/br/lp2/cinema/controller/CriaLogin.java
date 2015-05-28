@@ -7,9 +7,12 @@ package com.br.lp2.cinema.controller;
 
 import com.br.lp2.cinema.model.DAO.AtendenteDAO;
 import com.br.lp2.cinema.model.DAO.AtendenteDAOConcreto;
+import com.br.lp2.cinema.model.DAO.ComumDAOConcreto;
+import com.br.lp2.cinema.model.DAO.GenericDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
+import com.br.lp2.cinema.model.javabeans.Comum;
 import com.br.lp2.cinema.model.javabeans.Gerente;
 import java.util.ArrayList;
 
@@ -61,7 +64,18 @@ public class CriaLogin {
     }
 
     public boolean isNormal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        GenericDAO cDao = new ComumDAOConcreto();
+        ArrayList<Object> lista = cDao.read();
+        
+        boolean v = false;
+        
+        for (Object obj : lista) {
+            Comum c = (Comum)obj;
+            if(c.getNome().equals(nome) && c.getSenha1().equals(senha)){
+                v = true;
+            }
+        }
+        return v;
     }
 
 }

@@ -8,9 +8,12 @@ package com.br.lp2.cinema.commands;
 import com.br.lp2.cinema.controller.User;
 import com.br.lp2.cinema.model.DAO.AtendenteDAO;
 import com.br.lp2.cinema.model.DAO.AtendenteDAOConcreto;
+import com.br.lp2.cinema.model.DAO.ComumDAOConcreto;
+import com.br.lp2.cinema.model.DAO.GenericDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Atendente;
+import com.br.lp2.cinema.model.javabeans.Comum;
 import com.br.lp2.cinema.model.javabeans.Gerente;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
@@ -44,27 +47,34 @@ public class AlterarUsuario implements Command {
         try {
             if (usuario == false || codUser == false || senhaUser == false) {
                 response.sendRedirect("fail.jsp");
-            } 
-            else {
+            } else {
                 if (cargoAtual.toLowerCase().equals("gerente")) {
                     GerenteDAO gDao = new GerenteDAOConcreto();
                     Gerente g = new Gerente(nome, senha);
                     operacao = gDao.updateGerente(codigo, g);
-                }
-                else if (cargoAtual.toLowerCase().equals("atendente")){
+                } else if (cargoAtual.toLowerCase().equals("atendente")) {
                     AtendenteDAO aDao = new AtendenteDAOConcreto();
                     Atendente a = new Atendente(nome, senha);
                     operacao = aDao.updateAtendente(codigo, a);
                 }
-                
-                if(operacao){
-                    response.sendRedirect("sucesso.jsp");
-                } else{
-                    response.sendRedirect("fail.jsp");
-                }
             }
-        }
-        catch (IOException iOException) {
+            
+            
+            if(cargoAtual.toLowerCase().equals("normal")){
+                GenericDAO cDao = new ComumDAOConcreto();
+                Comum c = new Comum(nome, senha);
+                operacao = cDao.update(codigo, c);
+            }
+
+            if (operacao) {
+                response.sendRedirect("sucesso.jsp");
+            } else {
+                response.sendRedirect("fail.jsp");
+            }
+            
+            
+            
+        } catch (IOException iOException) {
             iOException.getMessage();
         }
 

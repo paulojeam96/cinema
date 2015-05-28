@@ -49,6 +49,9 @@ public class User {
         this.cod = cod;
     }
     
+    
+    
+    
     public User(String nome, String cargo) {
         this.nome = nome;
         this.cargo = cargo;
@@ -102,6 +105,8 @@ public class User {
                 }
             }
         }
+        
+        
 
         return cg;
 

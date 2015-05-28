@@ -26,5 +26,5 @@ public interface GenericDAO {
     
     //DELETE
     public boolean delete(int id);
-    public boolean delete(Object object);
+    public boolean delete(String nome);
 }

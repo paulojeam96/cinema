@@ -8,6 +8,8 @@ package com.br.lp2.cinema.commands;
 import com.br.lp2.cinema.controller.User;
 import com.br.lp2.cinema.model.DAO.AtendenteDAO;
 import com.br.lp2.cinema.model.DAO.AtendenteDAOConcreto;
+import com.br.lp2.cinema.model.DAO.ComumDAOConcreto;
+import com.br.lp2.cinema.model.DAO.GenericDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
 import java.io.IOException;
@@ -39,6 +41,9 @@ public class DeletarUsuarioNome implements Command{
                 AtendenteDAO aDao = new AtendenteDAOConcreto();
                 operacao = aDao.deleteAtendente(nome);
                 break;
+            case "normal":
+                GenericDAO cDao = new ComumDAOConcreto();
+                operacao = cDao.delete(nome);
         }
         
         try {
