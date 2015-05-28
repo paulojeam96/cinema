@@ -5,6 +5,10 @@
  */
 package com.br.lp2.cinema.commands;
 
+import com.br.lp2.cinema.model.DAO.FilmeDAO;
+import com.br.lp2.cinema.model.DAO.FilmeDAOConcreto;
+import com.br.lp2.cinema.model.DAO.SalaDAO;
+import com.br.lp2.cinema.model.DAO.SalaDAOConcreto;
 import com.br.lp2.cinema.model.DAO.SessaoDAO;
 import com.br.lp2.cinema.model.DAO.SessaoDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Filme;
@@ -21,34 +25,34 @@ import javax.servlet.http.HttpServletResponse;
  * @author Paulo
  */
 public class MudarSessao implements Command{
-    private int codigo;
-    private int filme;
+    private String legenda;
+    private String horario;
     private int sala;
-    private long horario;
-    private boolean legenda = false;
-    private int listadeingressos;
+    private String filme;
+    private int codigo;
+    
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
         codigo = Integer.parseInt(request.getParameter("codigo"));
-        filme = Integer.parseInt(request.getParameter("filme"));
+        filme = request.getParameter("filme");
         sala = Integer.parseInt(request.getParameter("sala"));
-        horario = Long.parseLong(request.getParameter("horario"));
-        String legendado = request.getParameter("legendado");
-        listadeingressos = Integer.parseInt(request.getParameter("listadeingressos"));
-        boolean operacao = false;
-        
-        if(legendado.equals("Sim")){
-            legenda = true;
+        horario = request.getParameter("horario");
+        legenda = request.getParameter("legenda");
+        boolean legendado = false;
+        if(legenda.equals("legendado")){
+            legendado = true;
         }
         
-         SessaoDAO sDao = new SessaoDAOConcreto();
-        Filme f = new Filme(filme);
-        Sala sl = new Sala(sala);
-        Time t = new Time(horario);
-        ListaIngresso li = new ListaIngresso(listadeingressos);
-        Sessao s = new Sessao(f, sl, t, legenda, li);
-        operacao = sDao.insertSessao(s);
+        SessaoDAO sDao = new SessaoDAOConcreto();
+        FilmeDAO fDao = new FilmeDAOConcreto();
+        SalaDAO salaDao = new SalaDAOConcreto();
+        
+        Filme f = fDao.readFilmeByNome(filme);
+        Sala s = salaDao.readSalaById(sala);
+        
+        Sessao sessao = new Sessao(f, s, horario, legendado);
+        boolean operacao = sDao.updateSessao(codigo, sessao);
         
         try {
             if (operacao) {

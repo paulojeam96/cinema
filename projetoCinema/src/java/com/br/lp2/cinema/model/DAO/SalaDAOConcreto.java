@@ -123,27 +123,13 @@ public class SalaDAOConcreto implements SalaDAO{
         return res;
     }
 
-    @Override
-    public boolean deleteSala(Sala sala) {
-        boolean resultado=false;
-        try {
-            String sql = "DELETE FROM sala WHERE estados=?";
-            pst = connection.prepareStatement(sql);
-            pst.setString(1,sala.getEstadoSala());
-            int r = pst.executeUpdate();
-            if(r>0) resultado = true;
-            else resultado = false;
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return resultado;
-    }
+    
 
     @Override
     public boolean deleteSala(int id) {
         boolean res = false;
         try{
-            String sql = "DELETE FROM sala WHERE num=?";
+            String sql = "DELETE FROM sala WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

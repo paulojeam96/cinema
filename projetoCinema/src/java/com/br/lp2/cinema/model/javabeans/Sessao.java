@@ -17,7 +17,7 @@ public class Sessao implements Serializable{
     private int pk;
     private Sala sala;
     private Filme filme;
-    private Date diaHora;
+    private String diaHora;
     private boolean legendado;
     private ListaIngresso ingressos;
 
@@ -26,21 +26,19 @@ public class Sessao implements Serializable{
     }
 
     
-    public Sessao(int pk, Sala sala, Filme filme, Date diaHora, boolean legendado) {
+    public Sessao(int pk, Sala sala, Filme filme, String diaHora, boolean legendado) {
         this.pk = pk;
         this.sala = sala;
         this.filme = filme;
         this.diaHora = diaHora;
         this.legendado = legendado;
-        ingressos = new ListaIngresso();
     }
 
-    public Sessao(Filme filme, Sala sala, Date diaHora, boolean legendado, ListaIngresso lista) {
+    public Sessao(Filme filme, Sala sala, String diaHora, boolean legendado) {
         this.filme = filme;
         this.sala = sala;
         this.diaHora = diaHora;
         this.legendado = legendado;
-        this.ingressos = lista;
     }
     
     public int getPk() {
@@ -67,11 +65,11 @@ public class Sessao implements Serializable{
         this.filme = filme;
     }
 
-    public Date getDiaHora() {
+    public String getDiaHora() {
         return diaHora;
     }
 
-    public void setDiaHora(Date diaHora) {
+    public void setDiaHora(String diaHora) {
         this.diaHora = diaHora;
     }
 
@@ -89,7 +87,7 @@ public class Sessao implements Serializable{
    
     @Override
     public String toString() {
-        return "Sessao{" + "pk=" + pk + ", sala=" + sala + ", filme=" + filme + ", diaHora=" + diaHora + ", legendado=" + legendado + '}';
+        return "pk=" + pk + "," + sala + ", Filme = " + filme + ", diaHora=" + diaHora + ", legendado=" + legendado + ", ingressos=" + ingressos;
     }
     
     

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public interface ListaIngressoDAO {
     //CRUD
     //C - CREATE
-    public boolean insertListaIngresso(ListaIngresso listaIngresso);
+    public boolean insertIngresso(int ingresso);
     
     //R - READ
     public ArrayList<ListaIngresso> readListaIngresso();
@@ -23,9 +23,8 @@ public interface ListaIngressoDAO {
     
     
     //U - UPDATE
-    public boolean updateListaIngresso(int id, ListaIngresso listaIngresso);
+    public boolean updateListaIngresso(int id, int listaIngresso);
     
     //D - DELETE
-    public boolean deleteListaIngresso(ListaIngresso listaIngresso);
     public boolean deleteListaIngresso(int id);
 }

@@ -6,6 +6,7 @@
 package com.br.lp2.cinema.model.DAO;
 
 import com.br.lp2.cinema.model.ConnectionFactory.ConnectionFactory;
+import com.br.lp2.cinema.model.javabeans.Ingresso;
 import com.br.lp2.cinema.model.javabeans.ListaIngresso;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,28 +20,31 @@ import java.util.logging.Logger;
  *
  * @author Paulo
  */
-public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
-    
+public class ListaIngressoDAOConcreto implements ListaIngressoDAO {
+
     private Connection connection;
     private PreparedStatement pst;
     private ResultSet rs;
-    
-    public ListaIngressoDAOConcreto(){
+
+    public ListaIngressoDAOConcreto() {
         ConnectionFactory cf = new ConnectionFactory();
         connection = cf.getConnection("derby");
     }
 
     @Override
-    public boolean insertListaIngresso(ListaIngresso listaIngresso) {
+    public boolean insertIngresso(int ingresso) {
         boolean resultado = false;
-        try{
-            String sql = "INSERT INTO listaIngresso(nome) VALUES (?)";
+        try {
+            String sql = "INSERT INTO ListaIngressos(id_ingresso) VALUES (?)";
             pst = connection.prepareStatement(sql);
-            pst.setObject(1, listaIngresso.getLista());
-            resultado = pst.execute();
-        } catch(SQLException ex){
+            pst.setInt(1, ingresso);
+            int r = pst.executeUpdate();
+            if (r > 0) {
+                resultado = true;
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(ListaIngressoDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
-           
+
         }
         return resultado;
     }
@@ -48,16 +52,16 @@ public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
     @Override
     public ArrayList<ListaIngresso> readListaIngresso() {
         ArrayList<ListaIngresso> lista = new ArrayList<>();
-        try{
-            String sql = "SELECT * FROM  listaIngresso";
+        try {
+            String sql = "SELECT * FROM ListaIngressos INNER JOIN ingresso ON ListaIngressos.id_ingresso = ingresso.id WHERE ingresso.id=?";
             pst = connection.prepareStatement(sql);
-            
+            IngressoDAO iDao = new IngressoDAOConcreto();
             rs = pst.executeQuery();
             
-                ListaIngresso a = new ListaIngresso();
+            ListaIngresso a = new ListaIngresso();
                 lista.add(a);
-            
-        } catch (SQLException ex){
+
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return lista;
@@ -66,12 +70,12 @@ public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
     @Override
     public ListaIngresso readListaIngressoById(int id) {
         ListaIngresso a = null;
-        
+
         try {
-            String sql = "SELECT * FROM listaIngresso WHERE pk=?";
+            String sql = "SELECT * FROM ListaIngressos WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
-            rs=pst.executeQuery();
+            rs = pst.executeQuery();
             while (rs.next()) {
                 a = new ListaIngresso();
             }
@@ -82,53 +86,41 @@ public class ListaIngressoDAOConcreto implements ListaIngressoDAO{
     }
 
     @Override
-    public boolean updateListaIngresso(int id, ListaIngresso listaIngresso) {
-        boolean res =false;
-        
-        try{
+    public boolean updateListaIngresso(int id, int listaIngresso) {
+        boolean res = false;
+
+        try {
             String sql = "UPDATE listaIngresso SET nome=? WHERE id=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(2, id);
             int r = pst.executeUpdate();
-            if(r > 0) res = true;
-            else res = false;
-        } catch (SQLException ex){
+            if (r > 0) {
+                res = true;
+            } else {
+                res = false;
+            }
+        } catch (SQLException ex) {
             Logger.getLogger(ListaIngressoDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
     }
 
     @Override
-    public boolean deleteListaIngresso(ListaIngresso listaIngresso) {
-        boolean resultado=false;
+    public boolean deleteListaIngresso(int listaIngresso) {
+        boolean resultado = false;
         try {
             String sql = "DELETE FROM listaIngresso WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1,listaIngresso.getPk());
+            pst.setInt(1, listaIngresso);
             int r = pst.executeUpdate();
-            if(r>0) resultado = true;
-            else resultado = false;
+            if (r > 0) {
+                resultado = true;
+            } else {
+                resultado = false;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AtorDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultado;
     }
-
-    @Override
-    public boolean deleteListaIngresso(int id) {
-        boolean res = false;
-        try{
-            String sql = "DELETE FROM listaIngresso WHERE id=?";
-            pst = connection.prepareStatement(sql);
-            pst.setInt(1, id);
-            int r = pst.executeUpdate();
-            if (r > 0) res = true;
-            else res = false;
-        } catch (SQLException ex){
-            ex.printStackTrace();
-        }
-        return res;
-    
-    }
-    
 }

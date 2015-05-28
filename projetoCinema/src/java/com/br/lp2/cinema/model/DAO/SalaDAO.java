@@ -26,6 +26,5 @@ public interface SalaDAO {
     public boolean updateSala(int id, Sala sala);
     
     //D - DELETE
-    public boolean deleteSala(Sala sala);
     public boolean deleteSala(int id);
 }

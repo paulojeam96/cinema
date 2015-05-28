@@ -20,7 +20,10 @@ public interface SessaoDAO {
     
     //R - READ
     public ArrayList<Sessao> readSessoes();
-    public Sessao readSessaoByHora(Date diaHora);
+    public Sessao readSessaoByHora(String diaHora);
+    public Sessao readSessaoByFilme(String nome);
+    public Sessao readSessaoBySala(int sala);
+    public Sessao readSessaoByPk(int id);
     
     //U - UPDATE
     public boolean updateSessao(int id, Sessao sessao);

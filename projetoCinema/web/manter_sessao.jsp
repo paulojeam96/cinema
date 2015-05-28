@@ -19,9 +19,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="css/body.css"/>
         <link rel="stylesheet" type="text/css" href="css/section.css"/>
         <style>
-            .bloco1{
-                padding-bottom: 23%;
-            }
+
         </style>
     </head>
     <body>
@@ -38,25 +36,24 @@ and open the template in the editor.
         </header>
 
         <section>
-            <fieldset class="bloco1">
+            <fieldset>
                 <p>Buscar Sessão:</p><br>
                 <form name="command" action="FrontController" method="POST">
-                    <input type="text" name="sessao" placeholder="Sessão"  required/></br>
+                    <input type="number" name="numero" placeholder="Sessão"  required/></br>
                     <input type="hidden" name="command" value="BuscarSessao"/>
-                    <input type="button" value="Buscar"/>
+                    <input type="submit" value="Buscar"/>
+                    <p>${sessaoPk}</p>
                 </form>
             </fieldset>
 
             <fieldset>
                 <p>Criar Sessão:</p><br>
                 <form name="command" action="FrontController" method="POST">
-                    <input type="number" placeholder="Filme" name="filme" required/><br>
+                    <input type="number" placeholder="numero" name="numero"required /><br>
+                    <input type="text" placeholder="Filme" name="filme" required/><br>
                     <input type="number" placeholder="Sala" name="sala" required/><br>
                     <input type="text" placeholder="Horário" name="horario" required/><br>
-                    <p>Legendado:</p>
-                    Não: <input type="radio" name="legendado" value="nao"/>
-                    Sim: <input type="radio" name="legendado" value="sim"/>
-                    <input type="number" name="listaingressos" placeholder="Lista De Ingressos"/>
+                    <input type="text" placeholder="Legendado ou Dublado?" name="legenda" required/><br>
                     <input type="hidden" name="command" value="CriarSessao"/>
                     <input type="submit" value="Criar"/>
                 </form>
@@ -67,13 +64,10 @@ and open the template in the editor.
                 <p><a id="3">Mudar Sessão:</a></p><br>
                 <form name="command" action="FrontController" method="POST">
                     <input type="number" placeholder="Codigo da Sessao" name="codigo" required/></br></br>
-                    <input type="number" placeholder="Filme" name="filme" required/><br>
+                    <input type="text" placeholder="Filme" name="filme" required/><br>
                     <input type="number" placeholder="Sala" name="sala" required/><br>
                     <input type="text" placeholder="Horário" name="horario" required/><br>
-                    <p>Legendado:</p>
-                    Não:<input type="radio" name="legendado" value="Não"/><br>
-                    Sim:<input type="radio" name="legendado" value="Sim"/><br>
-                    <input type="number" name="listaingressos" placeholder="Lista de Ingressos" required/>
+                    <input type="text" placeholder="Legendado ou Dublado?" name="legenda" required/><br>
                     <input type="hidden" name="command" value="MudarSessao"/>
                     <input type="submit" value="Mudar"/>
                 </form>
