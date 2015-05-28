@@ -18,19 +18,18 @@
     <body>
         <header>
 
-            <c:if test="${ocupacao != 'normal'}">
-                <c:redirect url="index.jsp"/>
+            <c:choose>
+                <c:when test="${ocupacao != 'normal'}">
+                    <c:import url="headerComum.jsp"/>
+                </c:when>
+                <c:otherwise>
+                    <c:redirect url="index.jsp"/>
+                </c:otherwise>
+            </c:choose> 
+                
             </c:if>    
 
-            <div id='cssmenu'>
-                <ul>
-                    <li><a href='atendente.jsp'><span>Home</span></a></li>
-
-                    <li><a href='comprar_ingresso.jsp'><span>Comprar Ingresso</span></a></li>
-                    <li><a href='#'><span>${ocupacao} - ${usuario}</span></a></li>
-                    <li class='last'><a href='index.jsp'><span>Sair</span></a></li>
-                </ul>
-            </div>
+            
         </header>
 
 

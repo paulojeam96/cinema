@@ -54,8 +54,8 @@ and open the template in the editor.
                     <input type="number" placeholder="Sala" name="sala" required/><br>
                     <input type="text" placeholder="Horário" name="horario" required/><br>
                     <p>Legendado:</p>
-                    Não: <input type="radio" name="legendado" value="Não"/>
-                    Sim: <input type="radio" name="legendado" value="Sim"/>
+                    Não: <input type="radio" name="legendado" value="nao"/>
+                    Sim: <input type="radio" name="legendado" value="sim"/>
                     <input type="number" name="listaingressos" placeholder="Lista De Ingressos"/>
                     <input type="hidden" name="command" value="CriarSessao"/>
                     <input type="submit" value="Criar"/>

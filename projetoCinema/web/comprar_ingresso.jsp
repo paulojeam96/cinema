@@ -20,14 +20,9 @@
             <c:redirect url="ControladorIngressos?command=init"/>
         </c:if>
         <header>
-            <c:choose>
-                <c:when test="${ocupacao.equals('atendente')}">
-                    <c:import url="headerAtendente.jsp"/>
-                </c:when>
-                <c:otherwise>
-                    <c:redirect url="FrontController?command=Logout" />
-                </c:otherwise>
-            </c:choose>
+            
+            <c:import url="headerComum.jsp"/>
+            
         </header>
         <section>
             
@@ -60,7 +55,7 @@
 
                 <c:forEach var="i" begin="0" end="59">
                     <c:if test="${i%10==0}"> <br> </c:if>
-                    <img alt="cadeira" src="img/cadeira${cadeiras.get(i)+1}.png" style="width:60px" id="${i}" onclick="window.location = 'ControladorIngressos?command=selecionar.cad' + this.id"/>
+                    <img alt="cadeira" src="img/cadeira${cadeiras.get(i)+1}.png" style="width:47px" id="${i}" onclick="window.location = 'ControladorIngressos?command=selecionar.cad' + this.id"/>
                 </c:forEach>
 
 

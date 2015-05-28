@@ -35,8 +35,11 @@ public class CriarSessao implements Command{
         String legendado = request.getParameter("legendado");
         listaingressos = Integer.parseInt(request.getParameter("listaingressos"));
         boolean operacao = false;
-        if(legendado.equals("Sim")){
+        
+        if(legendado.equals("sim")){
             legenda = true;
+        } else {
+            legenda = false;
         }
         
         SessaoDAO sDao = new SessaoDAOConcreto();
