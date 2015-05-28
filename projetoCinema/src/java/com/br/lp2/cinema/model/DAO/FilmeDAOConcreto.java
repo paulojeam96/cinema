@@ -38,20 +38,21 @@ public class FilmeDAOConcreto implements FilmeDAO {
     public boolean insertFilme(Filme filme) {
         boolean resultado = false;
         try {
-            String sql = "INSERT INTO filme(id_diretor, id_genero, nome, classificacao, ano, id_distribuidora, situacao, duracao, idioma) VALUES (?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO filme(id_diretor, id_genero,id_distribuidora, nome, classificacao, ano,duracao, situacao, idioma) VALUES (?,?,?,?,?,?,?,?,?)";
             pst = connection.prepareStatement(sql);
-            pst.setInt(1, filme.getDiretor().getPk());
-            pst.setInt(2, filme.getGenero().getId());
-            pst.setString(3, filme.getNome());
-            pst.setInt(4, filme.getClassificacao());
-            pst.setInt(5, filme.getAno());
-            pst.setObject(6, filme.getDist().getId());
-            pst.setString(7, filme.getSituacao());
-            pst.setInt(8, filme.getDuracao());
+            pst.setInt(1, filme.getId_diretor());
+            pst.setInt(2, filme.getId_genero());
+            pst.setObject(3, filme.getId_distribuidora());
+            pst.setString(4, filme.getNome());
+            pst.setInt(5, filme.getClassificacao());
+            pst.setInt(6, filme.getAno());
+            pst.setInt(7, filme.getDuracao());
+            pst.setString(8, filme.getSituacao());
             pst.setString(9, filme.getIdioma());
-            resultado = pst.execute();
+            int r = pst.executeUpdate();
+            if(r > 0) resultado = true;
         } catch (SQLException ex) {
-            Logger.getLogger(FilmeDAOConcreto.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
         return resultado;
     }
@@ -112,7 +113,7 @@ public class FilmeDAOConcreto implements FilmeDAO {
             InfoAtorDAO infoator = new InfoAtorDAOConcreto();
             DistribuidoraDAO distribuidora = new DistribuidoraDAOConcreto();
             while (rs.next()) {
-                Filme f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")),rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
+                Filme f = new Filme(rs.getInt("pk"), (Diretor) diretor.readDiretorById(rs.getInt("id_diretor")), (Genero) genero.readGeneroById(rs.getInt("id_genero")), rs.getString("nome"), rs.getInt("classificacao"), rs.getInt("ano"), (Distribuidora) distribuidora.readDistribuidoraById(rs.getInt("id_distribuidora")), rs.getString("situacao"), rs.getInt("duracao"), rs.getString("idioma"));
                 filmes.add(f);
             }
         } catch (SQLException sQLException) {
@@ -214,14 +215,14 @@ public class FilmeDAOConcreto implements FilmeDAO {
         try {
             String sql = "UPDATE filme SET id_diretor=?, id_genero=?, id_distribuidora=?, nome=?, classificacao=?, ano=?, duracao=?, situacao=?, idioma=? WHERE pk=?";
             pst = connection.prepareStatement(sql);
-            pst.setObject(1, filme.getDiretor().getPk());
-            pst.setObject(2, filme.getGenero().getId());
-            pst.setObject(3, filme.getDist().getId());
+            pst.setObject(1, filme.getId_diretor());
+            pst.setObject(2, filme.getId_genero());
+            pst.setObject(3, filme.getId_distribuidora());
             pst.setString(4, filme.getNome());
             pst.setInt(5, filme.getClassificacao());
             pst.setInt(6, filme.getAno());
             pst.setInt(7, filme.getDuracao());
-            pst.setObject(8, filme.getSituacao().toString());
+            pst.setString(8, filme.getSituacao());
             pst.setString(9, filme.getIdioma());
             pst.setInt(10, id);
             int r = pst.executeUpdate();
@@ -255,7 +256,7 @@ public class FilmeDAOConcreto implements FilmeDAO {
     public boolean deleteFilme(int id) {
         boolean res = false;
         try {
-            String sql = "DELETE FROM filme WHERE id=?";
+            String sql = "DELETE FROM filme WHERE pk=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id);
             int r = pst.executeUpdate();

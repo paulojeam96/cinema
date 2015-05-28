@@ -56,6 +56,17 @@
                             <p> ID: ${funcionario.getPk()}</p>
                         </form>
                     </fieldset>
+                    <fieldset>
+                        <h2>Buscar Usuario:</h2>
+                        <form action="FrontController" method="POST">
+                            Nome:<input type="text" name="nome" placeholder="Nome do Usuario" required/><br>
+                            <input type="hidden" name="command" value="BuscaComum"/><br>
+                            <input type="submit" value="Buscar Usuario"/><br>
+                            <p> Nome: ${comum.getNome()}</p>
+                            <p> Senha: ${comum.getSenha1()}</p>
+                            <p> ID: ${comum.getCodigo()}</p>
+                        </form>
+                    </fieldset>
                 </div>
             </section>
     </body>

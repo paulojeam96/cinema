@@ -10,11 +10,14 @@ import java.io.Serializable;
 public class Filme implements Serializable{
     private int pk;
     private Diretor diretor;
+    private int id_diretor;
     private Genero genero;
+    private int id_genero;
     private String nome;
     private int classificacao;
     private int ano;
     private Distribuidora dist;
+    private int id_distribuidora;
     private String situacao;
     private int duracao;
     private String idioma;
@@ -50,6 +53,43 @@ public class Filme implements Serializable{
         this.idioma = idioma;
         
     }
+    public Filme(int diretor, int genero, String nome, int classificacao, int ano, int dist, String situacao, int duracao, String idioma) {
+        
+        this.id_diretor = diretor;
+        this.id_genero = genero;
+        this.nome = nome;
+        this.classificacao = classificacao;
+        this.ano = ano;
+        this.id_distribuidora = dist;
+        this.situacao = situacao;
+        this.duracao = duracao;
+        this.idioma = idioma;
+        
+    }
+
+    public int getId_diretor() {
+        return id_diretor;
+    }
+
+    public void setId_diretor(int id_diretor) {
+        this.id_diretor = id_diretor;
+    }
+
+    public int getId_genero() {
+        return id_genero;
+    }
+
+    public void setId_genero(int id_genero) {
+        this.id_genero = id_genero;
+    }
+
+    public int getId_distribuidora() {
+        return id_distribuidora;
+    }
+
+    public void setId_distribuidora(int id_distribuidora) {
+        this.id_distribuidora = id_distribuidora;
+    }    
 
     public int getPk() {
         return pk;

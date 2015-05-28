@@ -39,7 +39,7 @@ public class Genero implements Serializable{
 
     @Override
     public String toString() {
-        return "[pk: "+this.id+","+"Nome: "+this.nome+"]";
+        return this.nome;
     }
     
     

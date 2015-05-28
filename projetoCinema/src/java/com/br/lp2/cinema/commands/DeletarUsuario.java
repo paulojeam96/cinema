@@ -12,7 +12,9 @@ import com.br.lp2.cinema.model.DAO.ComumDAOConcreto;
 import com.br.lp2.cinema.model.DAO.GenericDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAO;
 import com.br.lp2.cinema.model.DAO.GerenteDAOConcreto;
+import com.br.lp2.cinema.model.javabeans.Comum;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Paulo
  */
-public class DeletarUsuario implements Command{
+public class DeletarUsuario implements Command {
+
     private int codigo;
     private String cargo;
     private String nome;
@@ -30,10 +33,10 @@ public class DeletarUsuario implements Command{
         codigo = Integer.parseInt(request.getParameter("cod"));
         cargo = request.getParameter("cargo");
         nome = request.getParameter("nome");
-        
+
         User u = new User(nome, cargo, codigo);
         boolean operacao = false;
-        
+
         switch (cargo.toLowerCase()) {
             case "gerente":
                 GerenteDAO gDao = new GerenteDAOConcreto();
@@ -47,7 +50,7 @@ public class DeletarUsuario implements Command{
                 GenericDAO cDao = new ComumDAOConcreto();
                 operacao = cDao.delete(codigo);
         }
-        
+
         try {
             if (operacao) {
                 response.sendRedirect("sucesso.jsp");
@@ -58,5 +61,5 @@ public class DeletarUsuario implements Command{
             iOException.getMessage();
         }
     }
-    
+
 }

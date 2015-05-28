@@ -66,10 +66,7 @@ public class CriarUsuario implements Command {
         } else if (cargo.toLowerCase().equals("gerente")) {
             GerenteDAO gDao = new GerenteDAOConcreto();
             operacao = gDao.insertGerente(new Gerente(nome, senha));
-        } else if(cargo.toLowerCase().equals("normal")){
-            GenericDAO cDao = new ComumDAOConcreto();
-            operacao = cDao.insert(new Comum(nome, senha));
-        }
+        } 
        
         try {
             if (operacao) {

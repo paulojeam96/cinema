@@ -30,6 +30,7 @@ public class BuscarSala implements Command{
         SalaDAO dao = new SalaDAOConcreto();
         Sala sala  = dao.readSalaById(numero);
         
+        
         request.getSession().setAttribute("sala", sala);
         RequestDispatcher rd = request.getRequestDispatcher("manter_sala.jsp");
         try {

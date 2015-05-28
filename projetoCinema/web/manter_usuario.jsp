@@ -63,6 +63,17 @@ and open the template in the editor.
                         
                     </form>
                 </fieldset>
+                <fieldset>
+                    <h2>Criar Usuario Comum:</h2>
+                    <form action="FrontController" method="POST">
+                        Nome:<input type="text" name="nome" placeholder="Nome" required/><br>
+                        Senha:<input type="password" name="password" placeholder="senha" required/><br>
+                        Repita a senha:<input type="password" name="password2" placeholder="confirma Senha" required/><br>
+                        Codigo Usuario:<input type="number" name="cod" value="Codigo do Usuario"/>
+                        <input type="hidden" name="command" value="CriarUsuarioComum"/>
+                        <input type="submit" value="Criar Usuario"/>
+                    </form>
+                </fieldset>
             </div>
 
             <div id="3">

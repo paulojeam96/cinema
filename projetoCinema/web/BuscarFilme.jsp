@@ -38,8 +38,17 @@
                     <input type="hidden" name="command" value="BuscarFilmeNome"/>
                     <input type="submit"  value="Buscar Filme"/>
 
-                    <p>${nomeFilme}</p>
-                    
+                        <p>Nome:${nomeFilme.getNome()}</p>
+                        <p>Idioma:${nomeFilme.getIdioma()}</p>
+                        <p>Situacao: ${nomeFilme.getSituacao()}</p>
+                        <p>Genero: ${nomeFilme.getGenero()}</p>
+                        <p>Distribuidora: ${nomeFilme.getDist()}</p>
+                        <p>Diretor: ${nomeFilme.getDiretor()}</p>
+                        <p>Classificação: ${nomeFilme.getClassificacao()}</p>
+                        <p>Ano: ${nomeFilme.getAno()}</p>
+                        <p>Duração: ${nomeFilme.getDuracao()}</p>
+
+
 
                 </form>
             </fieldset>
@@ -49,12 +58,12 @@
                     <p>Gênero: <input type="text" name="nome" placeholder="Gênero"/></p>
                     <input type="hidden" name="command" value="BuscaFilmeGen"/>
                     <input type="submit"  value="Buscar Filme"/>
-                    
+
                     <c:forEach var="i" items="${filmesGen}">
                         <p>${i.getNome()}</p>
                     </c:forEach>
-                        
-                    
+
+
                 </form>
             </fieldset>            
             <fieldset>
@@ -66,7 +75,7 @@
                     <c:forEach var="filmes" items="${fDist}">
                         <p>${filmes.getNome()}</p>
                     </c:forEach>
-                    
+
                 </form>
             </fieldset>
             <fieldset>
@@ -79,7 +88,7 @@
                         <p>${diretor.getNome()}</p>
                         <p>${diretor}</p>
                     </c:forEach>
-                    
+
                 </form>
             </fieldset>
             <fieldset>
@@ -88,7 +97,7 @@
                     <p>ID: <input type="number" name="numero" placeholder="Id do Filme"/></p>
                     <input type="hidden" name="command" value="BuscarFilmeID"/>
                     <input type="submit"  value="Buscar Filme"/>
-                    
+
                     <p>${idFilme}</p>
                 </form>
             </fieldset>

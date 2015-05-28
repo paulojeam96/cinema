@@ -15,12 +15,12 @@ import java.io.Serializable;
 public class Diretor implements Serializable{
     private String nome;
     private  int pk; //Identificador, Primary Key
-    private String id;
+    private int id;
     
     
 
 
-    public Diretor(String nome, String id, int pk) {
+    public Diretor(String nome, int id, int pk) {
         this.nome = nome;
         this.id = id;
         this.pk = pk;
@@ -38,13 +38,13 @@ public class Diretor implements Serializable{
         return pk;
     }
     
-    public String getId(){
+    public int getId(){
         return this.id;
     }
 
     @Override
     public String toString() {
-        return "[Nome: "+this.nome+","+"PK: "+this.pk+"]";
+        return this.nome;
     }
     
     

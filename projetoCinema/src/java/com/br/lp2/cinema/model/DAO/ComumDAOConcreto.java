@@ -31,13 +31,14 @@ public class ComumDAOConcreto implements GenericDAO{
     @Override
     public boolean insert(Object object) {
         Comum comum = (Comum)object;
+        System.out.println("AQUI!!!");
         boolean resultado = false;
         try {
             String sql = "INSERT INTO comum (nome,senha,codigo) VALUES(?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, comum.getNome());
             pst.setString(2, comum.getSenha1());
-            pst.setInt(2, comum.getCodigo());
+            pst.setInt(3, comum.getCodigo());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
         } catch (SQLException sQLException) {
@@ -120,7 +121,7 @@ public class ComumDAOConcreto implements GenericDAO{
     public boolean delete(int id) {
         boolean resultado = false;
         try {
-            String sql = "DELETE FROM comum WHERE pk=?";
+            String sql = "DELETE FROM comum WHERE codigo=?";
             pst = connection.prepareStatement(sql);
             pst.setInt(1, id); 
             int r = pst.executeUpdate();

@@ -38,7 +38,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
             String sql = "INSERT INTO diretor(nome, id, pk) VALUES (?,?,?)";
             pst = connection.prepareStatement(sql);
             pst.setString(1, diretor.getNome());
-            pst.setString(2, diretor.getId());
+            pst.setInt(2, diretor.getId());
             pst.setInt(3, diretor.getPk());
             resultado = pst.execute();
         } catch(SQLException ex){
@@ -56,7 +56,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
             
             rs = pst.executeQuery();
             while(rs.next()){
-                Diretor d = new Diretor( rs.getString("nome"), rs.getString("id"), rs.getInt("pk"));
+                Diretor d = new Diretor( rs.getString("nome"), rs.getInt("id"), rs.getInt("pk"));
                 lista.add(d);
             }
         } catch (SQLException ex){
@@ -75,7 +75,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
             pst.setInt(1, id);
             rs=pst.executeQuery();
             while (rs.next()) {
-            a = new Diretor(rs.getString("nome"), rs.getString("id"), rs.getInt("pk") );
+            a = new Diretor(rs.getString("nome"), rs.getInt("id"), rs.getInt("pk") );
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -93,7 +93,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
             pst.setString(1, nome);
             rs = pst.executeQuery();
             while(rs.next()){
-                a = new Diretor(rs.getString("nome"), rs.getString("id"), rs.getInt("pk"));
+                a = new Diretor(rs.getString("nome"), rs.getInt("id"), rs.getInt("pk"));
            }
         } catch( SQLException ex){
             ex.printStackTrace();
@@ -124,7 +124,7 @@ public class DiretorDAOConcreto implements DiretorDAO{
         try {
             String sql = "DELETE FROM diretor WHERE id=?";
             pst = connection.prepareStatement(sql);
-            pst.setString(1,diretor.getId());
+            pst.setInt(1,diretor.getId());
             int r = pst.executeUpdate();
             if(r>0) resultado = true;
             else resultado = false;

@@ -5,8 +5,14 @@
  */
 package com.br.lp2.cinema.commands;
 
+import com.br.lp2.cinema.model.DAO.DiretorDAO;
+import com.br.lp2.cinema.model.DAO.DiretorDAOConcreto;
+import com.br.lp2.cinema.model.DAO.DistribuidoraDAO;
+import com.br.lp2.cinema.model.DAO.DistribuidoraDAOConcreto;
 import com.br.lp2.cinema.model.DAO.FilmeDAO;
 import com.br.lp2.cinema.model.DAO.FilmeDAOConcreto;
+import com.br.lp2.cinema.model.DAO.GeneroDAO;
+import com.br.lp2.cinema.model.DAO.GeneroDAOConcreto;
 import com.br.lp2.cinema.model.javabeans.Diretor;
 import com.br.lp2.cinema.model.javabeans.Distribuidora;
 import com.br.lp2.cinema.model.javabeans.Filme;
@@ -27,10 +33,9 @@ public class AtualizarFilme implements Command{
     private int duracao;
     private int ano;
     private int clas;
-    private int diretor;
-    private int genero;
-    private int dist;
-    private int la;
+    private String diretor;
+    private String genero;
+    private String dist;
     private int codF;
 
     @Override
@@ -41,15 +46,26 @@ public class AtualizarFilme implements Command{
         duracao = Integer.parseInt(request.getParameter("duracao"));
         ano = Integer.parseInt(request.getParameter("ano"));
         clas = Integer.parseInt(request.getParameter("classificacao"));
-        diretor = Integer.parseInt(request.getParameter("diretor"));
-        genero = Integer.parseInt(request.getParameter("genero"));
-        dist = Integer.parseInt(request.getParameter("distribuidora"));
-        la = Integer.parseInt(request.getParameter("listaatores"));
+        diretor = request.getParameter("diretor");
+        genero = request.getParameter("genero");
+        dist = request.getParameter("distribuidora");
         codF = Integer.parseInt(request.getParameter("codF"));
        
-        
         FilmeDAO dao = new FilmeDAOConcreto();
-        Filme f = new Filme(new Diretor(diretor), new Genero(genero), nome, clas, ano, new Distribuidora(dist), situacao, duracao, idioma );
+        DiretorDAO dDao = new DiretorDAOConcreto();
+        GeneroDAO gDao = new GeneroDAOConcreto();
+        DistribuidoraDAO dsDao = new DistribuidoraDAOConcreto();
+        
+        Diretor dir = dDao.readDiretorByNome(diretor);
+        Genero gen = gDao.readGeneroByNome(genero);
+        Distribuidora ds = dsDao.readDistribuidoraByNome(dist);
+        
+        int id_diretor = dir.getPk();
+        int id_genero = gen.getId();
+        int id_distribuidora = ds.getId();
+        
+        
+        Filme f = new Filme(id_diretor, id_genero, nome, clas, ano, id_distribuidora, situacao, duracao, idioma);
         boolean operacao = false;
         operacao  = dao.updateFilme(codF, f);
         

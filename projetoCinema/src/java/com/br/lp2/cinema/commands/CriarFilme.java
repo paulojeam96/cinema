@@ -55,13 +55,16 @@ public class CriarFilme implements Command{
         GeneroDAO gDao = new GeneroDAOConcreto();
         DistribuidoraDAO dsDao = new DistribuidoraDAOConcreto();
         
-        Diretor dir = dDao.readDiretorByNome(this.diretor);
-        Genero gen = gDao.readGeneroByNome(this.genero);
+        Diretor dir = dDao.readDiretorByNome(diretor);
+        Genero gen = gDao.readGeneroByNome(genero);
         Distribuidora ds = dsDao.readDistribuidoraByNome(dist);
         
-        Filme f = new Filme(dir, gen, nome, clas, ano, ds, situacao, duracao, idioma );
-        boolean operacao = false;
-        operacao  = dao.insertFilme(f);
+        int id_diretor = dir.getPk();
+        int id_genero = gen.getId();
+        int id_distribuidora = ds.getId();
+        
+        Filme f = new Filme(id_diretor, id_genero, nome, clas, ano, id_distribuidora, situacao, duracao, idioma );
+        boolean operacao = dao.insertFilme(f);
         
         try {
             if (operacao) {
