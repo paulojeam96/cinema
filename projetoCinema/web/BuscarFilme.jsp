@@ -47,7 +47,7 @@
                         <p>Classificação: ${nomeFilme.getClassificacao()}</p>
                         <p>Ano: ${nomeFilme.getAno()}</p>
                         <p>Duração: ${nomeFilme.getDuracao()}</p>
-
+                        
 
 
                 </form>
