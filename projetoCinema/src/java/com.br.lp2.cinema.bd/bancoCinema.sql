@@ -120,8 +120,8 @@ alter table ingresso add FOREIGN KEY(id_filme) references filme(pk);
 
 
 insert into ator(nome, datanascimento, nacionalidade) values('Liam Neeson', '23/09/1966', 'americano'), ('Will Smith', '23/08/1977', 'philly'), ('Chris Hemsworth', '21/09/1966', 'asgardiano'), ('Oliver Queen', '23/09/1966', 'something else'), ('Tony Stark', '23/09/1980', 'marte');
-insert into gerente (nome, senha) values ('Paulo', 'paulo'), ('Gerson', 'gerson'), ('Cacique', 'cacique');
-insert into atendente (nome, senha) values ('Ana Paula', '123'), ('Ana Luiza', '123'), ('Jackson', '123');
+insert into gerente (nome, senha) values ('Paulo', 'paulo'), ('Gerson', 'gerson');
+insert into atendente (nome, senha) values ('Ana Paula', '123'), ('Ana Luiza', '123');
 insert into comum(nome, senha, codigo) values ('Gabriel', 'comum', 1);
 insert into diretor (id, nome) values(1, 'Jubiraca'), (2, 'Tom Hanks'), (3, 'Roberto Brasileiro'), (4, 'Aurelio');
 insert into genero(id, nome) values(1, 'acao'), (2, 'comedia'), (3, 'aventura'), (4, 'terror'), (5, 'adulto'), (6, 'suspense'), (7, 'musical'), (8, 'comedia-romantica'), (9, 'documentario');
