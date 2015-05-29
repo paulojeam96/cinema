@@ -60,17 +60,20 @@ public class CriarUsuario implements Command {
         
         boolean operacao = false;
         
-        if (cargo.toLowerCase().equals("atendente")) {
-            AtendenteDAO aDao = new AtendenteDAOConcreto();
-            operacao = aDao.insertAtendente(new Atendente(nome, senha));
-        } else if (cargo.toLowerCase().equals("gerente")) {
-            GerenteDAO gDao = new GerenteDAOConcreto();
-            operacao = gDao.insertGerente(new Gerente(nome, senha));
-        } 
+        switch (cargo.toLowerCase()) {
+            case "atendente":
+                AtendenteDAO aDao = new AtendenteDAOConcreto();
+                operacao = aDao.insertAtendente(new Atendente(nome, senha));
+                break;
+            case "gerente":
+                GerenteDAO gDao = new GerenteDAOConcreto(); 
+                operacao = gDao.insertGerente(new Gerente(nome, senha));
+                break;
+        }
        
         try {
             if (operacao) {
-                response.sendRedirect("sucesso,jsp");
+                response.sendRedirect("sucesso.jsp");
             } else {
                 response.sendRedirect("fail.jsp");
             }

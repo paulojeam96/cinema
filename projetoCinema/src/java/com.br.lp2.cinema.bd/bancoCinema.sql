@@ -136,4 +136,4 @@ insert into ListaAtores(id_infoAtor) values(1), (2), (3), (4);
 insert into sessao (id_filme, id_sala, diaHora, legendado, id_ListaIngressos) values(3, 1, '23/07 14:00', true, 1), (1, 2, '23/07 15:00', false, 2), (2, 3, '23/07 16:00', true, 2);
 
 
-select * from sessao;
+select * from sala;
