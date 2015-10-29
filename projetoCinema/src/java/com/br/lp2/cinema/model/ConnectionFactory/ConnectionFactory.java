@@ -39,6 +39,8 @@ public class ConnectionFactory {
     public Connection getConnection(String tipo) {
         if (tipo.equalsIgnoreCase("derby")) {
             try {
+                
+                
 
                 Class.forName(driver).newInstance();
                 try {
