@@ -40,7 +40,7 @@ public class ConnectionFactory {
         if (tipo.equalsIgnoreCase("derby")) {
             try {
                 
-                
+                //Comentario
 
                 Class.forName(driver).newInstance();
                 try {
