@@ -134,6 +134,3 @@ insert into filme (id_diretor, id_genero, id_distribuidora, nome, classificacao,
 insert into InfoAtor(id_ator, id_filme, papel, part) values(1, 1, 'Brian Mills', 'protagonista'), (2, 3, 'Paulo Jeam', 'protagonista'), (3, 4, 'Fala Mansa', 'coadjuvante'), (4, 2, 'Tom Sawyer', 'protagonista');
 insert into ListaAtores(id_infoAtor) values(1), (2), (3), (4);
 insert into sessao (id_filme, id_sala, diaHora, legendado, id_ListaIngressos) values(3, 1, '23/07 14:00', true, 1), (1, 2, '23/07 15:00', false, 2), (2, 3, '23/07 16:00', true, 2);
-
-
-select * from sala;
