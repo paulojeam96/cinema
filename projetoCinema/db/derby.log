@@ -1,0 +1,31 @@
+Mon May 30 08:44:15 BRT 2016 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+----------------------------------------------------------------
+Mon May 30 08:44:33 BRT 2016:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-0155-017a-87ea-ffffa63f7e6e
+no diretório de banco de dados C:\Temp\cinema\projetoCinema\db\bancoCinema 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_40-b26
+user.dir=C:\Temp\glassfish-4.1.1\glassfish4\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Temp\cinema\projetoCinema\db
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Mon May 30 08:44:46 BRT 2016:
+Encerrando a instância a816c00e-0155-017a-87ea-ffffa63f7e6e
+Mon May 30 08:44:46 BRT 2016 Thread[DRDAConnThread_3,5,main] (DATABASE = bancoCinema), (DRDAID = {2}), Banco de dados 'bancoCinema' fechado.
+----------------------------------------------------------------
+Mon May 30 08:44:48 BRT 2016:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 560740aa-0155-017a-87ea-ffffa63f7e6e
+no diretório de banco de dados C:\Temp\cinema\projetoCinema\db\bancoCinema 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_40-b26
+user.dir=C:\Temp\glassfish-4.1.1\glassfish4\javadb
+os.name=Windows 7
+os.arch=amd64
+os.version=6.1
+derby.system.home=C:\Temp\cinema\projetoCinema\db
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
